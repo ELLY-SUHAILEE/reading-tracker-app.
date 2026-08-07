@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reading Tracker Quiz App</title>
+  <title>Reading Tracker Quiz</title>
   <style>
     :root {
-      --primary-color: #4A90E2;
-      --success-color: #2ECC71;
-      --error-color: #E74C3C;
-      --bg-color: #F4F7F6;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --text: #1f2937;
     }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-color);
+      background-color: var(--bg);
+      color: var(--text);
       margin: 0;
       padding: 20px;
       display: flex;
@@ -22,287 +24,349 @@
     }
 
     .container {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      max-width: 700px;
       width: 100%;
+      max-width: 800px;
+      background: var(--card-bg);
       padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
     }
 
-    .header-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 15px;
-      margin-bottom: 20px;
+    h1, h2 {
+      text-align: center;
+      color: var(--primary);
     }
 
-    select {
-      padding: 8px 12px;
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
       border-radius: 6px;
       border: 1px solid #ccc;
+      box-sizing: border-box;
       font-size: 16px;
     }
 
-    .worksheet-preview {
-      width: 100%;
-      max-height: 250px;
-      object-fit: contain;
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .quiz-section, .result-section {
+      display: none;
+    }
+
+    .question-card {
+      background: #fafafa;
+      border: 1px solid #e5e7eb;
       border-radius: 8px;
-      border: 1px solid #ddd;
-      margin-bottom: 20px;
-    }
-
-    .question-box {
-      background: #f9f9f9;
       padding: 15px;
-      border-left: 5px solid var(--primary-color);
-      border-radius: 4px;
       margin-bottom: 20px;
     }
 
-    .sentence {
-      font-size: 20px;
-      font-weight: bold;
-      color: #333;
+    .question-title {
+      font-size: 18px;
+      font-weight: 600;
       margin-bottom: 10px;
-    }
-
-    .sight-words {
-      color: #666;
-      font-size: 14px;
-    }
-
-    .badge {
-      background: #E1F0FF;
-      color: var(--primary-color);
-      padding: 3px 8px;
-      border-radius: 12px;
-      font-weight: bold;
-      display: inline-block;
-      margin-right: 5px;
     }
 
     .options-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
-      margin-bottom: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
     }
 
     .option-card {
-      border: 2px solid #e0e0e0;
+      border: 2px solid #e5e7eb;
       border-radius: 8px;
-      padding: 15px;
+      padding: 10px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s ease;
-      background: white;
+      transition: all 0.2s;
     }
 
     .option-card:hover {
-      border-color: var(--primary-color);
-      transform: translateY(-2px);
+      border-color: var(--primary);
     }
 
     .option-card img {
       max-width: 100%;
-      height: 80px;
+      height: 120px;
       object-fit: contain;
-      margin-bottom: 10px;
+      border-radius: 4px;
     }
 
-    .option-label {
-      font-weight: bold;
-      font-size: 18px;
-      display: block;
-      margin-bottom: 5px;
+    .option-card.selected {
+      border-color: var(--primary);
+      background-color: #eeeffe;
     }
 
-    .navigation {
+    .header-info {
       display: flex;
       justify-content: space-between;
-    }
-
-    button {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 10px 20px;
+      align-items: center;
+      background: #eef2ff;
+      padding: 10px 15px;
       border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background 0.2s;
+      margin-bottom: 20px;
+      font-weight: bold;
     }
 
-    button:hover {
-      opacity: 0.9;
-    }
-
-    button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-
-    .correct {
-      border-color: var(--success-color) !important;
-      background-color: #E8F8F5 !important;
-    }
-
-    .wrong {
-      border-color: var(--error-color) !important;
-      background-color: #FDEDEC !important;
+    .status-msg {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="header-section">
-      <h2>Reading Tracker Quiz</h2>
-      <div>
-        <label for="set-select">Pilih Set: </label>
-        <select id="set-select" onchange="changeSet()"></select>
-      </div>
+<div class="container">
+  <!-- BAHAGIAN 1: BORANG PENDAFTARAN -->
+  <div id="start-section">
+    <h1>Reading Tracker Quiz</h1>
+    <div class="form-group">
+      <label for="studentName">Nama Murid:</label>
+      <input type="text" id="studentName" placeholder="Masukkan nama penuh anda" required>
     </div>
-
-    <!-- Paparan Gambar Lembaran Kerja / Worksheet -->
-    <img id="worksheet-img" class="worksheet-preview" src="" alt="Worksheet Preview" style="display:none;">
-
-    <!-- Kotak Soalan -->
-    <div class="question-box">
-      <div id="question-number" style="font-weight: bold; color: var(--primary-color); margin-bottom: 5px;"></div>
-      <div class="sentence" id="sentence-text">Memuatkan soalan...</div>
-      <div class="sight-words">Sight Words: <span id="sight-words-list"></span></div>
+    <div class="form-group">
+      <label for="setSelect">Pilih Set Soalan:</label>
+      <select id="setSelect">
+        <!-- Pilihan Auto-Generate 1 hingga 23 -->
+      </select>
     </div>
-
-    <!-- Pilihan Jawapan -->
-    <div class="options-grid" id="options-container"></div>
-
-    <!-- Navigasi -->
-    <div class="navigation">
-      <button id="prev-btn" onclick="prevQuestion()" disabled>Soalan Sebelumnya</button>
-      <button id="next-btn" onclick="nextQuestion()">Soalan Seterusnya</button>
-    </div>
+    <button onclick="startQuiz()">Mula Kuiz</button>
   </div>
 
-  <script>
-    let allData = [];
-    let currentSetIndex = 0;
-    let currentQuestionIndex = 0;
+  <!-- BAHAGIAN 2: KUIZ -->
+  <div id="quiz-section" class="quiz-section">
+    <div class="header-info">
+      <span id="displayStudent"></span>
+      <span id="displaySet"></span>
+      <span id="displayTimer">Masa: 00:00</span>
+    </div>
 
-    // Memuatkan data dari questions.json
-    fetch('questions.json')
-      .then(response => response.json())
-      .then(data => {
-        allData = data;
-        initSetSelect();
-        loadQuestion();
-      })
-      .catch(error => {
-        document.getElementById('sentence-text').innerText = "Gagal memuatkan data. Pastikan 'questions.json' wujud.";
-        console.error('Error fetching JSON:', error);
-      });
+    <form id="quizForm">
+      <div id="questionsContainer"></div>
+      <button type="button" onclick="submitQuiz()">Hantar Jawapan</button>
+    </form>
+  </div>
 
-    // Pilihan Menu Set
-    function initSetSelect() {
-      const select = document.getElementById('set-select');
-      select.innerHTML = '';
-      allData.forEach((setData, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.innerText = `Set ${setData.set}`;
-        select.appendChild(option);
-      });
+  <!-- BAHAGIAN 3: KEPUTUSAN -->
+  <div id="result-section" class="result-section">
+    <h2>Keputusan Kuiz</h2>
+    <div class="question-card" style="text-align: center;">
+      <p id="resultText" style="font-size: 20px; font-weight: bold;"></p>
+      <p id="resultTime"></p>
+      <p id="statusMsg" class="status-msg"></p>
+    </div>
+    <button onclick="location.reload()">Jawab Set Lain</button>
+  </div>
+</div>
+
+<script>
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwLzoVdSRVJDOu_ESkWxAE-I23Sorhy4JOvqZSMKW7WOKkYejGe7YEhv3cj4QZEOvNa/exec";
+
+  let allData = {};
+  let currentQuestions = [];
+  let userAnswers = {};
+  let timerInterval;
+  let secondsElapsed = 0;
+
+  // Populates dropdown set01 sehingga set23
+  const setSelect = document.getElementById("setSelect");
+  for (let i = 1; i <= 23; i++) {
+    let num = i < 10 ? "0" + i : i;
+    let opt = document.createElement("option");
+    opt.value = `set${num}`;
+    opt.textContent = `Set ${num}`;
+    setSelect.appendChild(opt);
+  }
+
+  // Muat turun soalan dari JSON
+  fetch('questions.json')
+    .then(res => res.json())
+    .then(data => {
+      allData = data;
+    })
+    .catch(err => {
+      console.error("Gagal membaca questions.json:", err);
+      alert("Gagal memuat turun soalan. Sila pastikan fail questions.json wujud.");
+    });
+
+  function startQuiz() {
+    const name = document.getElementById("studentName").value.trim();
+    const selectedSet = document.getElementById("setSelect").value;
+
+    if (!name) {
+      alert("Sila masukkan nama anda terlebih dahulu.");
+      return;
     }
 
-    function changeSet() {
-      currentSetIndex = parseInt(document.getElementById('set-select').value);
-      currentQuestionIndex = 0;
-      loadQuestion();
+    if (!allData[selectedSet]) {
+      alert("Set soalan ini belum sedia atau tiada dalam questions.json.");
+      return;
     }
 
-    // Memaparkan Soalan & Pilihan
-    function loadQuestion() {
-      const currentSet = allData[currentSetIndex];
-      const q = currentSet.questions[currentQuestionIndex];
+    currentQuestions = allData[selectedSet];
+    document.getElementById("start-section").style.display = "none";
+    document.getElementById("quiz-section").style.display = "block";
 
-      // Tunjuk Gambar Lembaran Kerja jika ada
-      const imgElem = document.getElementById('worksheet-img');
-      if (currentSet.worksheet_image) {
-        imgElem.src = currentSet.worksheet_image;
-        imgElem.style.display = 'block';
-      } else {
-        imgElem.style.display = 'none';
-      }
+    document.getElementById("displayStudent").textContent = "Nama: " + name;
+    document.getElementById("displaySet").textContent = "Set: " + selectedSet.toUpperCase();
 
-      // Teks Soalan & Sight Words
-      document.getElementById('question-number').innerText = `Soalan ${q.no} daripada ${currentSet.questions.length}`;
-      document.getElementById('sentence-text').innerText = q.sentence;
-      
-      const wordsContainer = document.getElementById('sight-words-list');
-      wordsContainer.innerHTML = '';
-      q.sight_words.forEach(word => {
-        wordsContainer.innerHTML += `<span class="badge">${word}</span>`;
-      });
+    renderQuestions();
+    startTimer();
+  }
 
-      // Pilihan Jawapan A, B, C
-      const container = document.getElementById('options-container');
-      container.innerHTML = '';
+  function startTimer() {
+    secondsElapsed = 0;
+    timerInterval = setInterval(() => {
+      secondsElapsed++;
+      let mins = Math.floor(secondsElapsed / 60);
+      let secs = secondsElapsed % 60;
+      let formattedMin = mins < 10 ? "0" + mins : mins;
+      let formattedSec = secs < 10 ? "0" + secs : secs;
+      document.getElementById("displayTimer").textContent = `Masa: ${formattedMin}:${formattedSec}`;
+    }, 1000);
+  }
 
-      q.options.forEach(opt => {
-        const card = document.createElement('div');
-        card.className = 'option-card';
-        
-        let content = `<span class="option-label">${opt.label}</span>`;
-        if (opt.image) {
-          content += `<img src="${opt.image}" alt="Option ${opt.label}">`;
+  function renderQuestions() {
+    const container = document.getElementById("questionsContainer");
+    container.innerHTML = "";
+
+    currentQuestions.forEach((q, index) => {
+      const qCard = document.createElement("div");
+      qCard.className = "question-card";
+
+      const title = document.createElement("div");
+      title.className = "question-title";
+      title.textContent = `${index + 1}. ${q.sentence}`;
+      qCard.appendChild(title);
+
+      const grid = document.createElement("div");
+      grid.className = "options-grid";
+
+      // Pilihan Gambar A, B, C
+      ['A', 'B', 'C'].forEach(optionKey => {
+        if (q.options && q.options[optionKey]) {
+          const optCard = document.createElement("div");
+          optCard.className = "option-card";
+          optCard.id = `q_${index}_${optionKey}`;
+          optCard.onclick = () => selectOption(index, optionKey);
+
+          const img = document.createElement("img");
+          img.src = q.options[optionKey];
+          img.alt = `Pilihan ${optionKey}`;
+
+          const label = document.createElement("p");
+          label.textContent = optionKey;
+          label.style.margin = "5px 0 0 0";
+          label.style.fontWeight = "bold";
+
+          optCard.appendChild(img);
+          optCard.appendChild(label);
+          grid.appendChild(optCard);
         }
-        if (opt.text) {
-          content += `<div>${opt.text}</div>`;
-        }
-        if (opt.description) {
-          content += `<small style="color:#777;">${opt.description}</small>`;
-        }
-
-        card.innerHTML = content;
-        card.onclick = () => checkAnswer(card, opt.is_correct);
-        container.appendChild(card);
       });
 
-      // Kawalan Butang Navigasi
-      document.getElementById('prev-btn').disabled = (currentQuestionIndex === 0);
-      document.getElementById('next-btn').disabled = (currentQuestionIndex === currentSet.questions.length - 1);
-    }
+      qCard.appendChild(grid);
+      container.appendChild(qCard);
+    });
+  }
 
-    // Semak Jawapan
-    function checkAnswer(selectedCard, isCorrect) {
-      const cards = document.querySelectorAll('.option-card');
-      cards.forEach(card => card.classList.remove('correct', 'wrong'));
+  function selectOption(qIndex, optionKey) {
+    userAnswers[qIndex] = optionKey;
+    ['A', 'B', 'C'].forEach(key => {
+      const el = document.getElementById(`q_${qIndex}_${key}`);
+      if (el) el.classList.remove("selected");
+    });
+    const selectedEl = document.getElementById(`q_${qIndex}_${optionKey}`);
+    if (selectedEl) selectedEl.classList.add("selected");
+  }
 
-      if (isCorrect) {
-        selectedCard.classList.add('correct');
-      } else {
-        selectedCard.classList.add('wrong');
+  function submitQuiz() {
+    if (Object.keys(userAnswers).length < currentQuestions.length) {
+      if (!confirm("Anda belum menjawab semua soalan. Adakah anda pasti mahu menghantar?")) {
+        return;
       }
     }
 
-    function prevQuestion() {
-      if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        loadQuestion();
-      }
-    }
+    clearInterval(timerInterval);
 
-    function nextQuestion() {
-      const currentSet = allData[currentSetIndex];
-      if (currentQuestionIndex < currentSet.questions.length - 1) {
-        currentQuestionIndex++;
-        loadQuestion();
+    // Kirim Skor
+    let score = 0;
+    currentQuestions.forEach((q, index) => {
+      if (userAnswers[index] === q.answer) {
+        score++;
       }
-    }
-  </script>
+    });
+
+    const studentName = document.getElementById("studentName").value.trim();
+    const setName = document.getElementById("setSelect").value.toUpperCase();
+    const scoreText = `${score} / ${currentQuestions.length}`;
+    
+    let mins = Math.floor(secondsElapsed / 60);
+    let secs = secondsElapsed % 60;
+    const timeTaken = `${mins}m ${secs}s`;
+
+    // Papar skrin keputusan
+    document.getElementById("quiz-section").style.display = "none";
+    document.getElementById("result-section").style.display = "block";
+    document.getElementById("resultText").textContent = `Skor Anda: ${scoreText}`;
+    document.getElementById("resultTime").textContent = `Masa Diambil: ${timeTaken}`;
+    document.getElementById("statusMsg").textContent = "Sedang menyimpan rekod ke Google Sheet...";
+
+    // Hantar data ke Google Apps Script
+    hantarRekodKeGoogleSheet(studentName, setName, scoreText, timeTaken);
+  }
+
+  function hantarRekodKeGoogleSheet(studentName, setName, score, timeTaken) {
+    const payload = {
+      studentName: studentName,
+      setName: setName,
+      score: score,
+      timeTaken: timeTaken
+    };
+
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(() => {
+      document.getElementById("statusMsg").textContent = "✅ Rekod berjaya disimpan ke Google Sheet!";
+      document.getElementById("statusMsg").style.color = "green";
+    })
+    .catch(error => {
+      console.error("Gagal menghantar data:", error);
+      document.getElementById("statusMsg").textContent = "❌ Ralat semasa menyimpan rekod.";
+      document.getElementById("statusMsg").style.color = "red";
+    });
+  }
+</script>
+
 </body>
 </html>
