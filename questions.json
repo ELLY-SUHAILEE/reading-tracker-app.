@@ -1,0 +1,34 @@
+[
+  {
+    "set": 1,
+    "worksheet_image": "images/set01.png",
+    "questions": [
+      {"no": 1, "sentence": "I see a big red apple.", "sight_words": ["see", "big", "red"], "options": [{"label": "A", "text": "Epal merah", "is_correct": true}, {"label": "B", "text": "Pisang", "is_correct": false}, {"label": "C", "text": "Lobak merah", "is_correct": false}]},
+      {"no": 2, "sentence": "The cat is sleeping on the mat.", "sight_words": ["cat", "sleeping", "mat"], "options": [{"label": "A", "text": "Kucing tidur di sofa", "is_correct": false}, {"label": "B", "text": "Kucing tidur di alas kaki", "is_correct": true}, {"label": "C", "text": "Anjing tidur", "is_correct": false}]},
+      {"no": 3, "sentence": "A dog can run fast.", "sight_words": ["dog", "can", "run"], "options": [{"label": "A", "text": "Anjing berlari", "is_correct": true}, {"label": "B", "text": "Kura-kura berjalan", "is_correct": false}, {"label": "C", "text": "Kucing berjalan", "is_correct": false}]},
+      {"no": 4, "sentence": "The sun is hot and bright.", "sight_words": ["sun", "hot", "bright"], "options": [{"label": "A", "text": "Awan", "is_correct": false}, {"label": "B", "text": "Matahari", "is_correct": true}, {"label": "C", "text": "Bulan", "is_correct": false}]},
+      {"no": 5, "sentence": "Look at the yellow duck.", "sight_words": ["look", "yellow", "duck"], "options": [{"label": "A", "text": "Itik kuning", "is_correct": true}, {"label": "B", "text": "Ayam kuning", "is_correct": false}, {"label": "C", "text": "Burung", "is_correct": false}]},
+      {"no": 6, "sentence": "She has a blue balloon.", "sight_words": ["has", "blue", "balloon"], "options": [{"label": "A", "text": "Belon biru", "is_correct": true}, {"label": "B", "text": "Bola biru", "is_correct": false}, {"label": "C", "text": "Belon merah", "is_correct": false}]},
+      {"no": 7, "sentence": "The car goes very fast.", "sight_words": ["car", "goes", "fast"], "options": [{"label": "A", "text": "Kereta", "is_correct": true}, {"label": "B", "text": "Basikal", "is_correct": false}, {"label": "C", "text": "Lori", "is_correct": false}]},
+      {"no": 8, "sentence": "We can play in the park.", "sight_words": ["can", "play", "park"], "options": [{"label": "A", "text": "Taman permainan", "is_correct": true}, {"label": "B", "text": "Bilik darjah", "is_correct": false}, {"label": "C", "text": "Pantai", "is_correct": false}]},
+      {"no": 9, "sentence": "The bird flies high in the sky.", "sight_words": ["bird", "flies", "sky"], "options": [{"label": "A", "text": "Burung terbang", "is_correct": true}, {"label": "B", "text": "Kapur terbang", "is_correct": false}, {"label": "C", "text": "Kapa-kapa", "is_correct": false}]},
+      {"no": 10, "sentence": "Put the book on the table.", "sight_words": ["put", "book", "table"], "options": [{"label": "A", "text": "Buku atas meja", "is_correct": true}, {"label": "B", "text": "Buku dalam beg", "is_correct": false}, {"label": "C", "text": "Pensel atas meja", "is_correct": false}]}
+    ]
+  },
+  {
+    "set": 2,
+    "worksheet_image": "images/set02.png",
+    "questions": [
+      {"no": 1, "sentence": "The fish can swim in water.", "sight_words": ["fish", "can", "swim"], "options": [{"label": "A", "text": "Ikan berenang", "is_correct": true}, {"label": "B", "text": "Burung terbang", "is_correct": false}, {"label": "C", "text": "Katak melompat", "is_correct": false}]},
+      {"no": 2, "sentence": "I like to eat ice cream.", "sight_words": ["like", "eat", "ice cream"], "options": [{"label": "A", "text": "Aiskrim", "is_correct": true}, {"label": "B", "text": "Kek", "is_correct": false}, {"label": "C", "text": "Piza", "is_correct": false}]},
+      {"no": 3, "sentence": "He has a green frog.", "sight_words": ["has", "green", "frog"], "options": [{"label": "A", "text": "Katak hijau", "is_correct": true}, {"label": "B", "text": "Ular hijau", "is_correct": false}, {"label": "C", "text": "Burung hijau", "is_correct": false}]},
+      {"no": 4, "sentence": "The star shines at night.", "sight_words": ["star", "shines", "night"], "options": [{"label": "A", "text": "Bintang", "is_correct": true}, {"label": "B", "text": "Matahari", "is_correct": false}, {"label": "C", "text": "Awan", "is_correct": false}]},
+      {"no": 5, "sentence": "We ride a big yellow bus.", "sight_words": ["ride", "yellow", "bus"], "options": [{"label": "A", "text": "Bas kuning", "is_correct": true}, {"label": "B", "text": "Kereta kuning", "is_correct": false}, {"label": "C", "text": "Teksi", "is_correct": false}]},
+      {"no": 6, "sentence": "The boy has a toy train.", "sight_words": ["boy", "toy", "train"], "options": [{"label": "A", "text": "Kereta api mainan", "is_correct": true}, {"label": "B", "text": "Kereta mainan", "is_correct": false}, {"label": "C", "text": "Kapal terbang mainan", "is_correct": false}]},
+      {"no": 7, "sentence": "Open the door please.", "sight_words": ["open", "door", "please"], "options": [{"label": "A", "text": "Pintu terbuka", "is_correct": true}, {"label": "B", "text": "Tingkap terbuka", "is_correct": false}, {"label": "C", "text": "Peti ais terbuka", "is_correct": false}]},
+      {"no": 8, "sentence": "The monkey eats a banana.", "sight_words": ["monkey", "eats", "banana"], "options": [{"label": "A", "text": "Monyet makan pisang", "is_correct": true}, {"label": "B", "text": "Monyet makan epal", "is_correct": false}, {"label": "C", "text": "Gajah makan pisang", "is_correct": false}]},
+      {"no": 9, "sentence": "I drink milk every day.", "sight_words": ["drink", "milk", "every day"], "options": [{"label": "A", "text": "Gelas susu", "is_correct": true}, {"label": "B", "text": "Gelas air manis", "is_correct": false}, {"label": "C", "text": "Cawan kopi", "is_correct": false}]},
+      {"no": 10, "sentence": "She wears a pretty dress.", "sight_words": ["wears", "pretty", "dress"], "options": [{"label": "A", "text": "Gaun/Baju dress", "is_correct": true}, {"label": "B", "text": "Seluar panjang", "is_correct": false}, {"label": "C", "text": "T-shirt", "is_correct": false}]}
+    ]
+  }
+]
