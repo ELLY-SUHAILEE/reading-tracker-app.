@@ -59,22 +59,6 @@
 
     .quiz-section, .result-section { display: none; }
 
-    /* Paparan Lembaran Kerja */
-    .worksheet-container {
-      text-align: center;
-      margin-bottom: 20px;
-      background: #fff;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-    }
-
-    .worksheet-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-    }
-
     .question-card {
       background: #fafafa;
       border: 1px solid #e5e7eb;
@@ -85,9 +69,27 @@
 
     .question-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
 
+    /* KONFIGURASI TAMPILAN GAMBAR SOALAN CROP */
+    .question-image-box {
+      width: 100%;
+      height: 95px; /* Ketinggian satu baris soalan */
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      margin-bottom: 12px;
+      background: #fff;
+    }
+
+    .question-image-box img {
+      width: 100%;
+      height: 1000px; /* Saiz anggaran keseluruhan lembaran kerja */
+      object-fit: cover;
+      display: block;
+    }
+
     .options-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
 
@@ -98,10 +100,13 @@
       text-align: center;
       cursor: pointer;
       background: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      transition: all 0.2s;
     }
 
     .option-card:hover { border-color: var(--primary); }
-    .option-card.selected { border-color: var(--primary); background-color: #eeeffe; }
+    .option-card.selected { border-color: var(--primary); background-color: #eeeffe; color: var(--primary); }
 
     .header-info {
       display: flex;
@@ -112,7 +117,10 @@
       margin-bottom: 20px;
       font-weight: bold;
       flex-wrap: wrap;
+      gap: 10px;
     }
+
+    .status-msg { text-align: center; margin-top: 15px; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -145,12 +153,6 @@
       <span id="displayTimer">Masa: 00:00</span>
     </div>
 
-    <!-- PAPARAN GAMBAR LEMBARAN KERJA -->
-    <div id="worksheetContainer" class="worksheet-container" style="display:none;">
-      <p style="margin-top:0; font-weight:bold; color:#555;">Rujukan Lembaran Kerja:</p>
-      <img id="worksheetImg" src="" alt="Gambar Lembaran Kerja">
-    </div>
-
     <form id="quizForm">
       <div id="questionsContainer"></div>
       <button type="button" onclick="submitQuiz()">Hantar Jawapan</button>
@@ -163,7 +165,7 @@
     <div class="question-card" style="text-align: center;">
       <p id="resultText" style="font-size: 20px; font-weight: bold;"></p>
       <p id="resultTime"></p>
-      <p id="statusMsg"></p>
+      <p id="statusMsg" class="status-msg"></p>
     </div>
     <button onclick="location.reload()">Jawab Set Lain</button>
   </div>
@@ -174,6 +176,7 @@
 
   let rawData = [];
   let currentQuestions = [];
+  let currentWorksheetImage = "";
   let userAnswers = {};
   let timerInterval;
   let secondsElapsed = 0;
@@ -189,7 +192,7 @@
   fetch('questions.json')
     .then(res => res.json())
     .then(data => { rawData = data; })
-    .catch(err => console.error("Error loading JSON:", err));
+    .catch(err => console.error("Gagal membaca questions.json:", err));
 
   function startQuiz() {
     const name = document.getElementById("studentName").value.trim();
@@ -209,15 +212,8 @@
     }
 
     currentQuestions = matchedSet.questions;
+    currentWorksheetImage = matchedSet.worksheet_image || `set${selectedSetNum < 10 ? '0' + selectedSetNum : selectedSetNum}.png`;
     userAnswers = {};
-
-    // Tampilkan gambar lembaran kerja jika wujud
-    if (matchedSet.worksheet_image) {
-      document.getElementById("worksheetImg").src = matchedSet.worksheet_image;
-      document.getElementById("worksheetContainer").style.display = "block";
-    } else {
-      document.getElementById("worksheetContainer").style.display = "none";
-    }
 
     document.getElementById("start-section").style.display = "none";
     document.getElementById("quiz-section").style.display = "block";
@@ -253,6 +249,22 @@
       title.textContent = `${q.no || (index + 1)}. ${q.sentence}`;
       qCard.appendChild(title);
 
+      // KOTAK GAMBAR CROP
+      const imgBox = document.createElement("div");
+      imgBox.className = "question-image-box";
+
+      const img = document.createElement("img");
+      img.src = currentWorksheetImage;
+      
+      // Mengira peratusan potongan gambar berdasarkan nombor soalan (1 hingga 10)
+      const qNum = q.no || (index + 1);
+      const yOffset = (qNum - 1) * 10; // Melompat 10% setiap soalan
+      img.style.objectPosition = `center ${yOffset}%`;
+
+      imgBox.appendChild(img);
+      qCard.appendChild(imgBox);
+
+      // PILIHAN JAWAPAN (A), (B), (C)
       const grid = document.createElement("div");
       grid.className = "options-grid";
 
@@ -262,22 +274,8 @@
           optCard.className = "option-card";
           optCard.id = `q_${index}_${opt.label}`;
           optCard.onclick = () => selectOption(index, opt.label);
+          optCard.textContent = `(${opt.label})`;
 
-          // Memaparkan Gambar Pilihan jika ada
-          if (opt.image) {
-            const img = document.createElement("img");
-            img.src = opt.image;
-            img.style.maxWidth = "100%";
-            img.style.height = "100px";
-            optCard.appendChild(img);
-          }
-
-          const labelText = document.createElement("p");
-          labelText.style.margin = "5px 0 0 0";
-          labelText.style.fontWeight = "bold";
-          labelText.textContent = `(${opt.label}) ${opt.text || ''}`;
-
-          optCard.appendChild(labelText);
           grid.appendChild(optCard);
         });
       }
