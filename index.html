@@ -129,6 +129,8 @@
       border-radius: 6px;
       margin-bottom: 20px;
       font-weight: bold;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .status-msg {
@@ -149,9 +151,13 @@
       <input type="text" id="studentName" placeholder="Masukkan nama penuh anda" required>
     </div>
     <div class="form-group">
+      <label for="studentClass">Kelas:</label>
+      <input type="text" id="studentClass" placeholder="Contoh: 1 Cemerlang / 2 Angsana" required>
+    </div>
+    <div class="form-group">
       <label for="setSelect">Pilih Set Soalan:</label>
       <select id="setSelect">
-        <!-- Pilihan Auto-Generate 1 hingga 23 -->
+        <!-- Pilihan Auto-Generate -->
       </select>
     </div>
     <button onclick="startQuiz()">Mula Kuiz</button>
@@ -161,6 +167,7 @@
   <div id="quiz-section" class="quiz-section">
     <div class="header-info">
       <span id="displayStudent"></span>
+      <span id="displayClass"></span>
       <span id="displaySet"></span>
       <span id="displayTimer">Masa: 00:00</span>
     </div>
@@ -192,7 +199,7 @@
   let timerInterval;
   let secondsElapsed = 0;
 
-  // Populates dropdown set01 sehingga set23
+  // Populates dropdown
   const setSelect = document.getElementById("setSelect");
   for (let i = 1; i <= 23; i++) {
     let num = i < 10 ? "0" + i : i;
@@ -202,11 +209,12 @@
     setSelect.appendChild(opt);
   }
 
-  // Muat turun soalan dari JSON
+  // Muat turun soalan dari questions.json
   fetch('questions.json')
     .then(res => res.json())
     .then(data => {
       allData = data;
+      console.log("Data questions.json berjaya dimuat turun:", allData);
     })
     .catch(err => {
       console.error("Gagal membaca questions.json:", err);
@@ -215,23 +223,37 @@
 
   function startQuiz() {
     const name = document.getElementById("studentName").value.trim();
+    const className = document.getElementById("studentClass").value.trim();
     const selectedSet = document.getElementById("setSelect").value;
 
-    if (!name) {
-      alert("Sila masukkan nama anda terlebih dahulu.");
+    if (!name || !className) {
+      alert("Sila isi nama dan kelas anda terlebih dahulu.");
       return;
     }
 
-    if (!allData[selectedSet]) {
-      alert("Set soalan ini belum sedia atau tiada dalam questions.json.");
+    // Memeriksa padanan key (contoh: set01 atau set1)
+    let questionsKey = selectedSet;
+    if (!allData[questionsKey]) {
+      // Cuba semak format tanpa '0' di depan (contoh: set1)
+      let altKey = selectedSet.replace("set0", "set");
+      if (allData[altKey]) {
+        questionsKey = altKey;
+      }
+    }
+
+    if (!allData[questionsKey] || allData[questionsKey].length === 0) {
+      alert(`Soalan untuk ${selectedSet.toUpperCase()} tidak dijumpai atau kosong dalam questions.json!`);
       return;
     }
 
-    currentQuestions = allData[selectedSet];
+    currentQuestions = allData[questionsKey];
+    userAnswers = {};
+
     document.getElementById("start-section").style.display = "none";
     document.getElementById("quiz-section").style.display = "block";
 
     document.getElementById("displayStudent").textContent = "Nama: " + name;
+    document.getElementById("displayClass").textContent = "Kelas: " + className;
     document.getElementById("displaySet").textContent = "Set: " + selectedSet.toUpperCase();
 
     renderQuestions();
@@ -260,22 +282,29 @@
 
       const title = document.createElement("div");
       title.className = "question-title";
-      title.textContent = `${index + 1}. ${q.sentence}`;
+      title.textContent = `${index + 1}. ${q.sentence || q.question || ''}`;
       qCard.appendChild(title);
 
       const grid = document.createElement("div");
       grid.className = "options-grid";
 
-      // Pilihan Gambar A, B, C
+      // Membaca pilihan jawapan
       ['A', 'B', 'C'].forEach(optionKey => {
+        let imgSrc = "";
         if (q.options && q.options[optionKey]) {
+          imgSrc = q.options[optionKey];
+        } else if (q[optionKey]) {
+          imgSrc = q[optionKey];
+        }
+
+        if (imgSrc) {
           const optCard = document.createElement("div");
           optCard.className = "option-card";
           optCard.id = `q_${index}_${optionKey}`;
           optCard.onclick = () => selectOption(index, optionKey);
 
           const img = document.createElement("img");
-          img.src = q.options[optionKey];
+          img.src = imgSrc;
           img.alt = `Pilihan ${optionKey}`;
 
           const label = document.createElement("p");
@@ -313,7 +342,6 @@
 
     clearInterval(timerInterval);
 
-    // Kirim Skor
     let score = 0;
     currentQuestions.forEach((q, index) => {
       if (userAnswers[index] === q.answer) {
@@ -322,6 +350,7 @@
     });
 
     const studentName = document.getElementById("studentName").value.trim();
+    const studentClass = document.getElementById("studentClass").value.trim();
     const setName = document.getElementById("setSelect").value.toUpperCase();
     const scoreText = `${score} / ${currentQuestions.length}`;
     
@@ -329,20 +358,19 @@
     let secs = secondsElapsed % 60;
     const timeTaken = `${mins}m ${secs}s`;
 
-    // Papar skrin keputusan
     document.getElementById("quiz-section").style.display = "none";
     document.getElementById("result-section").style.display = "block";
     document.getElementById("resultText").textContent = `Skor Anda: ${scoreText}`;
     document.getElementById("resultTime").textContent = `Masa Diambil: ${timeTaken}`;
     document.getElementById("statusMsg").textContent = "Sedang menyimpan rekod ke Google Sheet...";
 
-    // Hantar data ke Google Apps Script
-    hantarRekodKeGoogleSheet(studentName, setName, scoreText, timeTaken);
+    hantarRekodKeGoogleSheet(studentName, studentClass, setName, scoreText, timeTaken);
   }
 
-  function hantarRekodKeGoogleSheet(studentName, setName, score, timeTaken) {
+  function hantarRekodKeGoogleSheet(studentName, studentClass, setName, score, timeTaken) {
     const payload = {
       studentName: studentName,
+      studentClass: studentClass,
       setName: setName,
       score: score,
       timeTaken: timeTaken
