@@ -90,7 +90,7 @@
 
     .options-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 10px;
       margin-top: 10px;
     }
@@ -98,21 +98,15 @@
     .option-card {
       border: 2px solid #e5e7eb;
       border-radius: 8px;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s;
+      background: #fff;
     }
 
     .option-card:hover {
       border-color: var(--primary);
-    }
-
-    .option-card img {
-      max-width: 100%;
-      height: 120px;
-      object-fit: contain;
-      border-radius: 4px;
     }
 
     .option-card.selected {
@@ -152,12 +146,12 @@
     </div>
     <div class="form-group">
       <label for="studentClass">Kelas:</label>
-      <input type="text" id="studentClass" placeholder="Contoh: 1 Cemerlang / 2 Angsana" required>
+      <input type="text" id="studentClass" placeholder="Contoh: 1 Cemerlang" required>
     </div>
     <div class="form-group">
       <label for="setSelect">Pilih Set Soalan:</label>
       <select id="setSelect">
-        <!-- Pilihan Auto-Generate -->
+        <!-- Generasi 1 hingga 23 -->
       </select>
     </div>
     <button onclick="startQuiz()">Mula Kuiz</button>
@@ -193,19 +187,18 @@
 <script>
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwLzoVdSRVJDOu_ESkWxAE-I23Sorhy4JOvqZSMKW7WOKkYejGe7YEhv3cj4QZEOvNa/exec";
 
-  let allData = {};
+  let rawData = [];
   let currentQuestions = [];
   let userAnswers = {};
   let timerInterval;
   let secondsElapsed = 0;
 
-  // Populates dropdown
+  // Populates dropdown (Set 1 hingga Set 23)
   const setSelect = document.getElementById("setSelect");
   for (let i = 1; i <= 23; i++) {
-    let num = i < 10 ? "0" + i : i;
     let opt = document.createElement("option");
-    opt.value = `set${num}`;
-    opt.textContent = `Set ${num}`;
+    opt.value = i;
+    opt.textContent = `Set ${i < 10 ? '0' + i : i}`;
     setSelect.appendChild(opt);
   }
 
@@ -213,8 +206,8 @@
   fetch('questions.json')
     .then(res => res.json())
     .then(data => {
-      allData = data;
-      console.log("Data questions.json berjaya dimuat turun:", allData);
+      rawData = data;
+      console.log("Data soalan berjaya dimuat turun:", rawData);
     })
     .catch(err => {
       console.error("Gagal membaca questions.json:", err);
@@ -224,29 +217,22 @@
   function startQuiz() {
     const name = document.getElementById("studentName").value.trim();
     const className = document.getElementById("studentClass").value.trim();
-    const selectedSet = document.getElementById("setSelect").value;
+    const selectedSetNum = parseInt(document.getElementById("setSelect").value);
 
     if (!name || !className) {
       alert("Sila isi nama dan kelas anda terlebih dahulu.");
       return;
     }
 
-    // Memeriksa padanan key (contoh: set01 atau set1)
-    let questionsKey = selectedSet;
-    if (!allData[questionsKey]) {
-      // Cuba semak format tanpa '0' di depan (contoh: set1)
-      let altKey = selectedSet.replace("set0", "set");
-      if (allData[altKey]) {
-        questionsKey = altKey;
-      }
-    }
+    // Cari set dalam senarai Array JSON
+    const matchedSet = rawData.find(item => item.set === selectedSetNum);
 
-    if (!allData[questionsKey] || allData[questionsKey].length === 0) {
-      alert(`Soalan untuk ${selectedSet.toUpperCase()} tidak dijumpai atau kosong dalam questions.json!`);
+    if (!matchedSet || !matchedSet.questions || matchedSet.questions.length === 0) {
+      alert(`Soalan untuk Set ${selectedSetNum} tidak dijumpai atau belum sedia dalam questions.json!`);
       return;
     }
 
-    currentQuestions = allData[questionsKey];
+    currentQuestions = matchedSet.questions;
     userAnswers = {};
 
     document.getElementById("start-section").style.display = "none";
@@ -254,7 +240,7 @@
 
     document.getElementById("displayStudent").textContent = "Nama: " + name;
     document.getElementById("displayClass").textContent = "Kelas: " + className;
-    document.getElementById("displaySet").textContent = "Set: " + selectedSet.toUpperCase();
+    document.getElementById("displaySet").textContent = "Set: " + (selectedSetNum < 10 ? '0' + selectedSetNum : selectedSetNum);
 
     renderQuestions();
     startTimer();
@@ -282,54 +268,48 @@
 
       const title = document.createElement("div");
       title.className = "question-title";
-      title.textContent = `${index + 1}. ${q.sentence || q.question || ''}`;
+      title.textContent = `${q.no || (index + 1)}. ${q.sentence}`;
       qCard.appendChild(title);
 
       const grid = document.createElement("div");
       grid.className = "options-grid";
 
-      // Membaca pilihan jawapan
-      ['A', 'B', 'C'].forEach(optionKey => {
-        let imgSrc = "";
-        if (q.options && q.options[optionKey]) {
-          imgSrc = q.options[optionKey];
-        } else if (q[optionKey]) {
-          imgSrc = q[optionKey];
-        }
-
-        if (imgSrc) {
+      // Render Pilihan Jawapan A, B, C
+      if (q.options && Array.isArray(q.options)) {
+        q.options.forEach(opt => {
           const optCard = document.createElement("div");
           optCard.className = "option-card";
-          optCard.id = `q_${index}_${optionKey}`;
-          optCard.onclick = () => selectOption(index, optionKey);
+          optCard.id = `q_${index}_${opt.label}`;
+          optCard.onclick = () => selectOption(index, opt.label);
 
-          const img = document.createElement("img");
-          img.src = imgSrc;
-          img.alt = `Pilihan ${optionKey}`;
+          const labelText = document.createElement("p");
+          labelText.style.margin = "0";
+          labelText.style.fontWeight = "bold";
+          labelText.textContent = `(${opt.label}) ${opt.text}`;
 
-          const label = document.createElement("p");
-          label.textContent = optionKey;
-          label.style.margin = "5px 0 0 0";
-          label.style.fontWeight = "bold";
-
-          optCard.appendChild(img);
-          optCard.appendChild(label);
+          optCard.appendChild(labelText);
           grid.appendChild(optCard);
-        }
-      });
+        });
+      }
 
       qCard.appendChild(grid);
       container.appendChild(qCard);
     });
   }
 
-  function selectOption(qIndex, optionKey) {
-    userAnswers[qIndex] = optionKey;
-    ['A', 'B', 'C'].forEach(key => {
-      const el = document.getElementById(`q_${qIndex}_${key}`);
-      if (el) el.classList.remove("selected");
-    });
-    const selectedEl = document.getElementById(`q_${qIndex}_${optionKey}`);
+  function selectOption(qIndex, optionLabel) {
+    userAnswers[qIndex] = optionLabel;
+    
+    // Reset style pilihan
+    const currentQuestionObj = currentQuestions[qIndex];
+    if (currentQuestionObj && currentQuestionObj.options) {
+      currentQuestionObj.options.forEach(opt => {
+        const el = document.getElementById(`q_${qIndex}_${opt.label}`);
+        if (el) el.classList.remove("selected");
+      });
+    }
+
+    const selectedEl = document.getElementById(`q_${qIndex}_${optionLabel}`);
     if (selectedEl) selectedEl.classList.add("selected");
   }
 
@@ -342,16 +322,20 @@
 
     clearInterval(timerInterval);
 
+    // Kirim Skor mengikut pilihan 'is_correct'
     let score = 0;
     currentQuestions.forEach((q, index) => {
-      if (userAnswers[index] === q.answer) {
+      const selectedLabel = userAnswers[index];
+      const selectedOption = q.options.find(opt => opt.label === selectedLabel);
+      if (selectedOption && selectedOption.is_correct) {
         score++;
       }
     });
 
     const studentName = document.getElementById("studentName").value.trim();
     const studentClass = document.getElementById("studentClass").value.trim();
-    const setName = document.getElementById("setSelect").value.toUpperCase();
+    const setNum = document.getElementById("setSelect").value;
+    const setName = "SET " + (setNum < 10 ? '0' + setNum : setNum);
     const scoreText = `${score} / ${currentQuestions.length}`;
     
     let mins = Math.floor(secondsElapsed / 60);
