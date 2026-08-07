@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Tracker Quiz App</title>
+  <style>
+    :root {
+      --primary-color: #4A90E2;
+      --success-color: #2ECC71;
+      --error-color: #E74C3C;
+      --bg-color: #F4F7F6;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      max-width: 700px;
+      width: 100%;
+      padding: 25px;
+    }
+
+    .header-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    select {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .worksheet-preview {
+      width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+
+    .question-box {
+      background: #f9f9f9;
+      padding: 15px;
+      border-left: 5px solid var(--primary-color);
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .sentence {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .sight-words {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .badge {
+      background: #E1F0FF;
+      color: var(--primary-color);
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: bold;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .option-card {
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: white;
+    }
+
+    .option-card:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    .option-card img {
+      max-width: 100%;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .option-label {
+      font-weight: bold;
+      font-size: 18px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .correct {
+      border-color: var(--success-color) !important;
+      background-color: #E8F8F5 !important;
+    }
+
+    .wrong {
+      border-color: var(--error-color) !important;
+      background-color: #FDEDEC !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-section">
+      <h2>Reading Tracker Quiz</h2>
+      <div>
+        <label for="set-select">Pilih Set: </label>
+        <select id="set-select" onchange="changeSet()"></select>
+      </div>
+    </div>
+
+    <!-- Paparan Gambar Lembaran Kerja / Worksheet -->
+    <img id="worksheet-img" class="worksheet-preview" src="" alt="Worksheet Preview" style="display:none;">
+
+    <!-- Kotak Soalan -->
+    <div class="question-box">
+      <div id="question-number" style="font-weight: bold; color: var(--primary-color); margin-bottom: 5px;"></div>
+      <div class="sentence" id="sentence-text">Memuatkan soalan...</div>
+      <div class="sight-words">Sight Words: <span id="sight-words-list"></span></div>
+    </div>
+
+    <!-- Pilihan Jawapan -->
+    <div class="options-grid" id="options-container"></div>
+
+    <!-- Navigasi -->
+    <div class="navigation">
+      <button id="prev-btn" onclick="prevQuestion()" disabled>Soalan Sebelumnya</button>
+      <button id="next-btn" onclick="nextQuestion()">Soalan Seterusnya</button>
+    </div>
+  </div>
+
+  <script>
+    let allData = [];
+    let currentSetIndex = 0;
+    let currentQuestionIndex = 0;
+
+    // Memuatkan data dari questions.json
+    fetch('questions.json')
+      .then(response => response.json())
+      .then(data => {
+        allData = data;
+        initSetSelect();
+        loadQuestion();
+      })
+      .catch(error => {
+        document.getElementById('sentence-text').innerText = "Gagal memuatkan data. Pastikan 'questions.json' wujud.";
+        console.error('Error fetching JSON:', error);
+      });
+
+    // Pilihan Menu Set
+    function initSetSelect() {
+      const select = document.getElementById('set-select');
+      select.innerHTML = '';
+      allData.forEach((setData, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.innerText = `Set ${setData.set}`;
+        select.appendChild(option);
+      });
+    }
+
+    function changeSet() {
+      currentSetIndex = parseInt(document.getElementById('set-select').value);
+      currentQuestionIndex = 0;
+      loadQuestion();
+    }
+
+    // Memaparkan Soalan & Pilihan
+    function loadQuestion() {
+      const currentSet = allData[currentSetIndex];
+      const q = currentSet.questions[currentQuestionIndex];
+
+      // Tunjuk Gambar Lembaran Kerja jika ada
+      const imgElem = document.getElementById('worksheet-img');
+      if (currentSet.worksheet_image) {
+        imgElem.src = currentSet.worksheet_image;
+        imgElem.style.display = 'block';
+      } else {
+        imgElem.style.display = 'none';
+      }
+
+      // Teks Soalan & Sight Words
+      document.getElementById('question-number').innerText = `Soalan ${q.no} daripada ${currentSet.questions.length}`;
+      document.getElementById('sentence-text').innerText = q.sentence;
+      
+      const wordsContainer = document.getElementById('sight-words-list');
+      wordsContainer.innerHTML = '';
+      q.sight_words.forEach(word => {
+        wordsContainer.innerHTML += `<span class="badge">${word}</span>`;
+      });
+
+      // Pilihan Jawapan A, B, C
+      const container = document.getElementById('options-container');
+      container.innerHTML = '';
+
+      q.options.forEach(opt => {
+        const card = document.createElement('div');
+        card.className = 'option-card';
+        
+        let content = `<span class="option-label">${opt.label}</span>`;
+        if (opt.image) {
+          content += `<img src="${opt.image}" alt="Option ${opt.label}">`;
+        }
+        if (opt.text) {
+          content += `<div>${opt.text}</div>`;
+        }
+        if (opt.description) {
+          content += `<small style="color:#777;">${opt.description}</small>`;
+        }
+
+        card.innerHTML = content;
+        card.onclick = () => checkAnswer(card, opt.is_correct);
+        container.appendChild(card);
+      });
+
+      // Kawalan Butang Navigasi
+      document.getElementById('prev-btn').disabled = (currentQuestionIndex === 0);
+      document.getElementById('next-btn').disabled = (currentQuestionIndex === currentSet.questions.length - 1);
+    }
+
+    // Semak Jawapan
+    function checkAnswer(selectedCard, isCorrect) {
+      const cards = document.querySelectorAll('.option-card');
+      cards.forEach(card => card.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        selectedCard.classList.add('correct');
+      } else {
+        selectedCard.classList.add('wrong');
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        loadQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      const currentSet = allData[currentSetIndex];
+      if (currentQuestionIndex < currentSet.questions.length - 1) {
+        currentQuestionIndex++;
+        loadQuestion();
+      }
+    }
+  </script>
+</body>
+</html>
