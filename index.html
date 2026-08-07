@@ -29,23 +29,13 @@
       background: var(--card-bg);
       padding: 25px;
       border-radius: 12px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
 
-    h1, h2 {
-      text-align: center;
-      color: var(--primary);
-    }
+    h1, h2 { text-align: center; color: var(--primary); }
 
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; }
 
     input, select, button {
       width: 100%;
@@ -63,15 +53,26 @@
       font-weight: bold;
       cursor: pointer;
       margin-top: 10px;
-      transition: background-color 0.2s;
     }
 
-    button:hover {
-      background-color: var(--primary-hover);
+    button:hover { background-color: var(--primary-hover); }
+
+    .quiz-section, .result-section { display: none; }
+
+    /* Paparan Lembaran Kerja */
+    .worksheet-container {
+      text-align: center;
+      margin-bottom: 20px;
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
     }
 
-    .quiz-section, .result-section {
-      display: none;
+    .worksheet-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
     }
 
     .question-card {
@@ -82,17 +83,12 @@
       margin-bottom: 20px;
     }
 
-    .question-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
+    .question-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
 
     .options-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 10px;
-      margin-top: 10px;
     }
 
     .option-card {
@@ -101,43 +97,28 @@
       padding: 12px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s;
       background: #fff;
     }
 
-    .option-card:hover {
-      border-color: var(--primary);
-    }
-
-    .option-card.selected {
-      border-color: var(--primary);
-      background-color: #eeeffe;
-    }
+    .option-card:hover { border-color: var(--primary); }
+    .option-card.selected { border-color: var(--primary); background-color: #eeeffe; }
 
     .header-info {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       background: #eef2ff;
       padding: 10px 15px;
       border-radius: 6px;
       margin-bottom: 20px;
       font-weight: bold;
       flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .status-msg {
-      text-align: center;
-      margin-top: 15px;
-      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- BAHAGIAN 1: BORANG PENDAFTARAN -->
+  <!-- BORANG PENDAFTARAN -->
   <div id="start-section">
     <h1>Reading Tracker Quiz</h1>
     <div class="form-group">
@@ -150,14 +131,12 @@
     </div>
     <div class="form-group">
       <label for="setSelect">Pilih Set Soalan:</label>
-      <select id="setSelect">
-        <!-- Generasi 1 hingga 23 -->
-      </select>
+      <select id="setSelect"></select>
     </div>
     <button onclick="startQuiz()">Mula Kuiz</button>
   </div>
 
-  <!-- BAHAGIAN 2: KUIZ -->
+  <!-- BAHAGIAN KUIZ -->
   <div id="quiz-section" class="quiz-section">
     <div class="header-info">
       <span id="displayStudent"></span>
@@ -166,19 +145,25 @@
       <span id="displayTimer">Masa: 00:00</span>
     </div>
 
+    <!-- PAPARAN GAMBAR LEMBARAN KERJA -->
+    <div id="worksheetContainer" class="worksheet-container" style="display:none;">
+      <p style="margin-top:0; font-weight:bold; color:#555;">Rujukan Lembaran Kerja:</p>
+      <img id="worksheetImg" src="" alt="Gambar Lembaran Kerja">
+    </div>
+
     <form id="quizForm">
       <div id="questionsContainer"></div>
       <button type="button" onclick="submitQuiz()">Hantar Jawapan</button>
     </form>
   </div>
 
-  <!-- BAHAGIAN 3: KEPUTUSAN -->
+  <!-- BAHAGIAN KEPUTUSAN -->
   <div id="result-section" class="result-section">
     <h2>Keputusan Kuiz</h2>
     <div class="question-card" style="text-align: center;">
       <p id="resultText" style="font-size: 20px; font-weight: bold;"></p>
       <p id="resultTime"></p>
-      <p id="statusMsg" class="status-msg"></p>
+      <p id="statusMsg"></p>
     </div>
     <button onclick="location.reload()">Jawab Set Lain</button>
   </div>
@@ -193,7 +178,6 @@
   let timerInterval;
   let secondsElapsed = 0;
 
-  // Populates dropdown (Set 1 hingga Set 23)
   const setSelect = document.getElementById("setSelect");
   for (let i = 1; i <= 23; i++) {
     let opt = document.createElement("option");
@@ -202,17 +186,10 @@
     setSelect.appendChild(opt);
   }
 
-  // Muat turun soalan dari questions.json
   fetch('questions.json')
     .then(res => res.json())
-    .then(data => {
-      rawData = data;
-      console.log("Data soalan berjaya dimuat turun:", rawData);
-    })
-    .catch(err => {
-      console.error("Gagal membaca questions.json:", err);
-      alert("Gagal memuat turun soalan. Sila pastikan fail questions.json wujud.");
-    });
+    .then(data => { rawData = data; })
+    .catch(err => console.error("Error loading JSON:", err));
 
   function startQuiz() {
     const name = document.getElementById("studentName").value.trim();
@@ -220,20 +197,27 @@
     const selectedSetNum = parseInt(document.getElementById("setSelect").value);
 
     if (!name || !className) {
-      alert("Sila isi nama dan kelas anda terlebih dahulu.");
+      alert("Sila isi nama dan kelas anda.");
       return;
     }
 
-    // Cari set dalam senarai Array JSON
     const matchedSet = rawData.find(item => item.set === selectedSetNum);
 
-    if (!matchedSet || !matchedSet.questions || matchedSet.questions.length === 0) {
-      alert(`Soalan untuk Set ${selectedSetNum} tidak dijumpai atau belum sedia dalam questions.json!`);
+    if (!matchedSet || !matchedSet.questions) {
+      alert(`Set ${selectedSetNum} tidak dijumpai!`);
       return;
     }
 
     currentQuestions = matchedSet.questions;
     userAnswers = {};
+
+    // Tampilkan gambar lembaran kerja jika wujud
+    if (matchedSet.worksheet_image) {
+      document.getElementById("worksheetImg").src = matchedSet.worksheet_image;
+      document.getElementById("worksheetContainer").style.display = "block";
+    } else {
+      document.getElementById("worksheetContainer").style.display = "none";
+    }
 
     document.getElementById("start-section").style.display = "none";
     document.getElementById("quiz-section").style.display = "block";
@@ -252,9 +236,7 @@
       secondsElapsed++;
       let mins = Math.floor(secondsElapsed / 60);
       let secs = secondsElapsed % 60;
-      let formattedMin = mins < 10 ? "0" + mins : mins;
-      let formattedSec = secs < 10 ? "0" + secs : secs;
-      document.getElementById("displayTimer").textContent = `Masa: ${formattedMin}:${formattedSec}`;
+      document.getElementById("displayTimer").textContent = `Masa: ${mins < 10 ? '0'+mins : mins}:${secs < 10 ? '0'+secs : secs}`;
     }, 1000);
   }
 
@@ -274,7 +256,6 @@
       const grid = document.createElement("div");
       grid.className = "options-grid";
 
-      // Render Pilihan Jawapan A, B, C
       if (q.options && Array.isArray(q.options)) {
         q.options.forEach(opt => {
           const optCard = document.createElement("div");
@@ -282,10 +263,19 @@
           optCard.id = `q_${index}_${opt.label}`;
           optCard.onclick = () => selectOption(index, opt.label);
 
+          // Memaparkan Gambar Pilihan jika ada
+          if (opt.image) {
+            const img = document.createElement("img");
+            img.src = opt.image;
+            img.style.maxWidth = "100%";
+            img.style.height = "100px";
+            optCard.appendChild(img);
+          }
+
           const labelText = document.createElement("p");
-          labelText.style.margin = "0";
+          labelText.style.margin = "5px 0 0 0";
           labelText.style.fontWeight = "bold";
-          labelText.textContent = `(${opt.label}) ${opt.text}`;
+          labelText.textContent = `(${opt.label}) ${opt.text || ''}`;
 
           optCard.appendChild(labelText);
           grid.appendChild(optCard);
@@ -299,8 +289,6 @@
 
   function selectOption(qIndex, optionLabel) {
     userAnswers[qIndex] = optionLabel;
-    
-    // Reset style pilihan
     const currentQuestionObj = currentQuestions[qIndex];
     if (currentQuestionObj && currentQuestionObj.options) {
       currentQuestionObj.options.forEach(opt => {
@@ -308,28 +296,18 @@
         if (el) el.classList.remove("selected");
       });
     }
-
     const selectedEl = document.getElementById(`q_${qIndex}_${optionLabel}`);
     if (selectedEl) selectedEl.classList.add("selected");
   }
 
   function submitQuiz() {
-    if (Object.keys(userAnswers).length < currentQuestions.length) {
-      if (!confirm("Anda belum menjawab semua soalan. Adakah anda pasti mahu menghantar?")) {
-        return;
-      }
-    }
-
     clearInterval(timerInterval);
 
-    // Kirim Skor mengikut pilihan 'is_correct'
     let score = 0;
     currentQuestions.forEach((q, index) => {
       const selectedLabel = userAnswers[index];
       const selectedOption = q.options.find(opt => opt.label === selectedLabel);
-      if (selectedOption && selectedOption.is_correct) {
-        score++;
-      }
+      if (selectedOption && selectedOption.is_correct) score++;
     });
 
     const studentName = document.getElementById("studentName").value.trim();
@@ -348,34 +326,21 @@
     document.getElementById("resultTime").textContent = `Masa Diambil: ${timeTaken}`;
     document.getElementById("statusMsg").textContent = "Sedang menyimpan rekod ke Google Sheet...";
 
-    hantarRekodKeGoogleSheet(studentName, studentClass, setName, scoreText, timeTaken);
-  }
-
-  function hantarRekodKeGoogleSheet(studentName, studentClass, setName, score, timeTaken) {
-    const payload = {
-      studentName: studentName,
-      studentClass: studentClass,
-      setName: setName,
-      score: score,
-      timeTaken: timeTaken
-    };
-
     fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        studentName: studentName,
+        studentClass: studentClass,
+        setName: setName,
+        score: scoreText,
+        timeTaken: timeTaken
+      })
     })
     .then(() => {
       document.getElementById("statusMsg").textContent = "✅ Rekod berjaya disimpan ke Google Sheet!";
       document.getElementById("statusMsg").style.color = "green";
-    })
-    .catch(error => {
-      console.error("Gagal menghantar data:", error);
-      document.getElementById("statusMsg").textContent = "❌ Ralat semasa menyimpan rekod.";
-      document.getElementById("statusMsg").style.color = "red";
     });
   }
 </script>
