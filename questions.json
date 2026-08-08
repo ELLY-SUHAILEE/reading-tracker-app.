@@ -5,12 +5,12 @@
     "questions": [
       {
         "no": 1,
-        "sentence": "I see a big red apple.",
         "options": [
           { "label": "A", "is_correct": true },
           { "label": "B", "is_correct": false },
           { "label": "C", "is_correct": false }
         ]
+      },
       },
       {
         "no": 2,
