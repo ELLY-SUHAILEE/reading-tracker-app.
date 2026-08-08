@@ -90,7 +90,7 @@
     /* KOTAK CROP GAMBAR */
     .crop-box {
       width: 100%;
-      height: 110px; /* Tinggi paparan 1 baris soalan */
+      height: 110px;
       background-repeat: no-repeat;
       background-size: 100% auto;
       border: 1px solid #d1d5db;
@@ -204,7 +204,6 @@
   let timerInterval;
   let secondsElapsed = 0;
 
-  // Sediakan senarai pilihan Set 01 - Set 23
   const setSelect = document.getElementById("setSelect");
   for (let i = 1; i <= 23; i++) {
     let opt = document.createElement("option");
@@ -213,7 +212,6 @@
     setSelect.appendChild(opt);
   }
 
-  // Ambil data soalan dari questions.json
   fetch('questions.json')
     .then(res => res.json())
     .then(data => { rawData = data; })
@@ -265,10 +263,6 @@
     const container = document.getElementById("questionsContainer");
     container.innerHTML = "";
 
-    // ANGGARAN CROP (PELARASAN PIKSEL)
-    // -------------------------------------------------------------
-    // HEADER_OFFSET = Tinggi banner tajuk "READING TRACKER" di atas
-    // ROW_HEIGHT    = Jarak/tinggi antara satu soalan dengan soalan seterusnya
     const HEADER_OFFSET = 180; 
     const ROW_HEIGHT = 120; 
 
@@ -278,23 +272,20 @@
 
       const title = document.createElement("div");
       title.className = "question-title";
-      title.textContent = `${q.no || (index + 1)}. ${q.sentence}`;
+      // Hanya papar nombor soalan (bebas kekeliruan teks)
+      title.textContent = `Soalan ${q.no || (index + 1)}`;
       qCard.appendChild(title);
 
-      // KOTAK GAMBAR CROP
       const cropBox = document.createElement("div");
       cropBox.className = "crop-box";
       cropBox.style.backgroundImage = `url('${currentWorksheetImage}')`;
       
       const qNum = q.no || (index + 1);
-      
-      // Mengira pemotongan kedudukan Y mengikut nombor soalan
       const yOffsetPx = HEADER_OFFSET + ((qNum - 1) * ROW_HEIGHT); 
       cropBox.style.backgroundPosition = `center -${yOffsetPx}px`;
 
       qCard.appendChild(cropBox);
 
-      // PILIHAN JAWAPAN (A), (B), (C)
       const grid = document.createElement("div");
       grid.className = "options-grid";
 
