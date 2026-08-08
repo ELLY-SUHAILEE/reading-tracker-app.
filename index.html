@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kuiz Bahasa Inggeris Tahun 3</title>
   <style>
-    /* Rekabentuk Utama & Mesra Kanak-kanak */
     * { 
       box-sizing: border-box; 
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -53,6 +52,53 @@
       background-color: #4338ca; 
     }
 
+    /* Kad Maklumat Murid & Topik */
+    .student-card {
+      background: #e0f2fe;
+      border: 2px solid #0284c7;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .topic-badge {
+      display: inline-block;
+      background: #0284c7;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    .form-group-row {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .form-group {
+      flex: 1;
+      min-width: 200px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #0369a1;
+      font-size: 14px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #93c5fd;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      background: white;
+    }
+    .form-group input:focus {
+      border-color: #0284c7;
+    }
+
     /* Tab Pemilihan Set */
     .set-selector { 
       display: flex; 
@@ -63,7 +109,7 @@
       flex: 1; 
       padding: 12px; 
       border: 2px solid #0284c7; 
-      background: #e0f2fe; 
+      background: #f0f9ff; 
       color: #0369a1; 
       font-weight: bold; 
       border-radius: 10px; 
@@ -222,6 +268,21 @@
       <button class="btn-guru" onclick="bukaModalPassword()">🔒 Rekod Guru</button>
     </header>
 
+    <!-- Borang Maklumat Murid & Topik -->
+    <div class="student-card">
+      <span class="topic-badge">📌 Topik: Reading Comprehension</span>
+      <div class="form-group-row">
+        <div class="form-group">
+          <label for="nama-murid">Nama Murid:</label>
+          <input type="text" id="nama-murid" placeholder="Masukkan nama penuh anda" required>
+        </div>
+        <div class="form-group">
+          <label for="kelas-murid">Kelas:</label>
+          <input type="text" id="kelas-murid" placeholder="Cth: 3 Cerdik" required>
+        </div>
+      </div>
+    </div>
+
     <!-- Tab Pilihan Set -->
     <div class="set-selector">
       <button class="btn-set active" id="btn-set-1" onclick="tukarSet(1)">SET 1</button>
@@ -237,6 +298,7 @@
     <div id="result-box" class="result-box">
       <h2 id="result-score"></h2>
       <p id="result-message"></p>
+      <p id="sending-status" style="font-weight: bold; color: #0284c7;"></p>
     </div>
   </div>
 
@@ -255,7 +317,6 @@
   </div>
 
   <script>
-    // 1. TUKAR KATA LALUAN GURU DAN PAUTAN GOOGLE SHEET ANDA DI SINI
     const KATA_LALUAN_GURU = "guru123";
     const PAUTAN_GOOGLE_SHEET = "https://script.google.com/macros/s/AKfycbwLzoVdSRVJDOu_ESkWxAE-I23Sorhy4JOvqZSMKW7WOKkYejGe7YEhv3cj4QZEOvNa/exec";
 
@@ -263,7 +324,7 @@
     let currentSet = 1;
     let selectedAnswers = {};
 
-    // 2. Muat turun soalan dari questions.json
+    // Load soalan
     fetch('questions.json')
       .then(res => res.json())
       .then(data => {
@@ -271,8 +332,8 @@
         paparSetSoalan(currentSet);
       })
       .catch(err => {
-        console.error('Ralat memuatkan questions.json:', err);
-        document.getElementById('quiz-box').innerHTML = '<p style="color:red; text-align:center;">Ralat memuatkan soalan. Sila semak fail questions.json!</p>';
+        console.error('Ralat questions.json:', err);
+        document.getElementById('quiz-box').innerHTML = '<p style="color:red; text-align:center;">Ralat memuatkan soalan. Sila semak questions.json!</p>';
       });
 
     function tukarSet(setNo) {
@@ -336,6 +397,14 @@
     }
 
     function semakJawapan() {
+      const nama = document.getElementById('nama-murid').value.trim();
+      const kelas = document.getElementById('kelas-murid').value.trim();
+
+      if (!nama || !kelas) {
+        alert('Sila isi NAMA dan KELAS anda terlebih dahulu!');
+        return;
+      }
+
       const setData = allQuestions.find(s => s.set === currentSet);
       if (!setData) return;
 
@@ -358,6 +427,7 @@
       const resultBox = document.getElementById('result-box');
       const resultScore = document.getElementById('result-score');
       const resultMessage = document.getElementById('result-message');
+      const sendingStatus = document.getElementById('sending-status');
 
       resultScore.innerText = `Markah Anda: ${score} / ${total}`;
       if (score === total) {
@@ -365,10 +435,40 @@
       } else {
         resultMessage.innerText = 'Syabas! Cuba lagi untuk dapatkan markah penuh!';
       }
+      
       resultBox.style.display = 'block';
+      sendingStatus.innerText = "Hantar keputusan ke rekod guru...";
+
+      // Hantar data ke Google Sheet
+      hantarDataKeGoogleSheet(nama, kelas, currentSet, score, total);
     }
 
-    /* Kawalan Modal Password Guru */
+    function hantarDataKeGoogleSheet(nama, kelas, set, score, total) {
+      const payload = {
+        nama: nama,
+        kelas: kelas,
+        set: set,
+        markah: score,
+        jumlah: total,
+        peratus: Math.round((score / total) * 100)
+      };
+
+      fetch(PAUTAN_GOOGLE_SHEET, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        document.getElementById('sending-status').innerText = "✅ Keputusan berjaya disimpan dalam rekod guru!";
+      })
+      .catch(err => {
+        console.error('Ralat hantar data:', err);
+        document.getElementById('sending-status').innerText = "⚠️ Keputusan dipaparkan (Ralat sambungan rekod).";
+      });
+    }
+
+    /* Modal Password Guru */
     function bukaModalPassword() {
       document.getElementById('input-password').value = '';
       document.getElementById('password-error').style.display = 'none';
