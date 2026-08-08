@@ -69,22 +69,16 @@
 
     .question-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
 
-    /* KONFIGURASI TAMPILAN GAMBAR SOALAN CROP */
-    .question-image-box {
+    /* KOTAK CROP GAMBAR BEKERJA DENGAN BACKGROUND POSITION */
+    .crop-box {
       width: 100%;
-      height: 95px; /* Ketinggian satu baris soalan */
-      overflow: hidden;
-      border-radius: 6px;
+      height: 110px; /* Ketinggian paparan 1 baris soalan */
+      background-repeat: no-repeat;
+      background-size: 100% auto; /* Menyesuaikan lebar gambar mengikut skrin */
       border: 1px solid #d1d5db;
-      margin-bottom: 12px;
-      background: #fff;
-    }
-
-    .question-image-box img {
-      width: 100%;
-      height: 1000px; /* Saiz anggaran keseluruhan lembaran kerja */
-      object-fit: cover;
-      display: block;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      background-color: #fff;
     }
 
     .options-grid {
@@ -249,20 +243,20 @@
       title.textContent = `${q.no || (index + 1)}. ${q.sentence}`;
       qCard.appendChild(title);
 
-      // KOTAK GAMBAR CROP
-      const imgBox = document.createElement("div");
-      imgBox.className = "question-image-box";
-
-      const img = document.createElement("img");
-      img.src = currentWorksheetImage;
+      // KOTAK GAMBAR CROP DENGAN BACKGROUND-POSITION
+      const cropBox = document.createElement("div");
+      cropBox.className = "crop-box";
+      cropBox.style.backgroundImage = `url('${currentWorksheetImage}')`;
       
-      // Mengira peratusan potongan gambar berdasarkan nombor soalan (1 hingga 10)
+      // Mengira anjakan Y (kedudukan potong dari atas ke bawah)
       const qNum = q.no || (index + 1);
-      const yOffset = (qNum - 1) * 10; // Melompat 10% setiap soalan
-      img.style.objectPosition = `center ${yOffset}%`;
+      
+      // Formula anjakan kedudukan baris soalan:
+      // (Nombor Soalan - 1) * Ketinggian anggaran setiap baris
+      const yOffsetPx = (qNum - 1) * 105; 
+      cropBox.style.backgroundPosition = `center -${yOffsetPx}px`;
 
-      imgBox.appendChild(img);
-      qCard.appendChild(imgBox);
+      qCard.appendChild(cropBox);
 
       // PILIHAN JAWAPAN (A), (B), (C)
       const grid = document.createElement("div");
