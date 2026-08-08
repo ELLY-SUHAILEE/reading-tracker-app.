@@ -8,17 +8,17 @@
         "options": [
           {
             "label": "A",
-            "image": "https://images.unsplash.com/photo-1550950158-d0d960dff51b?w=400&auto=format&fit=crop&q=80",
+            "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><rect width='200' height='150' fill='%23e0f2fe'/><path d='M30 130 Q100 80 170 130 Z' fill='%2394a3b8'/><path d='M45 120 Q100 90 155 120 Z' fill='%23cbd5e1'/><ellipse cx='100' cy='85' rx='35' ry='25' fill='%2322c55e'/><circle cx='85' cy='65' r='10' fill='%2322c55e'/><circle cx='115' cy='65' r='10' fill='%2322c55e'/><circle cx='85' cy='65' r='5' fill='%23ffffff'/><circle cx='115' cy='65' r='5' fill='%23ffffff'/><circle cx='85' cy='65' r='2.5' fill='%23000000'/><circle cx='115' cy='65' r='2.5' fill='%23000000'/><path d='M90 88 Q100 98 110 88' stroke='%2315803d' stroke-width='3' fill='none'/><ellipse cx='75' cy='90' rx='6' ry='3' fill='%23f43f5e'/><ellipse cx='125' cy='90' rx='6' ry='3' fill='%23f43f5e'/></svg>",
             "is_correct": true
           },
           {
             "label": "B",
-            "image": "https://images.unsplash.com/photo-1560713781-d00f6c18f388?w=400&auto=format&fit=crop&q=80",
+            "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><rect width='200' height='150' fill='%2338bdf8'/><path d='M0 110 Q50 100 100 110 T200 110 L200 150 L0 150 Z' fill='%230284c7'/><ellipse cx='100' cy='115' rx='30' ry='18' fill='%2322c55e'/><circle cx='88' cy='100' r='8' fill='%2322c55e'/><circle cx='112' cy='100' r='8' fill='%2322c55e'/><circle cx='88' cy='100' r='2' fill='%23000'/><circle cx='112' cy='100' r='2' fill='%23000'/><path d='M92 118 Q100 123 108 118' stroke='%2315803d' stroke-width='2' fill='none'/></svg>",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "https://images.unsplash.com/photo-1531386151447-fd7622770d38?w=400&auto=format&fit=crop&q=80",
+            "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><rect width='200' height='150' fill='%23fef3c7'/><path d='M30 130 Q100 80 170 130 Z' fill='%2394a3b8'/><ellipse cx='100' cy='85' rx='28' ry='22' fill='%23f97316'/><circle cx='100' cy='65' r='18' fill='%23f97316'/><polygon points='86,52 92,38 98,52' fill='%23f97316'/><polygon points='102,52 108,38 114,52' fill='%23f97316'/><circle cx='93' cy='62' r='2.5' fill='%23000'/><circle cx='107' cy='62' r='2.5' fill='%23000'/><polygon points='98,68 102,68 100,71' fill='%23f43f5e'/></svg>",
             "is_correct": false
           }
         ]
@@ -29,17 +29,17 @@
         "options": [
           {
             "label": "A",
-            "image": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&auto=format&fit=crop&q=80",
+            "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><rect width='200' height='150' fill='%23fef08a'/><circle cx='170' cy='35' r='20' fill='%23eab308'/><rect x='30' y='90' width='140' height='40' rx='5' fill='%23b45309'/><circle cx='100' cy='105' r='25' fill='%23ffffff'/><ellipse cx='100' cy='105' rx='18' ry='10' fill='%23f97316'/></svg>",
             "is_correct": false
           },
           {
             "label": "B",
-            "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&auto=format&fit=crop&q=80",
+            "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><rect width='200' height='150' fill='%231e1b4b'/><path d='M160 20 A 15 15 0 0 1 175 40 A 12 12 0 0 1 160 20' fill='%23fde047'/><rect x='40' y='80' width='120' height='50' fill='%234338ca'/><ellipse cx='70' cy='85' rx='15' ry='12' fill='%23fed7aa'/></svg>",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&auto=format&fit=crop&q=80",
+            "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><rect width='200' height='150' fill='%230f172a'/><circle cx='170' cy='30' r='12' fill='%23fde047'/><circle cx='30' cy='25' r='1.5' fill='%23fff'/><circle cx='80' cy='40' r='1.5' fill='%23fff'/><circle cx='120' cy='20' r='1.5' fill='%23fff'/><rect x='20' y='95' width='160' height='35' fill='%23854d0e'/><circle cx='100' cy='108' r='20' fill='%23ffffff'/><circle cx='100' cy='108' r='12' fill='%23ef4444'/><circle cx='60' cy='108' r='10' fill='%23ffffff'/><circle cx='140' cy='108' r='10' fill='%23ffffff'/></svg>",
             "is_correct": true
           }
         ]
@@ -50,17 +50,17 @@
         "options": [
           {
             "label": "A",
-            "image": "https://images.unsplash.com/photo-1587049352847-4a222e784d38?w=400&auto=format&fit=crop&q=80",
+            "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><rect width='200' height='150' fill='%23fef9c3'/><rect x='110' y='70' width='50' height='55' rx='8' fill='%23eab308'/><rect x='115' y='60' width='40' height='12' rx='3' fill='%23ca8a04'/><text x='120' y='102' font-size='10' font-weight='bold' fill='%2378350f'>HONEY</text><ellipse cx='60' cy='65' rx='20' ry='15' fill='%23facc15'/><line x1='52' y1='52' x2='52' y2='78' stroke='%23000' stroke-width='4'/><line x1='65' y1='51' x2='65' y2='79' stroke='%23000' stroke-width='4'/><ellipse cx='42' cy='52' rx='8' ry='12' fill='%23e0f2fe' opacity='0.8'/><ellipse cx='55' cy='48' rx='8' ry='12' fill='%23e0f2fe' opacity='0.8'/><circle cx='72' cy='60' r='2' fill='%23000'/></svg>",
             "is_correct": true
           },
           {
             "label": "B",
-            "image": "https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80",
+            "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><rect width='200' height='150' fill='%23f0fdf4'/><circle cx='100' cy='110' r='15' fill='%23facc15'/><circle cx='100' cy='85' r='12' fill='%23f43f5e'/><circle cx='100' cy='135' r='12' fill='%23f43f5e'/><circle cx='75' cy='110' r='12' fill='%23f43f5e'/><circle cx='125' cy='110' r='12' fill='%23f43f5e'/><ellipse cx='90' cy='50' rx='18' ry='12' fill='%23a855f7'/><ellipse cx='110' cy='50' rx='18' ry='12' fill='%23a855f7'/><line x1='100' y1='35' x2='100' y2='65' stroke='%23000' stroke-width='3'/></svg>",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&auto=format&fit=crop&q=80",
+            "image": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><rect width='200' height='150' fill='%23e0f2fe'/><path d='M50 110 Q100 140 150 110 Z' fill='%23a16207'/><ellipse cx='100' cy='95' rx='22' ry='16' fill='%233b82f6'/><circle cx='115' cy='85' r='10' fill='%233b82f6'/><polygon points='123,85 133,88 123,91' fill='%23f97316'/><circle cx='117' cy='83' r='1.5' fill='%23000'/></svg>",
             "is_correct": false
           }
         ]
