@@ -307,7 +307,7 @@
     <div id="skrin-utama">
       <div class="welcome-card">
         <h2>Selamat Datang! 👋</h2>
-        <p>Sila masukkan nama, kelas, dan pilih modul kuiz daripada senarai di bawah:</p>
+        <p>Sila masukkan nama, kelas, dan pilih modul daripada senarai di bawah:</p>
         
         <div class="form-group">
           <label for="nama-murid">Nama Murid:</label>
@@ -324,16 +324,16 @@
           <label for="select-modul">Pilih Modul Soalan:</label>
           <select id="select-modul">
             <option value="" disabled selected>-- Pilih Modul (1 - 10) --</option>
-            <option value="1">MODULE 1: Welcome!</option>
-            <option value="2">MODULE 2: Every Day</option>
-            <option value="3">MODULE 3: Right Now</option>
-            <option value="4">MODULE 4: Year In, Year Out</option>
-            <option value="5">MODULE 5: My New House</option>
-            <option value="6">MODULE 6: Food, Please!</option>
-            <option value="7">MODULE 7: Out And About</option>
-            <option value="8">MODULE 8: Where Were You Yesterday?</option>
-            <option value="9">MODULE 9: On Holiday</option>
-            <option value="10">MODULE 10: The World Around Us</option>
+            <option value="1">MODULE 1</option>
+            <option value="2">MODULE 2</option>
+            <option value="3">MODULE 3</option>
+            <option value="4">MODULE 4</option>
+            <option value="5">MODULE 5</option>
+            <option value="6">MODULE 6</option>
+            <option value="7">MODULE 7</option>
+            <option value="8">MODULE 8</option>
+            <option value="9">MODULE 9</option>
+            <option value="10">MODULE 10</option>
           </select>
         </div>
 
@@ -347,7 +347,7 @@
         <div class="student-detail">
           👤 <b>Nama:</b> <span id="papar-nama"></span> | 
           🏫 <b>Kelas:</b> <span id="papar-kelas"></span> | 
-          📌 <b>Topik:</b> Module <span id="papar-set"></span>
+          📌 <b>Topik:</b> MODULE <span id="papar-set"></span>
         </div>
         <button class="btn-back" onclick="kembaliKeUtama()">⬅ Tukar Modul</button>
       </div>
@@ -443,7 +443,7 @@
       quizBox.innerHTML = '';
 
       if (!setData) {
-        quizBox.innerHTML = '<p style="text-align:center; padding: 20px; font-weight: bold; color: #64748b;">Soalan untuk Module ' + setNo + ' belum dimasukkan dalam questions.json.</p>';
+        quizBox.innerHTML = '<p style="text-align:center; padding: 20px; font-weight: bold; color: #64748b;">Soalan untuk MODULE ' + setNo + ' belum dimasukkan dalam questions.json.</p>';
         return;
       }
 
