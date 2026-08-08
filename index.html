@@ -221,7 +221,7 @@
   let timerInterval;
   let secondsElapsed = 0;
 
-  // Penjana Senarai Pilihan Set 01 - Set 23
+  // Penjana pilihan Set 01 - Set 23
   const setSelect = document.getElementById("setSelect");
   for (let i = 1; i <= 23; i++) {
     let opt = document.createElement("option");
@@ -230,7 +230,7 @@
     setSelect.appendChild(opt);
   }
 
-  // Muat turun data soalan daripada questions.json
+  // Memuatkan data dari questions.json
   fetch('questions.json')
     .then(res => {
       if (!res.ok) throw new Error("Gagal mengambil fail questions.json");
@@ -254,12 +254,7 @@
       return;
     }
 
-    // Carian Set yang Fleksibel (Nombor mahupun String)
-    const matchedSet = rawData.find(item => {
-      if (item.set == selectedSetNum) return true;
-      if (parseInt(item.set) === selectedSetNum) return true;
-      return false;
-    });
+    const matchedSet = rawData.find(item => item.set == selectedSetNum);
 
     if (!matchedSet || !matchedSet.questions) {
       alert(`Set ${selectedSetNum} tidak dijumpai dalam questions.json!`);
@@ -298,13 +293,11 @@
       const qCard = document.createElement("div");
       qCard.className = "question-card";
 
-      // Tajuk Soalan (Ayat)
       const title = document.createElement("div");
       title.className = "question-title";
       title.textContent = `${q.no || (index + 1)}. ${q.sentence || ''}`;
       qCard.appendChild(title);
 
-      // Grid Pilihan Jawapan A, B, C (Gambar)
       const grid = document.createElement("div");
       grid.className = "options-grid";
 
@@ -315,27 +308,24 @@
           optCard.id = `q_${index}_${opt.label}`;
           optCard.onclick = () => selectOption(index, opt.label);
 
-          // Label Jawapan (A, B, C)
           const optLabel = document.createElement("div");
           optLabel.className = "option-label";
           optLabel.textContent = `(${opt.label})`;
           optCard.appendChild(optLabel);
 
-          // Elemen Gambar Bagi Setiap Pilihan
           if (opt.image) {
             const optImg = document.createElement("img");
             optImg.src = opt.image;
             optImg.alt = `Pilihan (${opt.label})`;
             optImg.className = "option-image";
 
-            // Sekiranya laluan gambar tidak dijumpai di GitHub
             optImg.onerror = function() {
               this.style.display = 'none';
               const errTxt = document.createElement('div');
               errTxt.style.color = '#dc2626';
               errTxt.style.fontSize = '12px';
               errTxt.style.marginTop = '8px';
-              errTxt.textContent = `⚠️ Gambar tiada: ${opt.image}`;
+              errTxt.textContent = `⚠️ Ralat muat URL gambar`;
               optCard.appendChild(errTxt);
             };
 
@@ -365,7 +355,6 @@
   }
 
   function submitQuiz() {
-    // Memastikan murid menjawab semua soalan sebelum hantar
     if (Object.keys(userAnswers).length < currentQuestions.length) {
       alert("Sila jawab semua soalan sebelum membuat penghantaran.");
       return;
