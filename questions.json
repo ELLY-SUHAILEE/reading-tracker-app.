@@ -8,17 +8,17 @@
         "options": [
           {
             "label": "A",
-            "image": "images/set01_q1_a.png",
+            "image": "https://placehold.co/300x200/4f46e5/ffffff?text=Frog+A",
             "is_correct": true
           },
           {
             "label": "B",
-            "image": "images/set01_q1_b.png",
+            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Frog+B",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "images/set01_q1_c.png",
+            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Frog+C",
             "is_correct": false
           }
         ]
@@ -29,17 +29,17 @@
         "options": [
           {
             "label": "A",
-            "image": "images/set01_q2_a.png",
+            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Dinner+A",
             "is_correct": false
           },
           {
             "label": "B",
-            "image": "images/set01_q2_b.png",
+            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Dinner+B",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "images/set01_q2_c.png",
+            "image": "https://placehold.co/300x200/4f46e5/ffffff?text=Dinner+C",
             "is_correct": true
           }
         ]
@@ -50,43 +50,17 @@
         "options": [
           {
             "label": "A",
-            "image": "images/set01_q3_a.png",
+            "image": "https://placehold.co/300x200/4f46e5/ffffff?text=Bee+A",
             "is_correct": true
           },
           {
             "label": "B",
-            "image": "images/set01_q3_b.png",
+            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Bee+B",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "images/set01_q3_c.png",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "set": 2,
-    "questions": [
-      {
-        "no": 1,
-        "sentence": "Ayat soalan 1 untuk Set 2...",
-        "options": [
-          {
-            "label": "A",
-            "image": "images/set02_q1_a.png",
-            "is_correct": true
-          },
-          {
-            "label": "B",
-            "image": "images/set02_q1_b.png",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "image": "images/set02_q1_c.png",
+            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Bee+C",
             "is_correct": false
           }
         ]
