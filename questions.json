@@ -29,7 +29,7 @@
         "options": [
           {
             "label": "A",
-            "image": "images/se1_q2.a.png",
+            "image": "images/set1_q2_a.png",
             "is_correct": false
           },
           {
@@ -134,220 +134,220 @@
         ]
       }
     ]
+  },
+  {
+    "set": 3,
+    "questions": [
+      {
+        "no": 1,
+        "sentence": "The little girl is brushing her hair.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q1_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q1_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q1_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 2,
+        "sentence": "We use a pencil to write.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q2_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q2_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q2_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 3,
+        "sentence": "The banana is yellow.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q3_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q3_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q3_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "sentence": "The cat is sitting on the mat.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q4_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q4_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q4_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 5,
+        "sentence": "We wash our hands with soap.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q5_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q5_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q5_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 6,
+        "sentence": "The children are building a sandcastle.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q6_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q6_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q6_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 7,
+        "sentence": "The bird is in the nest.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q7_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q7_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q7_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 8,
+        "sentence": "We have milk with breakfast.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q8_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q8_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q8_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 9,
+        "sentence": "The firefighter wears a helmet.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q9_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q9_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q9_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 10,
+        "sentence": "We turn off the lights when we leave the room.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set3_q10_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set3_q10_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set3_q10_c.png",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
   }
 ]
-{
-  "set": 3,
-  "questions": [
-    {
-      "no": 1,
-      "sentence": "The little girl is brushing her hair.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q1_a.png",
-          "is_correct": true
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q1_b.png",
-          "is_correct": false
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q1_c.png",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "no": 2,
-      "sentence": "We use a pencil to write.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q2_a.png",
-          "is_correct": true
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q2_b.png",
-          "is_correct": false
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q2_c.png",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "no": 3,
-      "sentence": "The banana is yellow.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q3_a.png",
-          "is_correct": false
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q3_b.png",
-          "is_correct": true
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q3_c.png",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "no": 4,
-      "sentence": "The cat is sitting on the mat.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q4_a.png",
-          "is_correct": true
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q4_b.png",
-          "is_correct": false
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q4_c.png",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "no": 5,
-      "sentence": "We wash our hands with soap.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q5_a.png",
-          "is_correct": true
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q5_b.png",
-          "is_correct": false
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q5_c.png",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "no": 6,
-      "sentence": "The children are building a sandcastle.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q6_a.png",
-          "is_correct": true
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q6_b.png",
-          "is_correct": false
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q6_c.png",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "no": 7,
-      "sentence": "The bird is in the nest.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q7_a.png",
-          "is_correct": true
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q7_b.png",
-          "is_correct": false
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q7_c.png",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "no": 8,
-      "sentence": "We have milk with breakfast.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q8_a.png",
-          "is_correct": true
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q8_b.png",
-          "is_correct": false
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q8_c.png",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "no": 9,
-      "sentence": "The firefighter wears a helmet.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q9_a.png",
-          "is_correct": true
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q9_b.png",
-          "is_correct": false
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q9_c.png",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "no": 10,
-      "sentence": "We turn off the lights when we leave the room.",
-      "options": [
-        {
-          "label": "A",
-          "image": "images/set3_q10_a.png",
-          "is_correct": true
-        },
-        {
-          "label": "B",
-          "image": "images/set3_q10_b.png",
-          "is_correct": false
-        },
-        {
-          "label": "C",
-          "image": "images/set3_q10_c.png",
-          "is_correct": false
-        }
-      ]
-    }
-  ]
-}
