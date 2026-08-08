@@ -5,31 +5,90 @@
       {
         "no": 1,
         "sentence": "The frog is on the rock.",
-        "image": "set01_q1.png",
         "options": [
-          { "label": "A", "is_correct": true },
-          { "label": "B", "is_correct": false },
-          { "label": "C", "is_correct": false }
+          {
+            "label": "A",
+            "image": "images/set01_q1_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set01_q1_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set01_q1_c.png",
+            "is_correct": false
+          }
         ]
       },
       {
         "no": 2,
         "sentence": "We eat dinner at night.",
-        "image": "set01_q2.png",
         "options": [
-          { "label": "A", "is_correct": false },
-          { "label": "B", "is_correct": false },
-          { "label": "C", "is_correct": true }
+          {
+            "label": "A",
+            "image": "images/set01_q2_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set01_q2_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set01_q2_c.png",
+            "is_correct": true
+          }
         ]
       },
       {
         "no": 3,
         "sentence": "The bee makes honey.",
-        "image": "set01_q3.png",
         "options": [
-          { "label": "A", "is_correct": true },
-          { "label": "B", "is_correct": false },
-          { "label": "C", "is_correct": false }
+          {
+            "label": "A",
+            "image": "images/set01_q3_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set01_q3_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set01_q3_c.png",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "set": 2,
+    "questions": [
+      {
+        "no": 1,
+        "sentence": "Ayat soalan 1 untuk Set 2...",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set02_q1_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set02_q1_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set02_q1_c.png",
+            "is_correct": false
+          }
         ]
       }
     ]
