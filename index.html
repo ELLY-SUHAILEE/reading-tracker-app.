@@ -88,7 +88,6 @@
       margin-bottom: 15px; 
     }
 
-    /* GRID UNTUK JAWAPAN BERGAMBAR (A, B, C) */
     .options-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -140,7 +139,7 @@
 
     .option-image {
       width: 100%;
-      height: 130px;
+      height: 140px;
       object-fit: contain;
       border-radius: 6px;
       background-color: #fff;
@@ -222,6 +221,7 @@
   let timerInterval;
   let secondsElapsed = 0;
 
+  // Penjana Senarai Pilihan Set 01 - Set 23
   const setSelect = document.getElementById("setSelect");
   for (let i = 1; i <= 23; i++) {
     let opt = document.createElement("option");
@@ -230,6 +230,7 @@
     setSelect.appendChild(opt);
   }
 
+  // Muat turun data soalan daripada questions.json
   fetch('questions.json')
     .then(res => {
       if (!res.ok) throw new Error("Gagal mengambil fail questions.json");
@@ -253,7 +254,12 @@
       return;
     }
 
-    const matchedSet = rawData.find(item => item.set == selectedSetNum);
+    // Carian Set yang Fleksibel (Nombor mahupun String)
+    const matchedSet = rawData.find(item => {
+      if (item.set == selectedSetNum) return true;
+      if (parseInt(item.set) === selectedSetNum) return true;
+      return false;
+    });
 
     if (!matchedSet || !matchedSet.questions) {
       alert(`Set ${selectedSetNum} tidak dijumpai dalam questions.json!`);
@@ -298,7 +304,7 @@
       title.textContent = `${q.no || (index + 1)}. ${q.sentence || ''}`;
       qCard.appendChild(title);
 
-      // Grid Pilihan Jawapan A, B, C (Dengan Gambar)
+      // Grid Pilihan Jawapan A, B, C (Gambar)
       const grid = document.createElement("div");
       grid.className = "options-grid";
 
@@ -315,18 +321,20 @@
           optLabel.textContent = `(${opt.label})`;
           optCard.appendChild(optLabel);
 
-          // Gambar Jawapan
+          // Elemen Gambar Bagi Setiap Pilihan
           if (opt.image) {
             const optImg = document.createElement("img");
             optImg.src = opt.image;
             optImg.alt = `Pilihan (${opt.label})`;
             optImg.className = "option-image";
 
+            // Sekiranya laluan gambar tidak dijumpai di GitHub
             optImg.onerror = function() {
               this.style.display = 'none';
               const errTxt = document.createElement('div');
               errTxt.style.color = '#dc2626';
               errTxt.style.fontSize = '12px';
+              errTxt.style.marginTop = '8px';
               errTxt.textContent = `⚠️ Gambar tiada: ${opt.image}`;
               optCard.appendChild(errTxt);
             };
@@ -357,6 +365,12 @@
   }
 
   function submitQuiz() {
+    // Memastikan murid menjawab semua soalan sebelum hantar
+    if (Object.keys(userAnswers).length < currentQuestions.length) {
+      alert("Sila jawab semua soalan sebelum membuat penghantaran.");
+      return;
+    }
+
     clearInterval(timerInterval);
 
     let score = 0;
@@ -397,6 +411,11 @@
     .then(() => {
       document.getElementById("statusMsg").textContent = "✅ Rekod berjaya disimpan ke Google Sheet!";
       document.getElementById("statusMsg").style.color = "green";
+    })
+    .catch(err => {
+      console.error("Ralat menyimpan data:", err);
+      document.getElementById("statusMsg").textContent = "❌ Gagal menyimpan rekod. Sila semak sambungan internet anda.";
+      document.getElementById("statusMsg").style.color = "red";
     });
   }
 </script>
