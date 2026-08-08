@@ -52,77 +52,98 @@
       background-color: #4338ca; 
     }
 
-    /* Kad Maklumat Murid & Topik */
-    .student-card {
-      background: #e0f2fe;
-      border: 2px solid #0284c7;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
+    /* SKRIN 1: HALAMAN UTAMA */
+    .welcome-card {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 25px;
+      text-align: center;
     }
-    .topic-badge {
-      display: inline-block;
-      background: #0284c7;
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-    .form-group-row {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
+    .welcome-card h2 {
+      color: #0369a1;
+      margin-top: 0;
     }
     .form-group {
-      flex: 1;
-      min-width: 200px;
+      margin-bottom: 15px;
+      text-align: left;
     }
     .form-group label {
       display: block;
       font-weight: bold;
-      margin-bottom: 5px;
-      color: #0369a1;
-      font-size: 14px;
+      margin-bottom: 6px;
+      color: #334155;
     }
     .form-group input {
       width: 100%;
-      padding: 10px;
-      border: 2px solid #93c5fd;
+      padding: 12px;
+      border: 2px solid #cbd5e1;
       border-radius: 8px;
-      font-size: 15px;
+      font-size: 16px;
       outline: none;
-      background: white;
     }
     .form-group input:focus {
       border-color: #0284c7;
     }
 
-    /* Tab Pemilihan Set */
-    .set-selector { 
-      display: flex; 
-      gap: 10px; 
-      margin-bottom: 25px; 
+    .topic-title-label {
+      font-weight: bold;
+      color: #0369a1;
+      margin: 20px 0 10px 0;
+      text-align: left;
+      display: block;
     }
-    .btn-set { 
-      flex: 1; 
-      padding: 12px; 
-      border: 2px solid #0284c7; 
-      background: #f0f9ff; 
-      color: #0369a1; 
-      font-weight: bold; 
-      border-radius: 10px; 
-      cursor: pointer; 
-      font-size: 16px; 
-      text-align: center; 
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
     }
-    .btn-set.active { 
-      background: #0284c7; 
-      color: white; 
+    .btn-topic {
+      background: #e0f2fe;
+      border: 2px solid #0284c7;
+      color: #0369a1;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: center;
+    }
+    .btn-topic:hover {
+      background: #0284c7;
+      color: white;
+      transform: translateY(-2px);
     }
 
-    /* Kad Soalan & Pilihan Gambar */
+    /* SKRIN 2: PAPARAN KUIZ */
+    .quiz-header-info {
+      background: #e0f2fe;
+      border: 2px solid #0284c7;
+      border-radius: 12px;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .student-detail {
+      font-size: 15px;
+      color: #0369a1;
+    }
+    .btn-back {
+      background: #64748b;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* KAD SOALAN & BUTANG PILIHAN JAWAPAN */
     .question-card { 
       background: #f8fafc; 
       border: 1px solid #e2e8f0; 
@@ -136,43 +157,72 @@
       margin-bottom: 15px; 
       color: #0f172a; 
     }
-
     .options-grid { 
       display: grid; 
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
       gap: 15px; 
     }
+    
+    /* REKA BENTUK BUTANG PILIHAN JAWAPAN (DIPERBAIKI) */
     .option-card { 
+      position: relative;
       border: 3px solid #cbd5e1; 
-      border-radius: 12px; 
+      border-radius: 14px; 
       padding: 12px; 
       text-align: center; 
       cursor: pointer; 
       background: white; 
-      transition: 0.2s; 
+      transition: all 0.2s ease-in-out; 
+      user-select: none;
     }
     .option-card:hover { 
       border-color: #0284c7; 
       transform: translateY(-3px); 
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
     }
+    .option-card:active {
+      transform: scale(0.97);
+    }
+    
+    /* GAYA PADA BUTANG YANG DIPILIH */
     .option-card.selected { 
-      border-color: #0284c7; 
-      background-color: #e0f2fe; 
+      border-color: #16a34a !important; 
+      background-color: #f0fdf4 !important; 
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
     }
+    .option-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: #16a34a;
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
     .option-label { 
       font-size: 18px; 
       font-weight: bold; 
       margin-bottom: 8px; 
       display: block; 
+      pointer-events: none;
     }
     .option-img { 
       width: 100%; 
       height: 160px; 
       object-fit: contain; 
       border-radius: 8px; 
+      pointer-events: none;
     }
     
-    /* Butang Hantar Jawapan */
+    /* BUTANG HANTAR & KOTAK KEPUTUSAN */
     .btn-submit { 
       display: block; 
       width: 100%; 
@@ -190,7 +240,6 @@
       background: #15803d; 
     }
 
-    /* Kotak Keputusan Markah */
     .result-box { 
       display: none; 
       text-align: center; 
@@ -201,7 +250,7 @@
       margin-top: 20px; 
     }
 
-    /* Popup Modal Kata Laluan Guru */
+    /* MODAL PASSWORD GURU */
     .modal-overlay { 
       position: fixed; 
       top: 0; left: 0; 
@@ -268,41 +317,54 @@
       <button class="btn-guru" onclick="bukaModalPassword()">🔒 Rekod Guru</button>
     </header>
 
-    <!-- Borang Maklumat Murid & Topik -->
-    <div class="student-card">
-      <span class="topic-badge">📌 Topik: Reading Comprehension</span>
-      <div class="form-group-row">
+    <!-- SKRIN 1: HALAMAN UTAMA -->
+    <div id="skrin-utama">
+      <div class="welcome-card">
+        <h2>Selamat Datang! 👋</h2>
+        <p>Sila masukkan nama dan kelas anda, kemudian pilih topik kuiz di bawah:</p>
+        
         <div class="form-group">
           <label for="nama-murid">Nama Murid:</label>
-          <input type="text" id="nama-murid" placeholder="Masukkan nama penuh anda" required>
+          <input type="text" id="nama-murid" placeholder="Masukkan nama penuh" required>
         </div>
+        
         <div class="form-group">
           <label for="kelas-murid">Kelas:</label>
-          <input type="text" id="kelas-murid" placeholder="Cth: 3 Cerdik" required>
+          <input type="text" id="kelas-murid" placeholder="Contoh: 3 Cerdik" required>
+        </div>
+
+        <span class="topic-title-label">Pilih Topik / Set Soalan:</span>
+        <div class="topic-grid">
+          <button class="btn-topic" onclick="pilihTopik(1)">SET 1: Reading Comprehension</button>
+          <button class="btn-topic" onclick="pilihTopik(2)">SET 2: Prepositions & Actions</button>
         </div>
       </div>
     </div>
 
-    <!-- Tab Pilihan Set -->
-    <div class="set-selector">
-      <button class="btn-set active" id="btn-set-1" onclick="tukarSet(1)">SET 1</button>
-      <button class="btn-set" id="btn-set-2" onclick="tukarSet(2)">SET 2</button>
-    </div>
+    <!-- SKRIN 2: PAPARAN KUIZ -->
+    <div id="skrin-kuiz" style="display: none;">
+      <div class="quiz-header-info">
+        <div class="student-detail">
+          👤 <b>Nama:</b> <span id="papar-nama"></span> | 
+          🏫 <b>Kelas:</b> <span id="papar-kelas"></span> | 
+          📌 <b>Topik:</b> Set <span id="papar-set"></span>
+        </div>
+        <button class="btn-back" onclick="kembaliKeUtama()">⬅ Tukar Topik</button>
+      </div>
 
-    <!-- Container Soalan -->
-    <div id="quiz-box"></div>
+      <div id="quiz-box"></div>
 
-    <button class="btn-submit" onclick="semakJawapan()">Hantar Jawapan</button>
+      <button class="btn-submit" onclick="semakJawapan()">Hantar Jawapan</button>
 
-    <!-- Keputusan -->
-    <div id="result-box" class="result-box">
-      <h2 id="result-score"></h2>
-      <p id="result-message"></p>
-      <p id="sending-status" style="font-weight: bold; color: #0284c7;"></p>
+      <div id="result-box" class="result-box">
+        <h2 id="result-score"></h2>
+        <p id="result-message"></p>
+        <p id="sending-status" style="font-weight: bold; color: #0284c7;"></p>
+      </div>
     </div>
   </div>
 
-  <!-- Popup Password Guru -->
+  <!-- POPUP PASSWORD GURU -->
   <div id="modal-password" class="modal-overlay" style="display: none;">
     <div class="modal-card">
       <h3>🔒 Akses Rekod Guru</h3>
@@ -317,22 +379,14 @@
   </div>
 
   <script>
-    <script>
-    // 1. TETAPAN PAUTAN & KATA LALUAN GURU
     const KATA_LALUAN_GURU = "guru123";
-
-    // Pautan Google Apps Script (Web App) - Tempat hantar markah murid
     const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbwLzoVdSRVJDOu_ESkWxAE-I23Sorhy4JOvqZSMKW7WOKkYejGe7YEhv3cj4QZEOvNa/exec";
-
-    // Pautan Google Sheet Guru - Membuka fail Google Sheet apabila kata laluan betul
-    // (Gantikan pautan di bawah jika anda mahu ia terus ke paparan Google Sheet anda)
     const PAUTAN_GOOGLE_SHEET = "https://script.google.com/macros/s/AKfycbwLzoVdSRVJDOu_ESkWxAE-I23Sorhy4JOvqZSMKW7WOKkYejGe7YEhv3cj4QZEOvNa/exec";
 
     let allQuestions = [];
     let currentSet = 1;
     let selectedAnswers = {};
 
-    // Load data soalan dari questions.json
     fetch('questions.json')
       .then(res => res.json())
       .then(data => {
@@ -402,21 +456,19 @@
       });
     }
 
+    /* FUNGSI PEMILIHAN JAWAPAN YANG DIPERBAIKI */
     function pilihJawapan(qIndex, label) {
       selectedAnswers[qIndex] = label;
-      const setData = allQuestions.find(s => s.set === currentSet);
-      const question = setData.questions[qIndex];
 
-      question.options.forEach(opt => {
-        const card = document.getElementById(`opt-${qIndex}-${opt.label}`);
-        if (card) {
-          if (opt.label === label) {
-            card.classList.add('selected');
-          } else {
-            card.classList.remove('selected');
-          }
-        }
-      });
+      // Buang penanda 'selected' daripada semua pilihan soalan berkenaan
+      const optionCards = document.querySelectorAll(`[id^="opt-${qIndex}-"]`);
+      optionCards.forEach(card => card.classList.remove('selected'));
+
+      // Tambah penanda 'selected' pada pilihan yang diklik
+      const selectedCard = document.getElementById(`opt-${qIndex}-${label}`);
+      if (selectedCard) {
+        selectedCard.classList.add('selected');
+      }
     }
 
     function semakJawapan() {
@@ -470,7 +522,6 @@
         peratus: Math.round((score / total) * 100)
       };
 
-      // Menggunakan PAUTAN_APPS_SCRIPT untuk penghantaran data
       fetch(PAUTAN_APPS_SCRIPT, {
         method: 'POST',
         mode: 'no-cors',
@@ -486,7 +537,7 @@
       });
     }
 
-    /* Modal Password Guru */
+    /* MODAL PASSWORD GURU */
     function bukaModalPassword() {
       document.getElementById('input-password').value = '';
       document.getElementById('password-error').style.display = 'none';
@@ -502,7 +553,6 @@
       const input = document.getElementById('input-password').value;
       if (input === KATA_LALUAN_GURU) {
         tutupModalPassword();
-        // Membuka pautan Google Sheet di tab baharu
         window.open(PAUTAN_GOOGLE_SHEET, '_blank');
       } else {
         document.getElementById('password-error').style.display = 'block';
@@ -515,3 +565,5 @@
       }
     }
   </script>
+</body>
+</html>
