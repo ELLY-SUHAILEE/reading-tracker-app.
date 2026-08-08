@@ -380,24 +380,27 @@
 
   <script>
     const KATA_LALUAN_GURU = "guru123";
-    
-    // Pautan untuk penghantaran data jawapan (Google Apps Script Web App)
     const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbwLzoVdSRVJDOu_ESkWxAE-I23Sorhy4JOvqZSMKW7WOKkYejGe7YEhv3cj4QZEOvNa/exec";
-    
-    // Gantikan pautan di bawah dengan pautan Google Sheet (Borang Rekod) anda yang sebenar:
-    const PAUTAN_GOOGLE_SHEET = const PAUTAN_GOOGLE_SHEET = https://docs.google.com/spreadsheets/d/1vpk95musq-0yg9USVEMIJRccsAGSqXfWU7Lz65G6FRQ/edit?gid=0#gid=0
+    const PAUTAN_GOOGLE_SHEET = "https://docs.google.com/spreadsheets/d/1vpk95musq-0yg9USVEMIJRccsAGSqXfWU7Lz65G6FRQ/edit?gid=0#gid=0";
 
     let allQuestions = [];
     let currentSet = 1;
     let selectedAnswers = {};
 
+    // Memuat turun soalan daripada questions.json
     fetch('questions.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Fail questions.json tidak dijumpai.');
+        }
+        return res.json();
+      })
       .then(data => {
         allQuestions = data;
+        console.log('questions.json berjaya dimuat turun:', allQuestions);
       })
       .catch(err => {
-        console.error('Ralat questions.json:', err);
+        console.error('Ralat membaca questions.json:', err);
       });
 
     function mulaKuizDropdown() {
@@ -412,6 +415,11 @@
 
       if (!selectedModul) {
         alert('Sila pilih MODUL daripada senarai drop-down terlebih dahulu!');
+        return;
+      }
+
+      if (allQuestions.length === 0) {
+        alert('Soalan masih dalam proses dimuat turun atau fail questions.json tidak dijumpai. Sila muat semula (refresh) halaman.');
         return;
       }
 
@@ -442,12 +450,12 @@
     }
 
     function paparSetSoalan(setNo) {
-      const setData = allQuestions.find(s => s.set === setNo);
+      const setData = allQuestions.find(s => String(s.set) === String(setNo));
       const quizBox = document.getElementById('quiz-box');
       quizBox.innerHTML = '';
 
       if (!setData) {
-        quizBox.innerHTML = '<p style="text-align:center; padding: 20px; font-weight: bold; color: #64748b;">Soalan untuk MODULE ' + setNo + ' belum dimasukkan dalam questions.json.</p>';
+        quizBox.innerHTML = '<p style="text-align:center; padding: 20px; font-weight: bold; color: #dc2626;">Soalan untuk MODULE ' + setNo + ' belum wujud dalam questions.json.</p>';
         return;
       }
 
@@ -486,7 +494,7 @@
     }
 
     function semakJawapan() {
-      const setData = allQuestions.find(s => s.set === currentSet);
+      const setData = allQuestions.find(s => String(s.set) === String(currentSet));
       if (!setData) return;
 
       let score = 0;
