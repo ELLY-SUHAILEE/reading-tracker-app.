@@ -317,34 +317,57 @@
   </div>
 
   <script>
+    <script>
+    // 1. TETAPAN PAUTAN & KATA LALUAN GURU
     const KATA_LALUAN_GURU = "guru123";
+
+    // Pautan Google Apps Script (Web App) - Tempat hantar markah murid
+    const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbwLzoVdSRVJDOu_ESkWxAE-I23Sorhy4JOvqZSMKW7WOKkYejGe7YEhv3cj4QZEOvNa/exec";
+
+    // Pautan Google Sheet Guru - Membuka fail Google Sheet apabila kata laluan betul
+    // (Gantikan pautan di bawah jika anda mahu ia terus ke paparan Google Sheet anda)
     const PAUTAN_GOOGLE_SHEET = "https://script.google.com/macros/s/AKfycbwLzoVdSRVJDOu_ESkWxAE-I23Sorhy4JOvqZSMKW7WOKkYejGe7YEhv3cj4QZEOvNa/exec";
 
     let allQuestions = [];
     let currentSet = 1;
     let selectedAnswers = {};
 
-    // Load soalan
+    // Load data soalan dari questions.json
     fetch('questions.json')
       .then(res => res.json())
       .then(data => {
         allQuestions = data;
-        paparSetSoalan(currentSet);
       })
       .catch(err => {
         console.error('Ralat questions.json:', err);
-        document.getElementById('quiz-box').innerHTML = '<p style="color:red; text-align:center;">Ralat memuatkan soalan. Sila semak questions.json!</p>';
       });
 
-    function tukarSet(setNo) {
+    function pilihTopik(setNo) {
+      const nama = document.getElementById('nama-murid').value.trim();
+      const kelas = document.getElementById('kelas-murid').value.trim();
+
+      if (!nama || !kelas) {
+        alert('Sila isi NAMA dan KELAS anda terlebih dahulu sebelum memilih topik!');
+        return;
+      }
+
       currentSet = setNo;
       selectedAnswers = {};
       document.getElementById('result-box').style.display = 'none';
-      
-      document.querySelectorAll('.btn-set').forEach(b => b.classList.remove('active'));
-      document.getElementById(`btn-set-${setNo}`).classList.add('active');
+
+      document.getElementById('papar-nama').innerText = nama;
+      document.getElementById('papar-kelas').innerText = kelas;
+      document.getElementById('papar-set').innerText = setNo;
+
+      document.getElementById('skrin-utama').style.display = 'none';
+      document.getElementById('skrin-kuiz').style.display = 'block';
 
       paparSetSoalan(setNo);
+    }
+
+    function kembaliKeUtama() {
+      document.getElementById('skrin-kuiz').style.display = 'none';
+      document.getElementById('skrin-utama').style.display = 'block';
     }
 
     function paparSetSoalan(setNo) {
@@ -397,14 +420,6 @@
     }
 
     function semakJawapan() {
-      const nama = document.getElementById('nama-murid').value.trim();
-      const kelas = document.getElementById('kelas-murid').value.trim();
-
-      if (!nama || !kelas) {
-        alert('Sila isi NAMA dan KELAS anda terlebih dahulu!');
-        return;
-      }
-
       const setData = allQuestions.find(s => s.set === currentSet);
       if (!setData) return;
 
@@ -424,6 +439,9 @@
         }
       });
 
+      const nama = document.getElementById('nama-murid').value.trim();
+      const kelas = document.getElementById('kelas-murid').value.trim();
+
       const resultBox = document.getElementById('result-box');
       const resultScore = document.getElementById('result-score');
       const resultMessage = document.getElementById('result-message');
@@ -439,7 +457,6 @@
       resultBox.style.display = 'block';
       sendingStatus.innerText = "Hantar keputusan ke rekod guru...";
 
-      // Hantar data ke Google Sheet
       hantarDataKeGoogleSheet(nama, kelas, currentSet, score, total);
     }
 
@@ -453,7 +470,8 @@
         peratus: Math.round((score / total) * 100)
       };
 
-      fetch(PAUTAN_GOOGLE_SHEET, {
+      // Menggunakan PAUTAN_APPS_SCRIPT untuk penghantaran data
+      fetch(PAUTAN_APPS_SCRIPT, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
@@ -484,6 +502,7 @@
       const input = document.getElementById('input-password').value;
       if (input === KATA_LALUAN_GURU) {
         tutupModalPassword();
+        // Membuka pautan Google Sheet di tab baharu
         window.open(PAUTAN_GOOGLE_SHEET, '_blank');
       } else {
         document.getElementById('password-error').style.display = 'block';
@@ -496,5 +515,3 @@
       }
     }
   </script>
-</body>
-</html>
