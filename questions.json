@@ -8,17 +8,17 @@
         "options": [
           {
             "label": "A",
-            "image": "image/set1_q1_a.png",
+            "image": "images/set1_q1_a.png",
             "is_correct": true
           },
           {
             "label": "B",
-            "image": "image/set1_q1_b.png",
+            "image": "images/set1_q1_b.png",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "image/set1_q1_c.png",
+            "image": "images/set1_q1_c.png",
             "is_correct": false
           }
         ]
@@ -29,17 +29,17 @@
         "options": [
           {
             "label": "A",
-            "image": "image/set1_q2_a.png",
+            "image": "images/se1_q2.a.png",
             "is_correct": false
           },
           {
             "label": "B",
-            "image": "image/set1_q2_b.png",
+            "image": "images/set1_q2_b.png",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "image/set1_q2_c.png",
+            "image": "images/set1_q2_c.png",
             "is_correct": true
           }
         ]
@@ -50,17 +50,17 @@
         "options": [
           {
             "label": "A",
-            "image": "image/set1_q3_a.png",
+            "image": "images/set1_q3_a.png",
             "is_correct": true
           },
           {
             "label": "B",
-            "image": "image/set1_q3_b.png",
+            "image": "images/set1_q3_b.png",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "image/set1_q3_c.png",
+            "image": "images/set1_q3_c.png",
             "is_correct": false
           }
         ]
