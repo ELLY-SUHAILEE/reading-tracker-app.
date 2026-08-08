@@ -88,7 +88,6 @@
       margin-bottom: 15px; 
     }
 
-    /* PAPARAN GAMBAR KEMAS DAN RESPONSIF */
     .question-image {
       width: 100%;
       max-height: 250px;
@@ -214,11 +213,20 @@
     setSelect.appendChild(opt);
   }
 
-  // Muat turun soalan dari questions.json
+  // Baca fail questions.json
   fetch('questions.json')
-    .then(res => res.json())
-    .then(data => { rawData = data; })
-    .catch(err => console.error("Gagal membaca questions.json:", err));
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Gagal mengambil fail questions.json");
+      }
+      return res.json();
+    })
+    .then(data => { 
+      rawData = data; 
+    })
+    .catch(err => {
+      console.error("Ralat membina/membaca questions.json:", err);
+    });
 
   function startQuiz() {
     const name = document.getElementById("studentName").value.trim();
@@ -230,10 +238,22 @@
       return;
     }
 
-    const matchedSet = rawData.find(item => item.set === selectedSetNum);
+    if (!rawData || rawData.length === 0) {
+      alert("Fail 'questions.json' belum sedia atau gagal dibaca! Sila pastikan fail 'questions.json' wujud di folder yang sama di GitHub.");
+      return;
+    }
+
+    // CARIAN FLEKSIBEL (Padan angka 1, string "1", "01", "Set 1", "Set 01")
+    const matchedSet = rawData.find(item => {
+      if (item.set == selectedSetNum) return true;
+      if (parseInt(item.set) === selectedSetNum) return true;
+      if (String(item.set).toLowerCase().includes(`set ${selectedSetNum}`)) return true;
+      if (String(item.set).toLowerCase().includes(`set 0${selectedSetNum}`)) return true;
+      return false;
+    });
 
     if (!matchedSet || !matchedSet.questions) {
-      alert(`Set ${selectedSetNum} tidak dijumpai dalam questions.json!`);
+      alert(`Set ${selectedSetNum} tidak dijumpai dalam questions.json! Sila pastikan "set": ${selectedSetNum} wujud dalam fail JSON.`);
       return;
     }
 
@@ -269,13 +289,11 @@
       const qCard = document.createElement("div");
       qCard.className = "question-card";
 
-      // Tajuk / Ayat Soalan
       const title = document.createElement("div");
       title.className = "question-title";
       title.textContent = `${q.no || (index + 1)}. ${q.sentence || ''}`;
       qCard.appendChild(title);
 
-      // Gambar Soalan (Guna tag <img> standard - Bebas ralat cropping)
       if (q.image) {
         const img = document.createElement("img");
         img.src = q.image;
@@ -284,7 +302,6 @@
         qCard.appendChild(img);
       }
 
-      // Pilihan Jawapan (A, B, C)
       const grid = document.createElement("div");
       grid.className = "options-grid";
 
