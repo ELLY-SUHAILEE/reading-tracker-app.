@@ -16,7 +16,7 @@
       color: #1e293b; 
     }
     .container { 
-      max-width: 800px; 
+      max-width: 850px; 
       margin: 0 auto; 
       background: #ffffff; 
       padding: 25px; 
@@ -89,31 +89,39 @@
     .topic-title-label {
       font-weight: bold;
       color: #0369a1;
-      margin: 20px 0 10px 0;
+      margin: 20px 0 12px 0;
       text-align: left;
       display: block;
+      font-size: 16px;
     }
+    
+    /* SUSUNAN GRID 10 MODUL */
     .topic-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
+      gap: 12px;
     }
     .btn-topic {
       background: #e0f2fe;
       border: 2px solid #0284c7;
       color: #0369a1;
-      padding: 15px;
+      padding: 14px 10px;
       border-radius: 12px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       cursor: pointer;
       transition: 0.2s;
       text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 55px;
     }
     .btn-topic:hover {
       background: #0284c7;
       color: white;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
     }
 
     /* SKRIN 2: PAPARAN KUIZ */
@@ -143,7 +151,7 @@
       font-weight: bold;
     }
 
-    /* KAD SOALAN & BUTANG PILIHAN JAWAPAN */
+    /* KAD SOALAN & PILIHAN JAWAPAN */
     .question-card { 
       background: #f8fafc; 
       border: 1px solid #e2e8f0; 
@@ -163,7 +171,6 @@
       gap: 15px; 
     }
     
-    /* REKA BENTUK BUTANG PILIHAN JAWAPAN (DIPERBAIKI) */
     .option-card { 
       position: relative;
       border: 3px solid #cbd5e1; 
@@ -184,7 +191,6 @@
       transform: scale(0.97);
     }
     
-    /* GAYA PADA BUTANG YANG DIPILIH */
     .option-card.selected { 
       border-color: #16a34a !important; 
       background-color: #f0fdf4 !important; 
@@ -222,7 +228,6 @@
       pointer-events: none;
     }
     
-    /* BUTANG HANTAR & KOTAK KEPUTUSAN */
     .btn-submit { 
       display: block; 
       width: 100%; 
@@ -321,7 +326,7 @@
     <div id="skrin-utama">
       <div class="welcome-card">
         <h2>Selamat Datang! 👋</h2>
-        <p>Sila masukkan nama dan kelas anda, kemudian pilih topik kuiz di bawah:</p>
+        <p>Sila masukkan nama dan kelas anda, kemudian pilih modul kuiz di bawah:</p>
         
         <div class="form-group">
           <label for="nama-murid">Nama Murid:</label>
@@ -333,10 +338,18 @@
           <input type="text" id="kelas-murid" placeholder="Contoh: 3 Cerdik" required>
         </div>
 
-        <span class="topic-title-label">Pilih Topik / Set Soalan:</span>
+        <span class="topic-title-label">Pilih Modul Soalan:</span>
         <div class="topic-grid">
-          <button class="btn-topic" onclick="pilihTopik(1)">SET 1: Reading Comprehension</button>
-          <button class="btn-topic" onclick="pilihTopik(2)">SET 2: Prepositions & Actions</button>
+          <button class="btn-topic" onclick="pilihTopik(1)">MODULE 1: Welcome!</button>
+          <button class="btn-topic" onclick="pilihTopik(2)">MODULE 2: Every Day</button>
+          <button class="btn-topic" onclick="pilihTopik(3)">MODULE 3: Right Now</button>
+          <button class="btn-topic" onclick="pilihTopik(4)">MODULE 4: Year In, Year Out</button>
+          <button class="btn-topic" onclick="pilihTopik(5)">MODULE 5: My New House</button>
+          <button class="btn-topic" onclick="pilihTopik(6)">MODULE 6: Food, Please!</button>
+          <button class="btn-topic" onclick="pilihTopik(7)">MODULE 7: Out And About</button>
+          <button class="btn-topic" onclick="pilihTopik(8)">MODULE 8: Where Were You Yesterday?</button>
+          <button class="btn-topic" onclick="pilihTopik(9)">MODULE 9: On Holiday</button>
+          <button class="btn-topic" onclick="pilihTopik(10)">MODULE 10: The World Around Us</button>
         </div>
       </div>
     </div>
@@ -347,9 +360,9 @@
         <div class="student-detail">
           👤 <b>Nama:</b> <span id="papar-nama"></span> | 
           🏫 <b>Kelas:</b> <span id="papar-kelas"></span> | 
-          📌 <b>Topik:</b> Set <span id="papar-set"></span>
+          📌 <b>Topik:</b> Module <span id="papar-set"></span>
         </div>
-        <button class="btn-back" onclick="kembaliKeUtama()">⬅ Tukar Topik</button>
+        <button class="btn-back" onclick="kembaliKeUtama()">⬅ Tukar Modul</button>
       </div>
 
       <div id="quiz-box"></div>
@@ -401,7 +414,7 @@
       const kelas = document.getElementById('kelas-murid').value.trim();
 
       if (!nama || !kelas) {
-        alert('Sila isi NAMA dan KELAS anda terlebih dahulu sebelum memilih topik!');
+        alert('Sila isi NAMA dan KELAS anda terlebih dahulu sebelum memilih modul!');
         return;
       }
 
@@ -430,7 +443,7 @@
       quizBox.innerHTML = '';
 
       if (!setData) {
-        quizBox.innerHTML = '<p style="text-align:center;">Soalan untuk set ini belum wujud.</p>';
+        quizBox.innerHTML = '<p style="text-align:center; padding: 20px; font-weight: bold; color: #64748b;">Soalan untuk Module ' + setNo + ' belum dimasukkan dalam questions.json.</p>';
         return;
       }
 
@@ -456,15 +469,12 @@
       });
     }
 
-    /* FUNGSI PEMILIHAN JAWAPAN YANG DIPERBAIKI */
     function pilihJawapan(qIndex, label) {
       selectedAnswers[qIndex] = label;
 
-      // Buang penanda 'selected' daripada semua pilihan soalan berkenaan
       const optionCards = document.querySelectorAll(`[id^="opt-${qIndex}-"]`);
       optionCards.forEach(card => card.classList.remove('selected'));
 
-      // Tambah penanda 'selected' pada pilihan yang diklik
       const selectedCard = document.getElementById(`opt-${qIndex}-${label}`);
       if (selectedCard) {
         selectedCard.classList.add('selected');
@@ -537,7 +547,6 @@
       });
     }
 
-    /* MODAL PASSWORD GURU */
     function bukaModalPassword() {
       document.getElementById('input-password').value = '';
       document.getElementById('password-error').style.display = 'none';
