@@ -25,7 +25,7 @@
 
     .container {
       width: 100%;
-      max-width: 800px;
+      max-width: 850px;
       background: var(--card-bg);
       padding: 25px;
       border-radius: 12px;
@@ -78,7 +78,7 @@
       border: 1px solid #e5e7eb;
       border-radius: 8px;
       padding: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .question-title { 
@@ -88,44 +88,62 @@
       margin-bottom: 15px; 
     }
 
-    .question-image {
-      width: 100%;
-      max-height: 250px;
-      object-fit: contain;
-      border-radius: 8px;
-      border: 1px solid #e2e8f0;
-      background-color: #fff;
-      margin-bottom: 15px;
+    /* GRID UNTUK JAWAPAN BERGAMBAR (A, B, C) */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
     }
 
-    .options-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    @media (max-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .option-card {
       border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 14px;
-      text-align: left;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
       cursor: pointer;
       background: #fff;
-      font-weight: 600;
-      font-size: 16px;
       transition: all 0.2s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .option-card:hover { 
       border-color: var(--primary); 
       background-color: #f8fafc;
+      transform: translateY(-2px);
     }
 
     .option-card.selected { 
       border-color: var(--primary); 
       background-color: #eeeffe; 
-      color: var(--primary); 
-      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25);
+    }
+
+    .option-label {
+      font-size: 18px;
+      font-weight: bold;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .option-card.selected .option-label {
+      color: var(--primary);
+    }
+
+    .option-image {
+      width: 100%;
+      height: 130px;
+      object-fit: contain;
+      border-radius: 6px;
+      background-color: #fff;
     }
 
     .header-info {
@@ -280,18 +298,9 @@
       title.textContent = `${q.no || (index + 1)}. ${q.sentence || ''}`;
       qCard.appendChild(title);
 
-      // Papar gambar hanya jika hartanah 'image' wujud dalam JSON
-      if (q.image) {
-        const img = document.createElement("img");
-        img.src = q.image;
-        img.alt = `Gambar Soalan ${q.no || (index + 1)}`;
-        img.className = "question-image";
-        qCard.appendChild(img);
-      }
-
-      // Senarai Pilihan Jawapan
-      const optionsList = document.createElement("div");
-      optionsList.className = "options-list";
+      // Grid Pilihan Jawapan A, B, C (Dengan Gambar)
+      const grid = document.createElement("div");
+      grid.className = "options-grid";
 
       if (q.options && Array.isArray(q.options)) {
         q.options.forEach(opt => {
@@ -299,16 +308,37 @@
           optCard.className = "option-card";
           optCard.id = `q_${index}_${opt.label}`;
           optCard.onclick = () => selectOption(index, opt.label);
-          
-          // Gabungkan label (A/B/C) dan teks jawapan jika wujud
-          const optionText = opt.text ? ` (${opt.label}) ${opt.text}` : ` (${opt.label})`;
-          optCard.textContent = optionText;
 
-          optionsList.appendChild(optCard);
+          // Label Jawapan (A, B, C)
+          const optLabel = document.createElement("div");
+          optLabel.className = "option-label";
+          optLabel.textContent = `(${opt.label})`;
+          optCard.appendChild(optLabel);
+
+          // Gambar Jawapan
+          if (opt.image) {
+            const optImg = document.createElement("img");
+            optImg.src = opt.image;
+            optImg.alt = `Pilihan (${opt.label})`;
+            optImg.className = "option-image";
+
+            optImg.onerror = function() {
+              this.style.display = 'none';
+              const errTxt = document.createElement('div');
+              errTxt.style.color = '#dc2626';
+              errTxt.style.fontSize = '12px';
+              errTxt.textContent = `⚠️ Gambar tiada: ${opt.image}`;
+              optCard.appendChild(errTxt);
+            };
+
+            optCard.appendChild(optImg);
+          }
+
+          grid.appendChild(optCard);
         });
       }
 
-      qCard.appendChild(optionsList);
+      qCard.appendChild(grid);
       container.appendChild(qCard);
     });
   }
