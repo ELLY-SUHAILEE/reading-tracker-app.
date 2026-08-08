@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kuiz Bahasa Inggeris Tahun 3</title>
+  <title>Reading Tracker App</title>
   <style>
     * { 
       box-sizing: border-box; 
@@ -65,7 +65,7 @@
       margin-top: 0;
     }
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
       text-align: left;
     }
     .form-group label {
@@ -74,54 +74,35 @@
       margin-bottom: 6px;
       color: #334155;
     }
-    .form-group input {
+    .form-group input, .form-group select {
       width: 100%;
       padding: 12px;
       border: 2px solid #cbd5e1;
       border-radius: 8px;
       font-size: 16px;
       outline: none;
+      background-color: white;
     }
-    .form-group input:focus {
+    .form-group input:focus, .form-group select:focus {
       border-color: #0284c7;
     }
 
-    .topic-title-label {
-      font-weight: bold;
-      color: #0369a1;
-      margin: 20px 0 12px 0;
-      text-align: left;
-      display: block;
-      font-size: 16px;
-    }
-    
-    /* SUSUNAN GRID 10 MODUL */
-    .topic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
-    .btn-topic {
-      background: #e0f2fe;
-      border: 2px solid #0284c7;
-      color: #0369a1;
-      padding: 14px 10px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 55px;
-    }
-    .btn-topic:hover {
+    /* BUTANG MULA KUIZ */
+    .btn-start {
+      width: 100%;
+      padding: 14px;
       background: #0284c7;
       color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.2s;
+    }
+    .btn-start:hover {
+      background: #0369a1;
     }
 
     /* SKRIN 2: PAPARAN KUIZ */
@@ -318,7 +299,7 @@
 
   <div class="container">
     <header>
-      <h1>📘 Kuiz Bahasa Inggeris Tahun 3</h1>
+      <h1>📖 Reading Tracker App</h1>
       <button class="btn-guru" onclick="bukaModalPassword()">🔒 Rekod Guru</button>
     </header>
 
@@ -326,7 +307,7 @@
     <div id="skrin-utama">
       <div class="welcome-card">
         <h2>Selamat Datang! 👋</h2>
-        <p>Sila masukkan nama dan kelas anda, kemudian pilih modul kuiz di bawah:</p>
+        <p>Sila masukkan nama, kelas, dan pilih modul kuiz daripada senarai di bawah:</p>
         
         <div class="form-group">
           <label for="nama-murid">Nama Murid:</label>
@@ -338,19 +319,25 @@
           <input type="text" id="kelas-murid" placeholder="Contoh: 3 Cerdik" required>
         </div>
 
-        <span class="topic-title-label">Pilih Modul Soalan:</span>
-        <div class="topic-grid">
-          <button class="btn-topic" onclick="pilihTopik(1)">MODULE 1: Welcome!</button>
-          <button class="btn-topic" onclick="pilihTopik(2)">MODULE 2: Every Day</button>
-          <button class="btn-topic" onclick="pilihTopik(3)">MODULE 3: Right Now</button>
-          <button class="btn-topic" onclick="pilihTopik(4)">MODULE 4: Year In, Year Out</button>
-          <button class="btn-topic" onclick="pilihTopik(5)">MODULE 5: My New House</button>
-          <button class="btn-topic" onclick="pilihTopik(6)">MODULE 6: Food, Please!</button>
-          <button class="btn-topic" onclick="pilihTopik(7)">MODULE 7: Out And About</button>
-          <button class="btn-topic" onclick="pilihTopik(8)">MODULE 8: Where Were You Yesterday?</button>
-          <button class="btn-topic" onclick="pilihTopik(9)">MODULE 9: On Holiday</button>
-          <button class="btn-topic" onclick="pilihTopik(10)">MODULE 10: The World Around Us</button>
+        <!-- DROP DOWN MODULE 1 HINGGA 10 -->
+        <div class="form-group">
+          <label for="select-modul">Pilih Modul Soalan:</label>
+          <select id="select-modul">
+            <option value="" disabled selected>-- Pilih Modul (1 - 10) --</option>
+            <option value="1">MODULE 1: Welcome!</option>
+            <option value="2">MODULE 2: Every Day</option>
+            <option value="3">MODULE 3: Right Now</option>
+            <option value="4">MODULE 4: Year In, Year Out</option>
+            <option value="5">MODULE 5: My New House</option>
+            <option value="6">MODULE 6: Food, Please!</option>
+            <option value="7">MODULE 7: Out And About</option>
+            <option value="8">MODULE 8: Where Were You Yesterday?</option>
+            <option value="9">MODULE 9: On Holiday</option>
+            <option value="10">MODULE 10: The World Around Us</option>
+          </select>
         </div>
+
+        <button class="btn-start" onclick="mulaKuizDropdown()">Mula Kuiz 🚀</button>
       </div>
     </div>
 
@@ -409,14 +396,27 @@
         console.error('Ralat questions.json:', err);
       });
 
+    function mulaKuizDropdown() {
+      const nama = document.getElementById('nama-murid').value.trim();
+      const kelas = document.getElementById('kelas-murid').value.trim();
+      const selectedModul = document.getElementById('select-modul').value;
+
+      if (!nama || !kelas) {
+        alert('Sila isi NAMA dan KELAS anda terlebih dahulu!');
+        return;
+      }
+
+      if (!selectedModul) {
+        alert('Sila pilih MODUL daripada senarai drop-down terlebih dahulu!');
+        return;
+      }
+
+      pilihTopik(parseInt(selectedModul));
+    }
+
     function pilihTopik(setNo) {
       const nama = document.getElementById('nama-murid').value.trim();
       const kelas = document.getElementById('kelas-murid').value.trim();
-
-      if (!nama || !kelas) {
-        alert('Sila isi NAMA dan KELAS anda terlebih dahulu sebelum memilih modul!');
-        return;
-      }
 
       currentSet = setNo;
       selectedAnswers = {};
