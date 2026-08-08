@@ -98,21 +98,21 @@
       margin-bottom: 15px;
     }
 
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .option-card {
       border: 2px solid #e5e7eb;
       border-radius: 8px;
       padding: 14px;
-      text-align: center;
+      text-align: left;
       cursor: pointer;
       background: #fff;
-      font-weight: bold;
-      font-size: 18px;
+      font-weight: 600;
+      font-size: 16px;
       transition: all 0.2s ease-in-out;
     }
 
@@ -204,7 +204,6 @@
   let timerInterval;
   let secondsElapsed = 0;
 
-  // Sediakan pilihan Set 01 - Set 23
   const setSelect = document.getElementById("setSelect");
   for (let i = 1; i <= 23; i++) {
     let opt = document.createElement("option");
@@ -213,20 +212,13 @@
     setSelect.appendChild(opt);
   }
 
-  // Baca fail questions.json
   fetch('questions.json')
     .then(res => {
-      if (!res.ok) {
-        throw new Error("Gagal mengambil fail questions.json");
-      }
+      if (!res.ok) throw new Error("Gagal mengambil fail questions.json");
       return res.json();
     })
-    .then(data => { 
-      rawData = data; 
-    })
-    .catch(err => {
-      console.error("Ralat membina/membaca questions.json:", err);
-    });
+    .then(data => { rawData = data; })
+    .catch(err => console.error("Ralat membaca questions.json:", err));
 
   function startQuiz() {
     const name = document.getElementById("studentName").value.trim();
@@ -239,21 +231,14 @@
     }
 
     if (!rawData || rawData.length === 0) {
-      alert("Fail 'questions.json' belum sedia atau gagal dibaca! Sila pastikan fail 'questions.json' wujud di folder yang sama di GitHub.");
+      alert("Fail 'questions.json' belum sedia atau gagal dibaca!");
       return;
     }
 
-    // CARIAN FLEKSIBEL (Padan angka 1, string "1", "01", "Set 1", "Set 01")
-    const matchedSet = rawData.find(item => {
-      if (item.set == selectedSetNum) return true;
-      if (parseInt(item.set) === selectedSetNum) return true;
-      if (String(item.set).toLowerCase().includes(`set ${selectedSetNum}`)) return true;
-      if (String(item.set).toLowerCase().includes(`set 0${selectedSetNum}`)) return true;
-      return false;
-    });
+    const matchedSet = rawData.find(item => item.set == selectedSetNum);
 
     if (!matchedSet || !matchedSet.questions) {
-      alert(`Set ${selectedSetNum} tidak dijumpai dalam questions.json! Sila pastikan "set": ${selectedSetNum} wujud dalam fail JSON.`);
+      alert(`Set ${selectedSetNum} tidak dijumpai dalam questions.json!`);
       return;
     }
 
@@ -289,21 +274,24 @@
       const qCard = document.createElement("div");
       qCard.className = "question-card";
 
+      // Tajuk Soalan (Ayat)
       const title = document.createElement("div");
       title.className = "question-title";
       title.textContent = `${q.no || (index + 1)}. ${q.sentence || ''}`;
       qCard.appendChild(title);
 
+      // Papar gambar hanya jika hartanah 'image' wujud dalam JSON
       if (q.image) {
         const img = document.createElement("img");
         img.src = q.image;
-        img.alt = `Soalan ${q.no || (index + 1)}`;
+        img.alt = `Gambar Soalan ${q.no || (index + 1)}`;
         img.className = "question-image";
         qCard.appendChild(img);
       }
 
-      const grid = document.createElement("div");
-      grid.className = "options-grid";
+      // Senarai Pilihan Jawapan
+      const optionsList = document.createElement("div");
+      optionsList.className = "options-list";
 
       if (q.options && Array.isArray(q.options)) {
         q.options.forEach(opt => {
@@ -311,13 +299,16 @@
           optCard.className = "option-card";
           optCard.id = `q_${index}_${opt.label}`;
           optCard.onclick = () => selectOption(index, opt.label);
-          optCard.textContent = `(${opt.label})`;
+          
+          // Gabungkan label (A/B/C) dan teks jawapan jika wujud
+          const optionText = opt.text ? ` (${opt.label}) ${opt.text}` : ` (${opt.label})`;
+          optCard.textContent = optionText;
 
-          grid.appendChild(optCard);
+          optionsList.appendChild(optCard);
         });
       }
 
-      qCard.appendChild(grid);
+      qCard.appendChild(optionsList);
       container.appendChild(qCard);
     });
   }
