@@ -8,17 +8,17 @@
         "options": [
           {
             "label": "A",
-            "image": "https://placehold.co/300x200/4f46e5/ffffff?text=Frog+A",
+            "image": "https://images.unsplash.com/photo-1550950158-d0d960dff51b?w=400&auto=format&fit=crop&q=80",
             "is_correct": true
           },
           {
             "label": "B",
-            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Frog+B",
+            "image": "https://images.unsplash.com/photo-1560713781-d00f6c18f388?w=400&auto=format&fit=crop&q=80",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Frog+C",
+            "image": "https://images.unsplash.com/photo-1531386151447-fd7622770d38?w=400&auto=format&fit=crop&q=80",
             "is_correct": false
           }
         ]
@@ -29,17 +29,17 @@
         "options": [
           {
             "label": "A",
-            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Dinner+A",
+            "image": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&auto=format&fit=crop&q=80",
             "is_correct": false
           },
           {
             "label": "B",
-            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Dinner+B",
+            "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&auto=format&fit=crop&q=80",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "https://placehold.co/300x200/4f46e5/ffffff?text=Dinner+C",
+            "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&auto=format&fit=crop&q=80",
             "is_correct": true
           }
         ]
@@ -50,17 +50,17 @@
         "options": [
           {
             "label": "A",
-            "image": "https://placehold.co/300x200/4f46e5/ffffff?text=Bee+A",
+            "image": "https://images.unsplash.com/photo-1587049352847-4a222e784d38?w=400&auto=format&fit=crop&q=80",
             "is_correct": true
           },
           {
             "label": "B",
-            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Bee+B",
+            "image": "https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80",
             "is_correct": false
           },
           {
             "label": "C",
-            "image": "https://placehold.co/300x200/e2e8f0/1e293b?text=Bee+C",
+            "image": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&auto=format&fit=crop&q=80",
             "is_correct": false
           }
         ]
