@@ -64,6 +64,153 @@
             "is_correct": false
           }
         ]
+      },
+      {
+        "no": 4,
+        "sentence": "I play football on Sundays.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set1_q4_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set1_q4_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set1_q4_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 5,
+        "sentence": "The lizard is in the dining room.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set1_q5_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set1_q5_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set1_q5_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 6,
+        "sentence": "He is wearing a blue jacket.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set1_q6_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set1_q6_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set1_q6_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 7,
+        "sentence": "She goes swimming on Saturdays.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set1_q7_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set1_q7_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set1_q7_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 8,
+        "sentence": "The cat is in the kitchen.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set1_q8_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set1_q8_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set1_q8_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 9,
+        "sentence": "I watch TV in the living room.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set1_q9_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set1_q9_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set1_q9_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 10,
+        "sentence": "There are stairs in the house.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set1_q10_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set1_q10_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set1_q10_c.png",
+            "is_correct": true
+          }
+        ]
       }
     ]
   },
@@ -129,6 +276,153 @@
           {
             "label": "C",
             "image": "images/set2_q3_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "sentence": "She is wearing pink socks.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set2_q4_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set2_q4_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set2_q4_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 5,
+        "sentence": "Put on your shoes.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set2_q5_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set2_q5_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set2_q5_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 6,
+        "sentence": "I can skip with a rope.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set2_q6_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set2_q6_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set2_q6_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 7,
+        "sentence": "The robot has four arms.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set2_q7_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set2_q7_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set2_q7_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 8,
+        "sentence": "Let's eat an ice cream.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set2_q8_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set2_q8_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set2_q8_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 9,
+        "sentence": "We find shells on the beach.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set2_q9_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set2_q9_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set2_q9_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 10,
+        "sentence": "They are swimming in the sea.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set2_q10_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set2_q10_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set2_q10_c.png",
             "is_correct": false
           }
         ]
@@ -507,7 +801,7 @@
           {
             "label": "A",
             "image": "images/set4_q8_a.png",
-            "is_correct": true
+            "is_correct": false
           },
           {
             "label": "B",
@@ -517,7 +811,7 @@
           {
             "label": "C",
             "image": "images/set4_q8_c.png",
-            "is_correct": false
+            "is_correct": true
           }
         ]
       },
