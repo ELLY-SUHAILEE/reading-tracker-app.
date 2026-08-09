@@ -352,6 +352,7 @@
   }
 ]
 {
+ {
   "set": 4,
   "questions": [
     {
@@ -492,7 +493,7 @@
         {
           "label": "B",
           "image": "images/set4_q7_b.png",
-          "is_correct": flase
+          "is_correct": false
         },
         {
           "label": "C",
