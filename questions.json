@@ -351,3 +351,218 @@
     ]
   }
 ]
+{
+  "set": 4,
+  "questions": [
+    {
+      "no": 1,
+      "sentence": "The rabbit is eating a carrot.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q1_a.png",
+          "is_correct": false
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q1_b.png",
+          "is_correct": false
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q1_c.png",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "sentence": "The baby is sleeping.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q2_a.png",
+          "is_correct": false
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q2_b.png",
+          "is_correct": true
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q2_c.png",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "sentence": "The shoes are under the bench.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q3_a.png",
+          "is_correct": false
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q3_b.png",
+          "is_correct": true
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q3_c.png",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "sentence": "The teacher is writing on the board.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q4_a.png",
+          "is_correct": true
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q4_b.png",
+          "is_correct": false
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q4_c.png",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "sentence": "The elephant is big.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q5_a.png",
+          "is_correct": false
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q5_b.png",
+          "is_correct": false
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q5_c.png",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "sentence": "The farmer works in the field.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q6_a.png",
+          "is_correct": true
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q6_b.png",
+          "is_correct": false
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q6_c.png",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "sentence": "Ali is doing the washing-up.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q7_a.png",
+          "is_correct": true
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q7_b.png",
+          "is_correct": flase
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q7_c.png",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "sentence": "We study in the library.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q8_a.png",
+          "is_correct": false
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q8_b.png",
+          "is_correct": false
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q8_c.png",
+          "is_correct": true
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "sentence": "I brush my teeth.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q9_a.png",
+          "is_correct": false
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q9_b.png",
+          "is_correct": true
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q9_c.png",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "no": 10,
+      "sentence": "I take a shower every morning.",
+      "options": [
+        {
+          "label": "A",
+          "image": "images/set4_q10_a.png",
+          "is_correct": true
+        },
+        {
+          "label": "B",
+          "image": "images/set4_q10_b.png",
+          "is_correct": false
+        },
+        {
+          "label": "C",
+          "image": "images/set4_q10_c.png",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
