@@ -507,7 +507,7 @@
           {
             "label": "A",
             "image": "images/set4_q8_a.png",
-            "is_correct": false
+            "is_correct": true
           },
           {
             "label": "B",
@@ -517,7 +517,7 @@
           {
             "label": "C",
             "image": "images/set4_q8_c.png",
-            "is_correct": true
+            "is_correct": false
           }
         ]
       },
