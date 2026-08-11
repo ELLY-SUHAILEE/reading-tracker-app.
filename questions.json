@@ -860,3 +860,430 @@
     ]
   }
 ]
+[
+  {
+    "set": 5,
+    "questions": [
+      {
+        "no": 1,
+        "sentence": "Yesterday, I ___ my bag for the holiday.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q1_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q1_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q1_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 2,
+        "sentence": "Last week, we ___ to the beach.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q2_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q2_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q2_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 3,
+        "sentence": "Last weekend, my mother ___ some food for our picnic.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q3_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q3_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q3_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "sentence": "Last year, I ___ in Langkawi with my family.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q4_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q4_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q4_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 5,
+        "sentence": "Last month, we ___ very happy during our holiday.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q5_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q5_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q5_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 6,
+        "sentence": "Yesterday, the children ___ football at the park.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q6_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q6_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q6_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 7,
+        "sentence": "Last weekend, my father ___ the car to the beach.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q7_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q7_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q7_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 8,
+        "sentence": "Last night, we ___ our homework before going to bed.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q8_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q8_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q8_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 9,
+        "sentence": "Yesterday, Sara ___ a book during the journey.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q9_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q9_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q9_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 10,
+        "sentence": "Last year, I ___ my cousins during the holiday.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q10_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q10_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q10_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 11,
+        "sentence": "Yesterday, Ali ___ a beautiful shell on the beach.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q11_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q11_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q11_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 12,
+        "sentence": "Last week, we ___ in a hotel near the beach.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q12_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q12_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q12_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 13,
+        "sentence": "Last weekend, they ___ in the sea.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q13_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q13_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q13_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 14,
+        "sentence": "Last month, my family ___ a picnic at the park.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q14_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q14_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q14_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 15,
+        "sentence": "Yesterday, I ___ many photos during my holiday.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q15_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q15_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q15_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 16,
+        "sentence": "Last weekend, we ___ a big sandcastle on the beach.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q16_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q16_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q16_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 17,
+        "sentence": "Last year, my brother ___ a souvenir for me.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q17_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q17_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q17_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 18,
+        "sentence": "Yesterday, she ___ some beautiful pictures during the holiday.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q18_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q18_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q18_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 19,
+        "sentence": "Last week, we ___ lunch at a restaurant.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q19_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q19_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q19_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 20,
+        "sentence": "Last weekend, my brother ___ a kite at the park.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set5_q20_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set5_q20_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set5_q20_c.png",
+            "is_correct": true
+          }
+        ]
+      }
+    ]
+  }
+]
