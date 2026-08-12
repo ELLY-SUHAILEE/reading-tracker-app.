@@ -864,7 +864,7 @@
     "questions": [
       {
         "no": 1,
-        "sentence": "Yesterday, I ___ my bag for the holiday.",
+        "sentence": "Yesterday, I packed my bag for the holiday.",
         "options": [
           {
             "label": "A",
@@ -885,7 +885,7 @@
       },
       {
         "no": 2,
-        "sentence": "Last week, we ___ to the beach.",
+        "sentence": "Last week, we went to the beach.",
         "options": [
           {
             "label": "A",
@@ -906,7 +906,7 @@
       },
       {
         "no": 3,
-        "sentence": "Last weekend, my mother ___ some food for our picnic.",
+        "sentence": "Last weekend, my mother brought some food for our picnic.",
         "options": [
           {
             "label": "A",
@@ -927,7 +927,7 @@
       },
       {
         "no": 4,
-        "sentence": "Last year, I ___ in Langkawi with my family.",
+        "sentence": "Last year, I was in Langkawi with my family.",
         "options": [
           {
             "label": "A",
@@ -948,7 +948,7 @@
       },
       {
         "no": 5,
-        "sentence": "Last month, we ___ very happy during our holiday.",
+        "sentence": "Last month, we were very happy during our holiday.",
         "options": [
           {
             "label": "A",
@@ -969,7 +969,7 @@
       },
       {
         "no": 6,
-        "sentence": "Yesterday, the children ___ football at the park.",
+        "sentence": "Yesterday, the children played football at the park.",
         "options": [
           {
             "label": "A",
@@ -990,7 +990,7 @@
       },
       {
         "no": 7,
-        "sentence": "Last weekend, my father ___ the car to the beach.",
+        "sentence": "Last weekend, my father drove the car to the beach.",
         "options": [
           {
             "label": "A",
@@ -1011,7 +1011,7 @@
       },
       {
         "no": 8,
-        "sentence": "Last night, we ___ our homework before going to bed.",
+        "sentence": "Last night, we did our homework before going to bed.",
         "options": [
           {
             "label": "A",
@@ -1032,7 +1032,7 @@
       },
       {
         "no": 9,
-        "sentence": "Yesterday, Sara ___ a book during the journey.",
+        "sentence": "Yesterday, Sara took a picture at school.",
         "options": [
           {
             "label": "A",
@@ -1053,7 +1053,7 @@
       },
       {
         "no": 10,
-        "sentence": "Last year, I ___ my cousins during the holiday.",
+        "sentence": "Last year, I saw my cousins during the holiday.",
         "options": [
           {
             "label": "A",
@@ -1074,7 +1074,7 @@
       },
       {
         "no": 11,
-        "sentence": "Yesterday, Ali ___ a beautiful shell on the beach.",
+        "sentence": "Yesterday, Ali found a beautiful shell on the beach.",
         "options": [
           {
             "label": "A",
@@ -1095,7 +1095,7 @@
       },
       {
         "no": 12,
-        "sentence": "Last week, we ___ in a hotel near the beach.",
+        "sentence": "Last week, we stayed in a hotel near the beach.",
         "options": [
           {
             "label": "A",
@@ -1116,7 +1116,7 @@
       },
       {
         "no": 13,
-        "sentence": "Last weekend, they ___ in the sea.",
+        "sentence": "Last weekend, they swam in the sea.",
         "options": [
           {
             "label": "A",
@@ -1137,7 +1137,7 @@
       },
       {
         "no": 14,
-        "sentence": "Last month, my family ___ a picnic at the park.",
+        "sentence": "Last month, my family had a picnic at the park.",
         "options": [
           {
             "label": "A",
@@ -1158,7 +1158,7 @@
       },
       {
         "no": 15,
-        "sentence": "Yesterday, I ___ many photos during my holiday.",
+        "sentence": "Yesterday, I took many photos during my holiday.",
         "options": [
           {
             "label": "A",
@@ -1179,7 +1179,7 @@
       },
       {
         "no": 16,
-        "sentence": "Last weekend, we ___ a big sandcastle on the beach.",
+        "sentence": "Last weekend, we made a big sandcastle on the beach.",
         "options": [
           {
             "label": "A",
@@ -1200,7 +1200,7 @@
       },
       {
         "no": 17,
-        "sentence": "Last year, my brother ___ a souvenir for me.",
+        "sentence": "Last year, my brother bought a souvenir for me.",
         "options": [
           {
             "label": "A",
@@ -1221,7 +1221,7 @@
       },
       {
         "no": 18,
-        "sentence": "Yesterday, she ___ some beautiful pictures during the holiday.",
+        "sentence": "Yesterday, she drew some beautiful pictures during the holiday.",
         "options": [
           {
             "label": "A",
@@ -1242,7 +1242,7 @@
       },
       {
         "no": 19,
-        "sentence": "Last week, we ___ lunch at a restaurant.",
+        "sentence": "Last week, we ate lunch at a restaurant.",
         "options": [
           {
             "label": "A",
@@ -1263,7 +1263,7 @@
       },
       {
         "no": 20,
-        "sentence": "Last weekend, my brother ___ a kite at the park.",
+        "sentence": "Last weekend, my brother flew a kite at the park.",
         "options": [
           {
             "label": "A",
