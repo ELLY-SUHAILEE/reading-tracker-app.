@@ -1283,5 +1283,430 @@
         ]
       }
     ]
+  },
+  {
+    "set": 6,
+    "questions": [
+      {
+        "no": 1,
+        "sentence": "Adam does his homework every afternoon.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q1_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q1_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q1_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 2,
+        "sentence": "She gets dressed at 6:30 in the morning.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q2_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q2_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q2_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 3,
+        "sentence": "He takes a shower before going to school.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q3_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q3_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q3_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "sentence": "They have lunch at 1:00 p.m. at school.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q4_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q4_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q4_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 5,
+        "sentence": "We have dinner with our family at night.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q5_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q5_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q5_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 6,
+        "sentence": "She wakes up early every morning.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q6_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q6_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q6_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 7,
+        "sentence": "They go to school on Mondays.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q7_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q7_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q7_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 8,
+        "sentence": "Adam gets dressed after taking a shower.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q8_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q8_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q8_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 9,
+        "sentence": "He does his homework in his room.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q9_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q9_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q9_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 10,
+        "sentence": "We take a shower after playing in the park.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q10_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q10_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q10_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 11,
+        "sentence": "She has lunch at the canteen on Tuesday.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q11_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q11_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q11_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 12,
+        "sentence": "They have dinner at 8:00 p.m. in the evening.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q12_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q12_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q12_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 13,
+        "sentence": "Adam makes his bed every morning.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q13_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q13_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q13_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 14,
+        "sentence": "She brushes her teeth at night.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q14_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q14_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q14_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 15,
+        "sentence": "He plays football on Saturday afternoon.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q15_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q15_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q15_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 16,
+        "sentence": "We walk to school on Friday.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q16_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q16_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q16_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 17,
+        "sentence": "They watch television in the evening.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q17_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q17_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q17_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 18,
+        "sentence": "She goes to sleep at 9:00 p.m.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q18_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q18_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q18_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 19,
+        "sentence": "Adam rides his bike on the weekend.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q19_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q19_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q19_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 20,
+        "sentence": "We finish school at 1:15 p.m.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set6_q20_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set6_q20_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set6_q20_c.png",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
   }
 ]
