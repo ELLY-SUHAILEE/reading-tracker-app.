@@ -3,129 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Analisa Guru & Pelan Intervensi</title>
-  <!-- Chart.js untuk paparan Carta -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- FontAwesome untuk Ikon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+  <title>Dashboard Guru - Rekod Bacaan</title>
   <style>
-    :root {
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --danger: #ef4444;
-      --danger-bg: #fef2f2;
-      --warning: #f59e0b;
-      --warning-bg: #fffbeb;
-      --success: #10b981;
-      --success-bg: #ecfdf5;
-      --border: #e2e8f0;
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #f1f5f9;
+      margin: 0;
+      padding: 20px;
+      color: #0f172a;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #e2e8f0;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #0284c7;
+    }
+    .btn-logout {
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    /* TOOLBAR CARIAN & FILTER */
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .toolbar input, .toolbar select {
+      padding: 10px 14px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+    .toolbar input { flex: 2; min-width: 200px; }
+    .toolbar select { flex: 1; min-width: 150px; }
+    
+    .btn-refresh {
+      background-color: #0284c7;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding: 20px; }
-    .container { max-width: 1200px; margin: 0 auto; }
-
-    /* Header */
-    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .header h1 { font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-    .btn-group { display: flex; gap: 10px; }
-    .btn { border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
-    .btn-refresh { background: #e2e8f0; color: #334155; }
-    .btn-refresh:hover { background: #cbd5e1; }
-    .btn-print { background: var(--primary); color: white; }
-    .btn-print:hover { background: var(--primary-hover); }
-
-    /* KPI Cards */
-    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 25px; }
-    .kpi-card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid var(--primary); }
-    .kpi-card.success { border-left-color: var(--success); }
-    .kpi-card.warning { border-left-color: var(--warning); }
-    .kpi-card.danger { border-left-color: var(--danger); }
-    .kpi-title { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
-    .kpi-value { font-size: 1.8rem; font-weight: 700; color: var(--text); }
-
-    /* Filter Section */
-    .filter-card { background: var(--card-bg); padding: 18px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
-    .filter-group { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 180px; }
-    .filter-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
-    .filter-group select, .filter-group input { padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; outline: none; }
-
-    /* Status Muat Data */
-    #loading-status { text-align: center; font-weight: bold; padding: 10px; color: var(--primary); display: none; }
-
-    /* Chart Section */
-    .chart-card { background: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .chart-card h2 { font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
-
-    /* Tables Section */
-    .section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-    .table-container { background: var(--card-bg); border-radius: 12px; overflow-x: auto; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 30px; }
-    table { width: 100%; border-collapse: collapse; text-align: left; }
-    th { background: #f1f5f9; padding: 12px 16px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
-    td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
-    tr:last-child td { border-bottom: none; }
-
-    /* Badges */
-    .badge { padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; }
-    .badge-danger { background: var(--danger-bg); color: var(--danger); }
-    .badge-success { background: var(--success-bg); color: var(--success); }
-
-    /* Print Styles */
-    @media print {
-      body { background: white; padding: 0; }
-      .btn-group, .filter-card, #loading-status { display: none !important; }
-      .container { max-width: 100%; }
-      .kpi-card, .chart-card, .table-container { box-shadow: none; border: 1px solid #ccc; }
-      .chart-card { page-break-inside: avoid; }
+    /* JADUAL SENARAI NAMA */
+    .table-container {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    th {
+      background-color: #f8fafc;
+      color: #334155;
+      font-weight: bold;
+    }
+    tr:hover {
+      background-color: #f1f5f9;
+    }
+    .badge-score {
+      background-color: #dcfce7;
+      color: #15803d;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .loading-text {
+      text-align: center;
+      padding: 30px;
+      font-weight: bold;
+      color: #64748b;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  
-  <!-- Header -->
-  <div class="header">
-    <h1><i class="fa-solid fa-chart-line"></i> Dashboard Analisa & Pelan Intervensi Guru</h1>
-    <div class="btn-group">
-      <button class="btn btn-refresh" onclick="muatTurunData()"><i class="fa-solid fa-rotate"></i> Muat Semula Data</button>
-      <button class="btn btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak / Simpan PDF</button>
-    </div>
-  </div>
+  <div class="container">
+    <header>
+      <h1>📊 Rekod & Senarai Murid Menjawab</h1>
+      <button class="btn-logout" onclick="logKeluar()">Log Keluar</button>
+    </header>
 
-  <div id="loading-status">⏳ Memuat turun data dari Google Sheets...</div>
-
-  <!-- KPI Cards -->
-  <div class="kpi-grid">
-    <div class="kpi-card">
-      <div class="kpi-title">Jumlah Percubaan</div>
-      <div class="kpi-value" id="kpi-total">0</div>
-    </div>
-    <div class="kpi-card warning">
-      <div class="kpi-title">Purata Keseluruhan</div>
-      <div class="kpi-value" id="kpi-avg">0%</div>
-    </div>
-    <div class="kpi-card danger">
-      <div class="kpi-title">Murid Perlu Intervensi (≤40%)</div>
-      <div class="kpi-value" id="kpi-intervention">0</div>
-    </div>
-    <div class="kpi-card success">
-      <div class="kpi-title">Murid Cemerlang (≥85%)</div>
-      <div class="kpi-value" id="kpi-cemerlang">0</div>
-    </div>
-  </div>
-
-  <!-- Filter Section -->
-  <div class="filter-card">
-    <div class="filter-group">
-      <label for="filter-kelas"><i class="fa-solid fa-school"></i> Pilih Kelas</label>
-      <select id="filter-kelas" onchange="kemaskiniDashboard()">
-        <option value="ALL">Semua Kelas (11 Kelas Darjah 3)</option>
+    <!-- KAWASAN CARIAN & PENAPIS (FILTER) -->
+    <div class="toolbar">
+      <input type="text" id="search-input" placeholder="🔍 Cari nama murid..." onkeyup="tapisData()">
+      <select id="filter-kelas" onchange="tapisData()">
+        <option value="">-- Semua Kelas --</option>
         <option value="3 ARIF">3 ARIF</option>
         <option value="3 BESTARI">3 BESTARI</option>
         <option value="3 CERDIK">3 CERDIK</option>
@@ -138,240 +138,108 @@
         <option value="3 JUARA">3 JUARA</option>
         <option value="3 KREATIF">3 KREATIF</option>
       </select>
+      <button class="btn-refresh" onclick="muatDataRekod()">🔄 Muat Semula</button>
     </div>
 
-    <div class="filter-group">
-      <label for="filter-modul"><i class="fa-solid fa-book-open"></i> Pilih Modul / Topik</label>
-      <select id="filter-modul" onchange="kemaskiniDashboard()">
-        <option value="ALL">Semua Modul (1 - 10)</option>
-        <option value="MODULE 1">MODULE 1</option>
-        <option value="MODULE 2">MODULE 2</option>
-        <option value="MODULE 3">MODULE 3</option>
-        <option value="MODULE 4">MODULE 4</option>
-        <option value="MODULE 5">MODULE 5</option>
-        <option value="MODULE 6">MODULE 6</option>
-        <option value="MODULE 7">MODULE 7</option>
-        <option value="MODULE 8">MODULE 8</option>
-        <option value="MODULE 9">MODULE 9</option>
-        <option value="MODULE 10">MODULE 10</option>
-      </select>
+    <!-- JADUAL KEPUTUSAN -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Masa/Tarikh</th>
+            <th>Nama Murid</th>
+            <th>Kelas</th>
+            <th>Modul</th>
+            <th>Markah</th>
+            <th>Peratus</th>
+          </tr>
+        </thead>
+        <tbody id="rekod-body">
+          <tr>
+            <td colspan="7" class="loading-text">⏳ Memuatkan rekod murid... Sila tunggu.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <div class="filter-group">
-      <label for="search-nama"><i class="fa-solid fa-magnifying-glass"></i> Carian Nama</label>
-      <input type="text" id="search-nama" placeholder="Cari nama murid..." onkeyup="kemaskiniDashboard()">
-    </div>
   </div>
-
-  <!-- Chart Section -->
-  <div class="chart-card">
-    <h2><i class="fa-solid fa-chart-bar" style="color: var(--primary);"></i> Purata Markah Mengikut Topik / Modul</h2>
-    <canvas id="topicChart" height="90"></canvas>
-  </div>
-
-  <!-- Table 1: Intervensi Murid Lemah -->
-  <div class="section-title" style="color: var(--danger);">
-    <i class="fa-solid fa-triangle-exclamation"></i> Senarai Murid Perlu Intervensi (Markah ≤ 40%)
-  </div>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Nama Murid</th>
-          <th>Kelas</th>
-          <th>Topik / Modul</th>
-          <th>Markah (%)</th>
-          <th>Cadangan Pelan Intervensi</th>
-        </tr>
-      </thead>
-      <tbody id="tbody-intervensi">
-        <!-- Data dimasukkan secara dinamik -->
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Table 2: Murid Cemerlang -->
-  <div class="section-title" style="color: var(--success);">
-    <i class="fa-solid fa-award"></i> Senarai Murid Pencapaian Cemerlang (Markah ≥ 85%)
-  </div>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Nama Murid</th>
-          <th>Kelas</th>
-          <th>Topik / Modul</th>
-          <th>Markah (%)</th>
-          <th>Aktiviti Pengayaan</th>
-        </tr>
-      </thead>
-      <tbody id="tbody-cemerlang">
-        <!-- Data dimasukkan secara dinamik -->
-      </tbody>
-    </table>
-  </div>
-
-</div>
 
 <script>
-  // PAUTAN GOOGLE APPS SCRIPT ANDA
-  const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxCd2cvXVKr2ZuUswrZWVg19spQVISjI97vzHz8nPhLi5rwhd4ydhHHEfnJMGWH1kD7/exec";
-  
-  let mainData = [];
-  let chartInstance = null;
+  // PENGESAHAN KATA LALUAN
+  if (sessionStorage.getItem("guru_authenticated") !== "true") {
+    alert("🔒 Akses disekat! Sila masukkan kata laluan di halaman utama terlebih dahulu.");
+    window.location.href = "index.html";
+  }
 
-  // Pemadanan Cadangan Pelan Intervensi Mengikut Modul
-  const pelanIntervensiMap = {
-    "MODULE 1": "📖 Latih tubi kosa kata asas & bimbingan kad imbasan.",
-    "MODULE 2": "📝 Latihan membaca berpandu + Ulangi kuiz interaktif.",
-    "MODULE 3": "🎧 Latihan pendengaran khas & e-bimbingan berfokus.",
-    "MODULE 4": "🧩 Permainan padanan perkataan & bimbingan rakan sebaya.",
-    "MODULE 5": "📚 Bimbingan bacaan ayat mudah & kuiz ulangan.",
-    "MODULE 6": "✍️ Latihan kefahaman asas & kad bergambar.",
-    "DEFAULT": "📖 Ulangi modul asas & bimbingan personal (*One-to-One*)."
+  const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxCd2cvXVKr2ZuUswrZWVg19spQVISjI97vzHz8nPhLi5rwhd4ydhHHEfnJMGWH1kD7/exec";
+  let senaraiRekod = [];
+
+  // TARIK DATA APABILA HALAMAN DIBUKA
+  window.onload = function() {
+    muatDataRekod();
   };
 
-  // 1. Memuat turun data secara Live dari Google Sheet
-  function muatTurunData() {
-    const loading = document.getElementById("loading-status");
-    loading.style.display = "block";
+  function muatDataRekod() {
+    const tbody = document.getElementById('rekod-body');
+    tbody.innerHTML = '<tr><td colspan="7" class="loading-text">⏳ Memuatkan rekod murid... Sila tunggu.</td></tr>';
 
     fetch(PAUTAN_APPS_SCRIPT)
       .then(res => res.json())
       .then(data => {
-        loading.style.display = "none";
-        // Pastikan format data angka (markah/peratus) ditukar ke jenis Number
-        mainData = data.map(item => ({
-          ...item,
-          markah: parseFloat(item.markah) || 0
-        }));
-        kemaskiniDashboard();
+        senaraiRekod = data;
+        paparJadual(senaraiRekod);
       })
       .catch(err => {
-        loading.style.display = "none";
-        console.error("Ralat muat turun data:", err);
-        alert("Gagal memuat turun data dari Google Sheets. Sila pastikan pautan Apps Script betul dan telah di-Deploy sebagai 'Anyone'.");
+        console.error(err);
+        tbody.innerHTML = '<tr><td colspan="7" class="loading-text" style="color:red;">❌ Gagal memuatkan data. Sila pastikan Google Apps Script dibuka untuk paparan umum.</td></tr>';
       });
   }
 
-  // 2. Kemaskini Kad KPI, Jadual & Carta berdasarkan Filter
-  function kemaskiniDashboard() {
-    const selKelas = document.getElementById("filter-kelas").value;
-    const selModul = document.getElementById("filter-modul").value;
-    const searchNama = document.getElementById("search-nama").value.toLowerCase();
+  function paparJadual(data) {
+    const tbody = document.getElementById('rekod-body');
+    tbody.innerHTML = '';
 
-    // Tapisan Data
-    const filteredData = mainData.filter(item => {
-      const matchKelas = (selKelas === "ALL" || item.kelas === selKelas);
-      const matchModul = (selModul === "ALL" || item.modul === selModul);
-      const matchNama = item.nama ? item.nama.toLowerCase().includes(searchNama) : true;
-      return matchKelas && matchModul && matchNama;
-    });
-
-    // Kemaskini Kad KPI
-    const totalCount = filteredData.length;
-    const avgScore = totalCount > 0 ? (filteredData.reduce((acc, curr) => acc + curr.markah, 0) / totalCount).toFixed(1) : 0;
-    const intervensiCount = filteredData.filter(i => i.markah <= 40).length;
-    const cemerlangCount = filteredData.filter(i => i.markah >= 85).length;
-
-    document.getElementById("kpi-total").innerText = totalCount;
-    document.getElementById("kpi-avg").innerText = avgScore + "%";
-    document.getElementById("kpi-intervention").innerText = intervensiCount;
-    document.getElementById("kpi-cemerlang").innerText = cemerlangCount;
-
-    // Kemaskini Jadual Intervensi (<= 40%)
-    const tbodyIntervensi = document.getElementById("tbody-intervensi");
-    tbodyIntervensi.innerHTML = "";
-    const listIntervensi = filteredData.filter(i => i.markah <= 40);
-
-    if (listIntervensi.length === 0) {
-      tbodyIntervensi.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--text-muted); padding: 15px;">Tiada murid memerlukan intervensi bagi pilihan ini.</td></tr>`;
-    } else {
-      listIntervensi.forEach(item => {
-        const cadangan = pelanIntervensiMap[item.modul] || pelanIntervensiMap["DEFAULT"];
-        tbodyIntervensi.innerHTML += `
-          <tr>
-            <td><strong>${item.nama}</strong></td>
-            <td>${item.kelas}</td>
-            <td>${item.modul}</td>
-            <td><span class="badge badge-danger">${item.markah}%</span></td>
-            <td>${cadangan}</td>
-          </tr>
-        `;
-      });
+    if (!data || data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" class="loading-text">Belum ada murid yang menjawab.</td></tr>';
+      return;
     }
 
-    // Kemaskini Jadual Cemerlang (>= 85%)
-    const tbodyCemerlang = document.getElementById("tbody-cemerlang");
-    tbodyCemerlang.innerHTML = "";
-    const listCemerlang = filteredData.filter(i => i.markah >= 85);
-
-    if (listCemerlang.length === 0) {
-      tbodyCemerlang.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--text-muted); padding: 15px;">Tiada murid dalam kategori cemerlang bagi pilihan ini.</td></tr>`;
-    } else {
-      listCemerlang.forEach(item => {
-        tbodyCemerlang.innerHTML += `
-          <tr>
-            <td><strong>${item.nama}</strong></td>
-            <td>${item.kelas}</td>
-            <td>${item.modul}</td>
-            <td><span class="badge badge-success">${item.markah}%</span></td>
-            <td>⭐ Dilantik sebagai Pembimbing Rakan Sebaya / Modul Cabaran.</td>
-          </tr>
-        `;
-      });
-    }
-
-    // Kemaskini Carta Bar
-    kemaskiniCarta(filteredData);
-  }
-
-  // 3. Fungsi Jana Carta Bar Mengikut Modul
-  function kemaskiniCarta(data) {
-    const modules = ["MODULE 1", "MODULE 2", "MODULE 3", "MODULE 4", "MODULE 5", "MODULE 6", "MODULE 7", "MODULE 8", "MODULE 9", "MODULE 10"];
-    
-    // Kira purata markah untuk setiap modul
-    const averages = modules.map(mod => {
-      const modData = data.filter(d => d.modul === mod);
-      if (modData.length === 0) return 0;
-      const sum = modData.reduce((acc, curr) => acc + curr.markah, 0);
-      return (sum / modData.length).toFixed(1);
-    });
-
-    const ctx = document.getElementById('topicChart').getContext('2d');
-
-    if (chartInstance) {
-      chartInstance.destroy(); // Hapus carta lama sebelum bina baru
-    }
-
-    chartInstance = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: modules,
-        datasets: [{
-          label: 'Purata Markah (%)',
-          data: averages,
-          backgroundColor: averages.map(val => val < 50 ? '#ef4444' : (val >= 85 ? '#10b981' : '#f59e0b')),
-          borderRadius: 6
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: { beginAtZero: true, max: 100 }
-        },
-        plugins: {
-          legend: { display: false }
-        }
-      }
+    data.forEach((row, index) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${index + 1}</td>
+        <td><small>${row[0] || '-'}</small></td>
+        <td><b>${row[1] || '-'}</b></td>
+        <td>${row[2] || '-'}</td>
+        <td>${row[3] || '-'}</td>
+        <td><span class="badge-score">${row[4] || '-'}</span></td>
+        <td><b>${row[5] || '-'}</b></td>
+      `;
+      tbody.appendChild(tr);
     });
   }
 
-  // Muat data automatik semasa halaman dibuka
-  window.onload = () => {
-    muatTurunData();
-  };
+  function tapisData() {
+    const carian = document.getElementById('search-input').value.toLowerCase();
+    const kelasSelected = document.getElementById('filter-kelas').value;
+
+    const dataDitapis = senaraiRekod.filter(row => {
+      const nama = (row[1] || '').toString().toLowerCase();
+      const kelas = (row[2] || '').toString();
+
+      const padanNama = nama.includes(carian);
+      const padanKelas = kelasSelected === "" || kelas === kelasSelected;
+
+      return padanNama && padanKelas;
+    });
+
+    paparJadual(dataDitapis);
+  }
+
+  function logKeluar() {
+    sessionStorage.removeItem("guru_authenticated");
+    window.location.href = "index.html";
+  }
 </script>
-
 </body>
 </html>
