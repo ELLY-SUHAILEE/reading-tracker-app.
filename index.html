@@ -528,16 +528,16 @@
 
         <select id="filter-modul" onchange="tapisData()">
           <option value="">-- Semua Modul --</option>
-          <option value="Module 1">Module 1</option>
-          <option value="Module 2">Module 2</option>
-          <option value="Module 3">Module 3</option>
-          <option value="Module 4">Module 4</option>
-          <option value="Module 5">Module 5</option>
-          <option value="Module 6">Module 6</option>
-          <option value="Module 7">Module 7</option>
-          <option value="Module 8">Module 8</option>
-          <option value="Module 9">Module 9</option>
-          <option value="Module 10">Module 10</option>
+          <option value="MODULE 1">MODULE 1</option>
+          <option value="MODULE 2">MODULE 2</option>
+          <option value="MODULE 3">MODULE 3</option>
+          <option value="MODULE 4">MODULE 4</option>
+          <option value="MODULE 5">MODULE 5</option>
+          <option value="MODULE 6">MODULE 6</option>
+          <option value="MODULE 7">MODULE 7</option>
+          <option value="MODULE 8">MODULE 8</option>
+          <option value="MODULE 9">MODULE 9</option>
+          <option value="MODULE 10">MODULE 10</option>
         </select>
 
         <button class="btn-refresh" onclick="muatDataRekod()">🔄 Muat Semula</button>
@@ -711,7 +711,6 @@
     formData.append('set', set);
     formData.append('markah', score);
     formData.append('jumlah', total);
-    formData.append('peratus', Math.round((score / total) * 100));
 
     fetch(PAUTAN_APPS_SCRIPT, {
       method: 'POST',
@@ -789,6 +788,20 @@
       });
   }
 
+  /* FUNGSI PEMBERSIHAN / AUTO-PEMBETULAN PERATUS */
+  function dapatkanPeratusPasti(row) {
+    let markahRaw = (row[4] || '0').toString();
+    let peratusRaw = (row[5] || '0').toString().replace('%', '');
+
+    // Jika data tersimpan format lama di mana markah cuma '7' dan peratus '10'
+    if (!markahRaw.includes('/') && peratusRaw === '10') {
+      let scoreNum = parseInt(markahRaw) || 0;
+      return Math.round((scoreNum / 10) * 100);
+    }
+    
+    return parseInt(peratusRaw) || 0;
+  }
+
   /* FUNGSI ANALISA MATEMATIK & DATA */
   function janaAnalisaPintar(data) {
     const listIntervensi = document.getElementById('list-intervensi');
@@ -808,16 +821,13 @@
 
     let intervensiArr = [];
     let cemerlangArr = [];
-    let modulStats = {}; // { 'Module 1': { totalPeratus: 100, count: 2 } }
+    let modulStats = {};
 
     data.forEach(row => {
       const nama = row[1] || 'Murid';
       const kelas = row[2] || '';
-      const modul = row[3] || 'Module';
-      
-      // Ambil nilai peratus integer (contoh: "50%" -> 50)
-      let peratusStr = (row[5] || '0').toString().replace('%', '');
-      let peratusVal = parseInt(peratusStr) || 0;
+      const modul = row[3] || 'MODULE';
+      let peratusVal = dapatkanPeratusPasti(row);
 
       // 1. Kategori Intervensi (< 60%)
       if (peratusVal < 60) {
@@ -858,7 +868,6 @@
       topikArr.push({ modul: m, purata: purata, responden: modulStats[m].count });
     }
     
-    // Susun dari purata terendah (paling sukar) ke tertinggi
     topikArr.sort((a, b) => a.purata - b.purata);
 
     if (topikArr.length > 0) {
@@ -881,8 +890,14 @@
     }
 
     data.forEach((row, index) => {
-      let peratusStr = (row[5] || '0').toString().replace('%', '');
-      let peratusVal = parseInt(peratusStr) || 0;
+      let markahRaw = (row[4] || '-').toString();
+      let peratusVal = dapatkanPeratusPasti(row);
+
+      // Auto-format markah jika tersimpan '7' kepada '7 / 10'
+      let markahPapar = markahRaw;
+      if (!markahRaw.includes('/')) {
+        markahPapar = markahRaw + " / 10";
+      }
 
       let badgeClass = 'badge-yellow';
       if (peratusVal >= 80) badgeClass = 'badge-green';
@@ -895,8 +910,8 @@
         <td><b>${row[1] || '-'}</b></td>
         <td>${row[2] || '-'}</td>
         <td>${row[3] || '-'}</td>
-        <td><span class="badge-score ${badgeClass}">${row[4] || '-'}</span></td>
-        <td><b>${row[5] || '-'}</b></td>
+        <td><span class="badge-score ${badgeClass}">${markahPapar}</span></td>
+        <td><b>${peratusVal}%</b></td>
       `;
       tbody.appendChild(tr);
     });
