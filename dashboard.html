@@ -33,7 +33,11 @@
     /* Header */
     .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     .header h1 { font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-    .btn-print { background: var(--primary); color: white; border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+    .btn-group { display: flex; gap: 10px; }
+    .btn { border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+    .btn-refresh { background: #e2e8f0; color: #334155; }
+    .btn-refresh:hover { background: #cbd5e1; }
+    .btn-print { background: var(--primary); color: white; }
     .btn-print:hover { background: var(--primary-hover); }
 
     /* KPI Cards */
@@ -50,6 +54,9 @@
     .filter-group { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 180px; }
     .filter-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
     .filter-group select, .filter-group input { padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; outline: none; }
+
+    /* Status Muat Data */
+    #loading-status { text-align: center; font-weight: bold; padding: 10px; color: var(--primary); display: none; }
 
     /* Chart Section */
     .chart-card { background: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
@@ -71,7 +78,7 @@
     /* Print Styles */
     @media print {
       body { background: white; padding: 0; }
-      .btn-print, .filter-card { display: none !important; }
+      .btn-group, .filter-card, #loading-status { display: none !important; }
       .container { max-width: 100%; }
       .kpi-card, .chart-card, .table-container { box-shadow: none; border: 1px solid #ccc; }
       .chart-card { page-break-inside: avoid; }
@@ -85,8 +92,13 @@
   <!-- Header -->
   <div class="header">
     <h1><i class="fa-solid fa-chart-line"></i> Dashboard Analisa & Pelan Intervensi Guru</h1>
-    <button class="btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak / Simpan PDF</button>
+    <div class="btn-group">
+      <button class="btn btn-refresh" onclick="muatTurunData()"><i class="fa-solid fa-rotate"></i> Muat Semula Data</button>
+      <button class="btn btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak / Simpan PDF</button>
+    </div>
   </div>
+
+  <div id="loading-status">⏳ Memuat turun data dari Google Sheets...</div>
 
   <!-- KPI Cards -->
   <div class="kpi-grid">
@@ -118,12 +130,12 @@
         <option value="3 BESTARI">3 BESTARI</option>
         <option value="3 CERDIK">3 CERDIK</option>
         <option value="3 DEDIKASI">3 DEDIKASI</option>
-        <option value="3 EFEKTIF">3 EFEKTIF</option>
         <option value="3 ELIT">3 ELIT</option>
+        <option value="3 FIRDAUS">3 FIRDAUS</option>
         <option value="3 GIGIH">3 GIGIH</option>
         <option value="3 HARMONI">3 HARMONI</option>
         <option value="3 INOVATIF">3 INOVATIF</option>
-        <option value="3 JUJUR">3 JUJUR</option>
+        <option value="3 JUARA">3 JUARA</option>
         <option value="3 KREATIF">3 KREATIF</option>
       </select>
     </div>
@@ -168,7 +180,7 @@
           <th>Nama Murid</th>
           <th>Kelas</th>
           <th>Topik / Modul</th>
-          <th>Markah</th>
+          <th>Markah (%)</th>
           <th>Cadangan Pelan Intervensi</th>
         </tr>
       </thead>
@@ -189,7 +201,7 @@
           <th>Nama Murid</th>
           <th>Kelas</th>
           <th>Topik / Modul</th>
-          <th>Markah</th>
+          <th>Markah (%)</th>
           <th>Aktiviti Pengayaan</th>
         </tr>
       </thead>
@@ -202,42 +214,57 @@
 </div>
 
 <script>
-  // 1. Data Sampel / Simulasi (Akan digantikan dengan data real-time dari Google Sheets)
-  const dummyData = [
-    { nama: "Ahmad Zaki", kelas: "3 ARIF", modul: "MODULE 1", markah: 30 },
-    { nama: "Siti Sarah", kelas: "3 ARIF", modul: "MODULE 1", markah: 90 },
-    { nama: "Muhammad Danial", kelas: "3 ARIF", modul: "MODULE 2", markah: 25 },
-    { nama: "Nur Aisyah", kelas: "3 BESTARI", modul: "MODULE 1", markah: 100 },
-    { nama: "Lim Wei Sheng", kelas: "3 BESTARI", modul: "MODULE 4", markah: 40 },
-    { nama: "Kavitha A/P Raj", kelas: "3 CERDIK", modul: "MODULE 3", markah: 85 },
-    { nama: "Umar Al-Khattab", kelas: "3 ARIF", modul: "MODULE 4", markah: 35 },
-    { nama: "Nurul Huda", kelas: "3 DEDIKASI", modul: "MODULE 5", markah: 95 },
-    { nama: "Adam Harith", kelas: "3 EFEKTIF", modul: "MODULE 2", markah: 20 },
-    { nama: "Chong Mei Ling", kelas: "3 JUJUR", modul: "MODULE 7", markah: 88 }
-  ];
+  // PAUTAN GOOGLE APPS SCRIPT ANDA
+  const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxCd2cvXVKr2ZuUswrZWVg19spQVISjI97vzHz8nPhLi5rwhd4ydhHHEfnJMGWH1kD7/exec";
+  
+  let mainData = [];
+  let chartInstance = null;
 
-  // Pemadanan Cadangan Pelan Intervensi Mengikut Topik/Modul
+  // Pemadanan Cadangan Pelan Intervensi Mengikut Modul
   const pelanIntervensiMap = {
-    "MODULE 1": "📖 Latih tubi asas kosa kata + Bimbingan Kad Imbasan.",
+    "MODULE 1": "📖 Latih tubi kosa kata asas & bimbingan kad imbasan.",
     "MODULE 2": "📝 Latihan membaca berpandu + Ulangi kuiz interaktif.",
     "MODULE 3": "🎧 Latihan pendengaran khas & e-bimbingan berfokus.",
     "MODULE 4": "🧩 Permainan padanan perkataan & bimbingan rakan sebaya.",
+    "MODULE 5": "📚 Bimbingan bacaan ayat mudah & kuiz ulangan.",
+    "MODULE 6": "✍️ Latihan kefahaman asas & kad bergambar.",
     "DEFAULT": "📖 Ulangi modul asas & bimbingan personal (*One-to-One*)."
   };
 
-  let chartInstance = null;
+  // 1. Memuat turun data secara Live dari Google Sheet
+  function muatTurunData() {
+    const loading = document.getElementById("loading-status");
+    loading.style.display = "block";
 
-  // 2. Fungsi Utama Kemaskini Dashboard
+    fetch(PAUTAN_APPS_SCRIPT)
+      .then(res => res.json())
+      .then(data => {
+        loading.style.display = "none";
+        // Pastikan format data angka (markah/peratus) ditukar ke jenis Number
+        mainData = data.map(item => ({
+          ...item,
+          markah: parseFloat(item.markah) || 0
+        }));
+        kemaskiniDashboard();
+      })
+      .catch(err => {
+        loading.style.display = "none";
+        console.error("Ralat muat turun data:", err);
+        alert("Gagal memuat turun data dari Google Sheets. Sila pastikan pautan Apps Script betul dan telah di-Deploy sebagai 'Anyone'.");
+      });
+  }
+
+  // 2. Kemaskini Kad KPI, Jadual & Carta berdasarkan Filter
   function kemaskiniDashboard() {
     const selKelas = document.getElementById("filter-kelas").value;
     const selModul = document.getElementById("filter-modul").value;
     const searchNama = document.getElementById("search-nama").value.toLowerCase();
 
     // Tapisan Data
-    const filteredData = dummyData.filter(item => {
+    const filteredData = mainData.filter(item => {
       const matchKelas = (selKelas === "ALL" || item.kelas === selKelas);
       const matchModul = (selModul === "ALL" || item.modul === selModul);
-      const matchNama = item.nama.toLowerCase().includes(searchNama);
+      const matchNama = item.nama ? item.nama.toLowerCase().includes(searchNama) : true;
       return matchKelas && matchModul && matchNama;
     });
 
@@ -258,7 +285,7 @@
     const listIntervensi = filteredData.filter(i => i.markah <= 40);
 
     if (listIntervensi.length === 0) {
-      tbodyIntervensi.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--text-muted);">Tiada murid memerlukan intervensi bagi tapisan ini.</td></tr>`;
+      tbodyIntervensi.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--text-muted); padding: 15px;">Tiada murid memerlukan intervensi bagi pilihan ini.</td></tr>`;
     } else {
       listIntervensi.forEach(item => {
         const cadangan = pelanIntervensiMap[item.modul] || pelanIntervensiMap["DEFAULT"];
@@ -280,7 +307,7 @@
     const listCemerlang = filteredData.filter(i => i.markah >= 85);
 
     if (listCemerlang.length === 0) {
-      tbodyCemerlang.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--text-muted);">Tiada murid dalam kategori cemerlang bagi tapisan ini.</td></tr>`;
+      tbodyCemerlang.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--text-muted); padding: 15px;">Tiada murid dalam kategori cemerlang bagi pilihan ini.</td></tr>`;
     } else {
       listCemerlang.forEach(item => {
         tbodyCemerlang.innerHTML += `
@@ -299,7 +326,7 @@
     kemaskiniCarta(filteredData);
   }
 
-  // 3. Fungsi Bina & Kemaskini Carta Bar
+  // 3. Fungsi Jana Carta Bar Mengikut Modul
   function kemaskiniCarta(data) {
     const modules = ["MODULE 1", "MODULE 2", "MODULE 3", "MODULE 4", "MODULE 5", "MODULE 6", "MODULE 7", "MODULE 8", "MODULE 9", "MODULE 10"];
     
@@ -314,7 +341,7 @@
     const ctx = document.getElementById('topicChart').getContext('2d');
 
     if (chartInstance) {
-      chartInstance.destroy(); // Hapus carta lama sebelum lukis baru
+      chartInstance.destroy(); // Hapus carta lama sebelum bina baru
     }
 
     chartInstance = new Chart(ctx, {
@@ -340,9 +367,9 @@
     });
   }
 
-  // Jalankan semasa mula-mula muat halaman
+  // Muat data automatik semasa halaman dibuka
   window.onload = () => {
-    kemaskiniDashboard();
+    muatTurunData();
   };
 </script>
 
