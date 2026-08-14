@@ -16,7 +16,7 @@
       color: #1e293b; 
     }
     .container { 
-      max-width: 850px; 
+      max-width: 1000px; 
       margin: 0 auto; 
       background: #ffffff; 
       padding: 25px; 
@@ -60,6 +60,8 @@
       border-radius: 14px;
       padding: 25px;
       text-align: center;
+      max-width: 850px;
+      margin: 0 auto;
     }
     .welcome-card h2 {
       color: #0369a1;
@@ -270,6 +272,84 @@
       margin-top: 5px; 
       font-weight: bold;
     }
+
+    /* SKRIN 3: DASHBOARD GURU */
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .toolbar-dash {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .toolbar-dash input, .toolbar-dash select {
+      padding: 10px 14px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+    .toolbar-dash input { flex: 2; min-width: 200px; }
+    .toolbar-dash select { flex: 1; min-width: 150px; }
+    .btn-refresh {
+      background-color: #0284c7;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-logout {
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .table-container {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    th {
+      background-color: #f8fafc;
+      color: #334155;
+      font-weight: bold;
+    }
+    tr:hover {
+      background-color: #f1f5f9;
+    }
+    .badge-score {
+      background-color: #dcfce7;
+      color: #15803d;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .loading-text {
+      text-align: center;
+      padding: 30px;
+      font-weight: bold;
+      color: #64748b;
+    }
   </style>
 </head>
 <body>
@@ -277,7 +357,7 @@
   <div class="container">
     <header>
       <h1>📖 Reading Tracker App</h1>
-      <button type="button" class="btn-guru" onclick="paparkanBorangPassword()">🔒 Rekod Guru</button>
+      <button type="button" id="btn-guru-top" class="btn-guru" onclick="paparkanBorangPassword()">🔒 Rekod Guru</button>
     </header>
 
     <!-- SKRIN 1: HALAMAN UTAMA -->
@@ -351,6 +431,57 @@
         <p id="sending-status" style="font-weight: bold; color: #0284c7;"></p>
       </div>
     </div>
+
+    <!-- SKRIN 3: DASHBOARD REKOD GURU -->
+    <div id="skrin-dashboard" style="display: none;">
+      <div class="dashboard-header">
+        <h2 style="margin: 0; color: #0284c7;">📊 Rekod & Senarai Murid Menjawab</h2>
+        <button class="btn-logout" onclick="keluarDashboard()">Keluar Rekod</button>
+      </div>
+
+      <!-- KAWASAN CARIAN & PENAPIS (FILTER) -->
+      <div class="toolbar-dash">
+        <input type="text" id="search-input" placeholder="🔍 Cari nama murid..." onkeyup="tapisData()">
+        <select id="filter-kelas" onchange="tapisData()">
+          <option value="">-- Semua Kelas --</option>
+          <option value="3 ARIF">3 ARIF</option>
+          <option value="3 BESTARI">3 BESTARI</option>
+          <option value="3 CERDIK">3 CERDIK</option>
+          <option value="3 DEDIKASI">3 DEDIKASI</option>
+          <option value="3 ELIT">3 ELIT</option>
+          <option value="3 FIRDAUS">3 FIRDAUS</option>
+          <option value="3 GIGIH">3 GIGIH</option>
+          <option value="3 HARMONI">3 HARMONI</option>
+          <option value="3 INOVATIF">3 INOVATIF</option>
+          <option value="3 JUARA">3 JUARA</option>
+          <option value="3 KREATIF">3 KREATIF</option>
+        </select>
+        <button class="btn-refresh" onclick="muatDataRekod()">🔄 Muat Semula</button>
+      </div>
+
+      <!-- JADUAL SENARAI REKOD -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Masa/Tarikh</th>
+              <th>Nama Murid</th>
+              <th>Kelas</th>
+              <th>Modul</th>
+              <th>Markah</th>
+              <th>Peratus</th>
+            </tr>
+          </thead>
+          <tbody id="rekod-body">
+            <tr>
+              <td colspan="7" class="loading-text">⏳ Memuatkan rekod murid... Sila tunggu.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 
   <!-- BORANG TAIP PASSWORD GURU -->
@@ -376,6 +507,7 @@
   let allQuestions = [];
   let currentSet = 1;
   let selectedAnswers = {};
+  let senaraiRekod = [];
 
   fetch('questions.json')
     .then(res => res.json())
@@ -407,6 +539,7 @@
     document.getElementById('papar-set').innerText = setNo;
 
     document.getElementById('skrin-utama').style.display = 'none';
+    document.getElementById('skrin-dashboard').style.display = 'none';
     document.getElementById('skrin-kuiz').style.display = 'block';
 
     paparSetSoalan(setNo);
@@ -414,7 +547,9 @@
 
   function kembaliKeUtama() {
     document.getElementById('skrin-kuiz').style.display = 'none';
+    document.getElementById('skrin-dashboard').style.display = 'none';
     document.getElementById('skrin-utama').style.display = 'block';
+    document.getElementById('btn-guru-top').style.display = 'inline-block';
   }
 
   function paparSetSoalan(setNo) {
@@ -525,7 +660,7 @@
     
     if (taipPass === KATA_LALUAN_BENAR) {
       tutupBorangPassword();
-      window.location.href = "dashboard.html";
+      bukaDashboardGuru();
     } else {
       document.getElementById('password-error').style.display = 'block';
     }
@@ -537,6 +672,79 @@
       semakKataLaluan();
     }
   });
+
+  /* FUNGSI DASHBOARD REKOD GURU */
+  function bukaDashboardGuru() {
+    document.getElementById('skrin-utama').style.display = 'none';
+    document.getElementById('skrin-kuiz').style.display = 'none';
+    document.getElementById('skrin-dashboard').style.display = 'block';
+    document.getElementById('btn-guru-top').style.display = 'none';
+
+    muatDataRekod();
+  }
+
+  function keluarDashboard() {
+    document.getElementById('skrin-dashboard').style.display = 'none';
+    document.getElementById('skrin-utama').style.display = 'block';
+    document.getElementById('btn-guru-top').style.display = 'inline-block';
+  }
+
+  function muatDataRekod() {
+    const tbody = document.getElementById('rekod-body');
+    tbody.innerHTML = '<tr><td colspan="7" class="loading-text">⏳ Memuatkan rekod murid... Sila tunggu.</td></tr>';
+
+    fetch(PAUTAN_APPS_SCRIPT)
+      .then(res => res.json())
+      .then(data => {
+        senaraiRekod = data;
+        paparJadual(senaraiRekod);
+      })
+      .catch(err => {
+        console.error(err);
+        tbody.innerHTML = '<tr><td colspan="7" class="loading-text" style="color:red;">❌ Belum ada rekod atau ralat komunikasi. Pastikan Google Apps Script diluluskan (Deploy) untuk akses awam.</td></tr>';
+      });
+  }
+
+  function paparJadual(data) {
+    const tbody = document.getElementById('rekod-body');
+    tbody.innerHTML = '';
+
+    if (!data || data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" class="loading-text">Belum ada murid yang menjawab.</td></tr>';
+      return;
+    }
+
+    data.forEach((row, index) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${index + 1}</td>
+        <td><small>${row[0] || '-'}</small></td>
+        <td><b>${row[1] || '-'}</b></td>
+        <td>${row[2] || '-'}</td>
+        <td>${row[3] || '-'}</td>
+        <td><span class="badge-score">${row[4] || '-'}</span></td>
+        <td><b>${row[5] || '-'}</b></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function tapisData() {
+    const carian = document.getElementById('search-input').value.toLowerCase();
+    const kelasSelected = document.getElementById('filter-kelas').value;
+
+    const dataDitapis = senaraiRekod.filter(row => {
+      const nama = (row[1] || '').toString().toLowerCase();
+      const kelas = (row[2] || '').toString();
+
+      const padanNama = nama.includes(carian);
+      const padanKelas = kelasSelected === "" || kelas === kelasSelected;
+
+      return padanNama && padanKelas;
+    });
+
+    paparJadual(dataDitapis);
+  }
 </script>
 </body>
 </html>
