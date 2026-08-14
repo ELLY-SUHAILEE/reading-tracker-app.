@@ -24,7 +24,6 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
     }
     
-    /* Header & Butang Guru */
     header { 
       display: flex; 
       justify-content: space-between; 
@@ -39,17 +38,19 @@
       color: #0284c7; 
     }
     .btn-guru { 
-      background-color: #4f46e5; 
-      color: white; 
-      padding: 10px 16px; 
+      background-color: #4f46e5 !important; 
+      color: white !important; 
+      padding: 10px 18px; 
       border: none; 
       border-radius: 8px; 
       font-weight: bold; 
       cursor: pointer; 
-      transition: 0.2s; 
+      display: inline-block !important;
+      font-size: 14px;
+      box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
     }
     .btn-guru:hover { 
-      background-color: #4338ca; 
+      background-color: #4338ca !important; 
     }
 
     /* SKRIN 1: HALAMAN UTAMA */
@@ -87,7 +88,6 @@
       border-color: #0284c7;
     }
 
-    /* BUTANG MULA KUIZ */
     .btn-start {
       width: 100%;
       padding: 14px;
@@ -99,10 +99,6 @@
       font-weight: bold;
       cursor: pointer;
       margin-top: 10px;
-      transition: 0.2s;
-    }
-    .btn-start:hover {
-      background: #0369a1;
     }
 
     /* SKRIN 2: PAPARAN KUIZ */
@@ -132,7 +128,6 @@
       font-weight: bold;
     }
 
-    /* KAD SOALAN & PILIHAN JAWAPAN */
     .question-card { 
       background: #f8fafc; 
       border: 1px solid #e2e8f0; 
@@ -160,38 +155,10 @@
       text-align: center; 
       cursor: pointer; 
       background: white; 
-      transition: all 0.2s ease-in-out; 
-      user-select: none;
     }
-    .option-card:hover { 
-      border-color: #0284c7; 
-      transform: translateY(-3px); 
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
-    }
-    .option-card:active {
-      transform: scale(0.97);
-    }
-    
     .option-card.selected { 
       border-color: #16a34a !important; 
       background-color: #f0fdf4 !important; 
-      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
-    }
-    .option-card.selected::after {
-      content: '✓';
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      background: #16a34a;
-      color: white;
-      font-weight: bold;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
     }
 
     .option-label { 
@@ -199,14 +166,12 @@
       font-weight: bold; 
       margin-bottom: 8px; 
       display: block; 
-      pointer-events: none;
     }
     .option-img { 
       width: 100%; 
       height: 160px; 
       object-fit: contain; 
       border-radius: 8px; 
-      pointer-events: none;
     }
     
     .btn-submit { 
@@ -222,9 +187,6 @@
       cursor: pointer; 
       margin-top: 20px; 
     }
-    .btn-submit:hover { 
-      background: #15803d; 
-    }
 
     .result-box { 
       display: none; 
@@ -236,63 +198,76 @@
       margin-top: 20px; 
     }
 
-    /* MODAL POPUP PASSWORD GURU */
+    /* KOTAK INPUT PASSWORD TEBAL & JELAS */
     .modal-overlay { 
       position: fixed; 
       top: 0; left: 0; 
-      width: 100%; height: 100%; 
-      background: rgba(0,0,0,0.6); 
+      width: 100vw; 
+      height: 100vh; 
+      background: rgba(15, 23, 42, 0.75); 
       display: flex; 
       justify-content: center; 
       align-items: center; 
-      z-index: 999; 
+      z-index: 99999; 
     }
     .modal-card { 
-      background: white; 
-      padding: 25px; 
-      border-radius: 14px; 
+      background: #ffffff; 
+      padding: 30px; 
+      border-radius: 16px; 
       width: 90%; 
-      max-width: 350px; 
+      max-width: 380px; 
       text-align: center; 
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+      border: 2px solid #cbd5e1;
     }
-    .modal-card input { 
+    .modal-card h3 {
+      margin-top: 0;
+      color: #1e293b;
+      font-size: 20px;
+    }
+    .input-pass-box { 
       width: 100%; 
-      padding: 10px; 
-      font-size: 16px; 
-      margin: 15px 0 8px 0; 
-      border: 2px solid #cbd5e1; 
-      border-radius: 8px; 
+      padding: 14px; 
+      font-size: 18px; 
+      margin: 15px 0 10px 0; 
+      border: 2px solid #0284c7; 
+      border-radius: 10px; 
       text-align: center; 
+      letter-spacing: 2px;
+      outline: none;
     }
     .modal-buttons { 
       display: flex; 
       gap: 10px; 
       justify-content: center; 
-      margin-top: 10px; 
+      margin-top: 15px; 
     }
     .btn-confirm { 
       background: #16a34a; 
       color: white; 
-      padding: 10px 20px; 
+      padding: 12px 24px; 
       border: none; 
       border-radius: 8px; 
       font-weight: bold; 
+      font-size: 15px;
       cursor: pointer; 
+      flex: 1;
     }
     .btn-cancel { 
       background: #64748b; 
       color: white; 
-      padding: 10px 20px; 
+      padding: 12px 24px; 
       border: none; 
       border-radius: 8px; 
+      font-size: 15px;
       cursor: pointer; 
+      flex: 1;
     }
     .error-msg { 
       color: #dc2626; 
-      font-size: 13px; 
+      font-size: 14px; 
       display: none; 
-      margin-bottom: 10px; 
+      margin-top: 5px; 
       font-weight: bold;
     }
   </style>
@@ -302,7 +277,7 @@
   <div class="container">
     <header>
       <h1>📖 Reading Tracker App</h1>
-      <button class="btn-guru" onclick="bukaModalPassword()">🔒 Rekod Guru</button>
+      <button type="button" class="btn-guru" onclick="paparkanBorangPassword()">🔒 Rekod Guru</button>
     </header>
 
     <!-- SKRIN 1: HALAMAN UTAMA -->
@@ -316,7 +291,6 @@
           <input type="text" id="nama-murid" placeholder="Masukkan nama penuh" required>
         </div>
         
-        <!-- DROP DOWN KELAS DARJAH 3 -->
         <div class="form-group">
           <label for="kelas-murid">Pilih Kelas:</label>
           <select id="kelas-murid" required>
@@ -335,7 +309,6 @@
           </select>
         </div>
 
-        <!-- DROP DOWN MODULE 1 HINGGA 10 -->
         <div class="form-group">
           <label for="select-modul">Pilih Modul Soalan:</label>
           <select id="select-modul">
@@ -380,69 +353,44 @@
     </div>
   </div>
 
-  <!-- POPUP PASSWORD GURU -->
-  <div id="modal-password" class="modal-overlay" style="display: none;">
+  <!-- BORANG TAIP PASSWORD GURU -->
+  <div id="kotak-password-guru" class="modal-overlay" style="display: none;">
     <div class="modal-card">
-      <h3>🔒 Akses Rekod Guru</h3>
-      <p>Sila masukkan kata laluan guru:</p>
-      <input type="password" id="input-password" placeholder="Masukkan kata laluan" onkeypress="semakEnter(event)">
-      <p id="password-error" class="error-msg">Kata laluan salah! Sila cuba lagi.</p>
+      <h3>🔑 Kata Laluan Guru</h3>
+      <p style="margin-bottom:0; color: #64748b;">Sila taip kata laluan untuk ke Rekod Guru:</p>
+      
+      <input type="password" id="input-password" class="input-pass-box" placeholder="Taip di sini..." autocomplete="off">
+      <div id="password-error" class="error-msg">❌ Kata laluan salah!</div>
+
       <div class="modal-buttons">
-        <button class="btn-confirm" onclick="sahkanPassword()">Masuk</button>
-        <button class="btn-cancel" onclick="tutupModalPassword()">Batal</button>
+        <button type="button" class="btn-confirm" onclick="semakKataLaluan()">Masuk</button>
+        <button type="button" class="btn-cancel" onclick="tutupBorangPassword()">Batal</button>
       </div>
     </div>
   </div>
 
 <script>
-  const KATA_LALUAN_GURU = "guru123";
+  const KATA_LALUAN_BENAR = "guru123";
   const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxCd2cvXVKr2ZuUswrZWVg19spQVISjI97vzHz8nPhLi5rwhd4ydhHHEfnJMGWH1kD7/exec";
 
   let allQuestions = [];
   let currentSet = 1;
   let selectedAnswers = {};
 
-  // Memuat turun soalan daripada questions.json
   fetch('questions.json')
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('Fail questions.json tidak dijumpai.');
-      }
-      return res.json();
-    })
-    .then(data => {
-      allQuestions = data;
-      console.log('questions.json berjaya dimuat turun:', allQuestions);
-    })
-    .catch(err => {
-      console.error('Ralat membaca questions.json:', err);
-    });
+    .then(res => res.json())
+    .then(data => { allQuestions = data; })
+    .catch(err => console.error('Ralat questions.json:', err));
 
   function mulaKuizDropdown() {
     const nama = document.getElementById('nama-murid').value.trim();
     const kelas = document.getElementById('kelas-murid').value;
     const selectedModul = document.getElementById('select-modul').value;
 
-    if (!nama) {
-      alert('Sila isi NAMA anda terlebih dahulu!');
+    if (!nama || !kelas || !selectedModul) {
+      alert('Sila isi NAMA, KELAS, dan MODUL terlebih dahulu!');
       return;
     }
-
-    if (!kelas) {
-      alert('Sila pilih KELAS daripada senarai terlebih dahulu!');
-      return;
-    }
-
-    if (!selectedModul) {
-      alert('Sila pilih MODUL daripada senarai drop-down terlebih dahulu!');
-      return;
-    }
-
-    if (allQuestions.length === 0) {
-      alert('Soalan masih dalam proses dimuat turun atau fail questions.json tidak dijumpai. Sila muat semula (refresh) halaman.');
-      return;
-    }
-
     pilihTopik(parseInt(selectedModul));
   }
 
@@ -475,7 +423,7 @@
     quizBox.innerHTML = '';
 
     if (!setData) {
-      quizBox.innerHTML = '<p style="text-align:center; padding: 20px; font-weight: bold; color: #dc2626;">Soalan untuk MODULE ' + setNo + ' belum wujud dalam questions.json.</p>';
+      quizBox.innerHTML = '<p style="text-align:center; padding: 20px; font-weight: bold; color: #dc2626;">Soalan belum wujud.</p>';
       return;
     }
 
@@ -503,14 +451,9 @@
 
   function pilihJawapan(qIndex, label) {
     selectedAnswers[qIndex] = label;
-
     const optionCards = document.querySelectorAll(`[id^="opt-${qIndex}-"]`);
     optionCards.forEach(card => card.classList.remove('selected'));
-
-    const selectedCard = document.getElementById(`opt-${qIndex}-${label}`);
-    if (selectedCard) {
-      selectedCard.classList.add('selected');
-    }
+    document.getElementById(`opt-${qIndex}-${label}`).classList.add('selected');
   }
 
   function semakJawapan() {
@@ -521,35 +464,23 @@
     const total = setData.questions.length;
 
     if (Object.keys(selectedAnswers).length < total) {
-      alert('Sila jawab semua soalan sebelum menghantar!');
+      alert('Sila jawab semua soalan!');
       return;
     }
 
     setData.questions.forEach((q, qIndex) => {
       const userAns = selectedAnswers[qIndex];
       const correctOpt = q.options.find(o => o.is_correct);
-      if (correctOpt && userAns === correctOpt.label) {
-        score++;
-      }
+      if (correctOpt && userAns === correctOpt.label) score++;
     });
 
     const nama = document.getElementById('nama-murid').value.trim();
     const kelas = document.getElementById('kelas-murid').value;
 
-    const resultBox = document.getElementById('result-box');
-    const resultScore = document.getElementById('result-score');
-    const resultMessage = document.getElementById('result-message');
-    const sendingStatus = document.getElementById('sending-status');
-
-    resultScore.innerText = `Markah Anda: ${score} / ${total}`;
-    if (score === total) {
-      resultMessage.innerText = 'Tahniah! Semua jawapan anda betul! 🎉';
-    } else {
-      resultMessage.innerText = 'Syabas! Cuba lagi untuk dapatkan markah penuh!';
-    }
-
-    resultBox.style.display = 'block';
-    sendingStatus.innerText = "Hantar keputusan ke rekod guru...";
+    document.getElementById('result-score').innerText = `Markah Anda: ${score} / ${total}`;
+    document.getElementById('result-message').innerText = score === total ? 'Tahniah! 🎉' : 'Syabas! Cuba lagi!';
+    document.getElementById('result-box').style.display = 'block';
+    document.getElementById('sending-status').innerText = "Hantar keputusan ke rekod guru...";
 
     hantarDataKeGoogleSheet(nama, kelas, currentSet, score, total);
   }
@@ -566,47 +497,46 @@
     fetch(PAUTAN_APPS_SCRIPT, {
       method: 'POST',
       mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: formData.toString()
-    })
-    .then(() => {
-      document.getElementById('sending-status').innerText = "✅ Keputusan berjaya disimpan dalam rekod guru!";
-    })
-    .catch(err => {
-      console.error('Ralat hantar data:', err);
-      document.getElementById('sending-status').innerText = "⚠️ Keputusan dipaparkan (Ralat sambungan rekod).";
+    }).then(() => {
+      document.getElementById('sending-status').innerText = "✅ Keputusan berjaya disimpan!";
     });
   }
 
-  /* LOGIK MODAL KATA LALUAN GURU */
-  function bukaModalPassword() {
-    document.getElementById('input-password').value = '';
+  /* FUNGSI PAPARKAN RUANG TAIP KATA LALUAN */
+  function paparkanBorangPassword() {
+    const box = document.getElementById('kotak-password-guru');
+    const input = document.getElementById('input-password');
+    
+    input.value = '';
     document.getElementById('password-error').style.display = 'none';
-    document.getElementById('modal-password').style.display = 'flex';
-    document.getElementById('input-password').focus();
+    box.style.display = 'flex';
+    
+    setTimeout(() => { input.focus(); }, 100);
   }
 
-  function tutupModalPassword() {
-    document.getElementById('modal-password').style.display = 'none';
+  function tutupBorangPassword() {
+    document.getElementById('kotak-password-guru').style.display = 'none';
   }
 
-  function sahkanPassword() {
-    const input = document.getElementById('input-password').value;
-    if (input === KATA_LALUAN_GURU) {
-      tutupModalPassword();
-      window.location.href = "dashboard.html"; // Terus bawa ke dashboard.html
+  function semakKataLaluan() {
+    const taipPass = document.getElementById('input-password').value;
+    
+    if (taipPass === KATA_LALUAN_BENAR) {
+      tutupBorangPassword();
+      window.location.href = "dashboard.html";
     } else {
       document.getElementById('password-error').style.display = 'block';
     }
   }
 
-  function semakEnter(event) {
-    if (event.key === 'Enter') {
-      sahkanPassword();
+  // Boleh tekan 'Enter' di papan kekunci untuk hantar kata laluan
+  document.getElementById('input-password').addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') {
+      semakKataLaluan();
     }
-  }
+  });
 </script>
 </body>
 </html>
