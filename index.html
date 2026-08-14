@@ -505,9 +505,20 @@
     });
   }
 
-  // FUNGSI BARU: Buka dashboard.html secara terus
+  // FUNGSI BARU: Semakan Kata Laluan Guru
   function bukaDashboardGuru() {
-    window.location.href = "dashboard.html";
+    const passwordMaster = "guru123";
+    const inputPass = prompt("Sila masukkan kata laluan Guru:");
+
+    if (inputPass === null) {
+      return; // Murid tekan Cancel
+    }
+
+    if (inputPass === passwordMaster) {
+      window.location.href = "dashboard.html";
+    } else {
+      alert("❌ Kata laluan salah! Akses ditolak.");
+    }
   }
 </script>
 </body>
