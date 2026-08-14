@@ -307,16 +307,30 @@
     <div id="skrin-utama">
       <div class="welcome-card">
         <h2>Selamat Datang! 👋</h2>
-        <p>Sila masukkan nama, kelas, dan pilih modul daripada senarai di bawah:</p>
+        <p>Sila masukkan nama, pilih kelas, dan modul daripada senarai di bawah:</p>
         
         <div class="form-group">
           <label for="nama-murid">Nama Murid:</label>
           <input type="text" id="nama-murid" placeholder="Masukkan nama penuh" required>
         </div>
         
+        <!-- DROP DOWN KELAS DARJAH 3 -->
         <div class="form-group">
-          <label for="kelas-murid">Kelas:</label>
-          <input type="text" id="kelas-murid" placeholder="Contoh: 3 Cerdik" required>
+          <label for="kelas-murid">Pilih Kelas:</label>
+          <select id="kelas-murid" required>
+            <option value="" disabled selected>-- Pilih Kelas --</option>
+            <option value="3 ARIF">3 ARIF</option>
+            <option value="3 BESTARI">3 BESTARI</option>
+            <option value="3 CERDIK">3 CERDIK</option>
+            <option value="3 DEDIKASI">3 DEDIKASI</option>
+            <option value="3 ELIT">3 ELIT</option>
+            <option value="3 FIRDAUS">3 FIRDAUS</option>
+            <option value="3 GIGIH">3 GIGIH</option>
+            <option value="3 HARMONI">3 HARMONI</option>
+            <option value="3 INOVATIF">3 INOVATIF</option>
+            <option value="3 JUARA">3 JUARA</option>
+            <option value="3 KREATIF">3 KREATIF</option>
+          </select>
         </div>
 
         <!-- DROP DOWN MODULE 1 HINGGA 10 -->
@@ -405,11 +419,16 @@
 
   function mulaKuizDropdown() {
     const nama = document.getElementById('nama-murid').value.trim();
-    const kelas = document.getElementById('kelas-murid').value.trim();
+    const kelas = document.getElementById('kelas-murid').value;
     const selectedModul = document.getElementById('select-modul').value;
 
-    if (!nama || !kelas) {
-      alert('Sila isi NAMA dan KELAS anda terlebih dahulu!');
+    if (!nama) {
+      alert('Sila isi NAMA anda terlebih dahulu!');
+      return;
+    }
+
+    if (!kelas) {
+      alert('Sila pilih KELAS daripada senarai terlebih dahulu!');
       return;
     }
 
@@ -428,7 +447,7 @@
 
   function pilihTopik(setNo) {
     const nama = document.getElementById('nama-murid').value.trim();
-    const kelas = document.getElementById('kelas-murid').value.trim();
+    const kelas = document.getElementById('kelas-murid').value;
 
     currentSet = setNo;
     selectedAnswers = {};
@@ -514,7 +533,7 @@
     });
 
     const nama = document.getElementById('nama-murid').value.trim();
-    const kelas = document.getElementById('kelas-murid').value.trim();
+    const kelas = document.getElementById('kelas-murid').value;
 
     const resultBox = document.getElementById('result-box');
     const resultScore = document.getElementById('result-score');
