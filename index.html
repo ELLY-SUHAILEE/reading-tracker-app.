@@ -535,20 +535,22 @@
   }
 
   function hantarDataKeGoogleSheet(nama, kelas, set, score, total) {
-    const payload = {
-      nama: nama,
-      kelas: kelas,
-      set: set,
-      markah: score,
-      jumlah: total,
-      peratus: Math.round((score / total) * 100)
-    };
+    // Menggunakan URLSearchParams untuk format Form Data
+    const formData = new URLSearchParams();
+    formData.append('nama', nama);
+    formData.append('kelas', kelas);
+    formData.append('set', set);
+    formData.append('markah', score);
+    formData.append('jumlah', total);
+    formData.append('peratus', Math.round((score / total) * 100));
 
     fetch(PAUTAN_APPS_SCRIPT, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: formData.toString()
     })
     .then(() => {
       document.getElementById('sending-status').innerText = "✅ Keputusan berjaya disimpan dalam rekod guru!";
@@ -586,3 +588,5 @@
     }
   }
 </script>
+</body>
+</html>
