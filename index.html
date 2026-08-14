@@ -378,214 +378,211 @@
     </div>
   </div>
 
- <script>
-    const KATA_LALUAN_GURU = "guru123";
-    // PAUTAN APPS SCRIPT YANG BAHARU
-    const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbwIEJKg0Ad3oAQEWWlROJI1T6mlOppGjyQX9ZYIp7Wg1WMZLZZlw2cbOl-MK2eLheCO/exec";
-    const PAUTAN_GOOGLE_SHEET = "https://docs.google.com/spreadsheets/d/1vpk95musq-0yg9USVEMIJRccsAGSqXfWU7Lz65G6FRQ/edit?gid=0#gid=0";
+<script>
+  const KATA_LALUAN_GURU = "guru123";
+  const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbwbfCMqXfOnHlf-AKwqYNVjsMPUsFMTritEgO0nBhl29gV0VYPUdJVgYJpEUPZAn9bx/exec";
+  const PAUTAN_GOOGLE_SHEET = "https://docs.google.com/spreadsheets/d/1vpk95musq-0yg9USVEMIJRccsAGSqXfWU7Lz65G6FRQ/edit?gid=0#gid=0";
 
-    let allQuestions = [];
-    let currentSet = 1;
-    let selectedAnswers = {};
+  let allQuestions = [];
+  let currentSet = 1;
+  let selectedAnswers = {};
 
-    // Memuat turun soalan daripada questions.json
-    fetch('questions.json')
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Fail questions.json tidak dijumpai.');
-        }
-        return res.json();
-      })
-      .then(data => {
-        allQuestions = data;
-        console.log('questions.json berjaya dimuat turun:', allQuestions);
-      })
-      .catch(err => {
-        console.error('Ralat membaca questions.json:', err);
-      });
-
-    function mulaKuizDropdown() {
-      const nama = document.getElementById('nama-murid').value.trim();
-      const kelas = document.getElementById('kelas-murid').value.trim();
-      const selectedModul = document.getElementById('select-modul').value;
-
-      if (!nama || !kelas) {
-        alert('Sila isi NAMA dan KELAS anda terlebih dahulu!');
-        return;
+  // Memuat turun soalan daripada questions.json
+  fetch('questions.json')
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Fail questions.json tidak dijumpai.');
       }
+      return res.json();
+    })
+    .then(data => {
+      allQuestions = data;
+      console.log('questions.json berjaya dimuat turun:', allQuestions);
+    })
+    .catch(err => {
+      console.error('Ralat membaca questions.json:', err);
+    });
 
-      if (!selectedModul) {
-        alert('Sila pilih MODUL daripada senarai drop-down terlebih dahulu!');
-        return;
-      }
+  function mulaKuizDropdown() {
+    const nama = document.getElementById('nama-murid').value.trim();
+    const kelas = document.getElementById('kelas-murid').value.trim();
+    const selectedModul = document.getElementById('select-modul').value;
 
-      if (allQuestions.length === 0) {
-        alert('Soalan masih dalam proses dimuat turun atau fail questions.json tidak dijumpai. Sila muat semula (refresh) halaman.');
-        return;
-      }
-
-      pilihTopik(parseInt(selectedModul));
+    if (!nama || !kelas) {
+      alert('Sila isi NAMA dan KELAS anda terlebih dahulu!');
+      return;
     }
 
-    function pilihTopik(setNo) {
-      const nama = document.getElementById('nama-murid').value.trim();
-      const kelas = document.getElementById('kelas-murid').value.trim();
-
-      currentSet = setNo;
-      selectedAnswers = {};
-      document.getElementById('result-box').style.display = 'none';
-
-      document.getElementById('papar-nama').innerText = nama;
-      document.getElementById('papar-kelas').innerText = kelas;
-      document.getElementById('papar-set').innerText = setNo;
-
-      document.getElementById('skrin-utama').style.display = 'none';
-      document.getElementById('skrin-kuiz').style.display = 'block';
-
-      paparSetSoalan(setNo);
+    if (!selectedModul) {
+      alert('Sila pilih MODUL daripada senarai drop-down terlebih dahulu!');
+      return;
     }
 
-    function kembaliKeUtama() {
-      document.getElementById('skrin-kuiz').style.display = 'none';
-      document.getElementById('skrin-utama').style.display = 'block';
+    if (allQuestions.length === 0) {
+      alert('Soalan masih dalam proses dimuat turun atau fail questions.json tidak dijumpai. Sila muat semula (refresh) halaman.');
+      return;
     }
 
-    function paparSetSoalan(setNo) {
-      const setData = allQuestions.find(s => String(s.set) === String(setNo));
-      const quizBox = document.getElementById('quiz-box');
-      quizBox.innerHTML = '';
+    pilihTopik(parseInt(selectedModul));
+  }
 
-      if (!setData) {
-        quizBox.innerHTML = '<p style="text-align:center; padding: 20px; font-weight: bold; color: #dc2626;">Soalan untuk MODULE ' + setNo + ' belum wujud dalam questions.json.</p>';
-        return;
-      }
+  function pilihTopik(setNo) {
+    const nama = document.getElementById('nama-murid').value.trim();
+    const kelas = document.getElementById('kelas-murid').value.trim();
 
-      setData.questions.forEach((q, qIndex) => {
-        const qCard = document.createElement('div');
-        qCard.className = 'question-card';
+    currentSet = setNo;
+    selectedAnswers = {};
+    document.getElementById('result-box').style.display = 'none';
 
-        let optionsHTML = '';
-        q.options.forEach(opt => {
-          optionsHTML += `
-            <div class="option-card" id="opt-${qIndex}-${opt.label}" onclick="pilihJawapan(${qIndex}, '${opt.label}')">
-              <span class="option-label">(${opt.label})</span>
-              <img src="${opt.image}" class="option-img" alt="Pilihan ${opt.label}">
-            </div>
-          `;
-        });
+    document.getElementById('papar-nama').innerText = nama;
+    document.getElementById('papar-kelas').innerText = kelas;
+    document.getElementById('papar-set').innerText = setNo;
 
-        qCard.innerHTML = `
-          <div class="question-title">${q.no}. ${q.sentence}</div>
-          <div class="options-grid">${optionsHTML}</div>
+    document.getElementById('skrin-utama').style.display = 'none';
+    document.getElementById('skrin-kuiz').style.display = 'block';
+
+    paparSetSoalan(setNo);
+  }
+
+  function kembaliKeUtama() {
+    document.getElementById('skrin-kuiz').style.display = 'none';
+    document.getElementById('skrin-utama').style.display = 'block';
+  }
+
+  function paparSetSoalan(setNo) {
+    const setData = allQuestions.find(s => String(s.set) === String(setNo));
+    const quizBox = document.getElementById('quiz-box');
+    quizBox.innerHTML = '';
+
+    if (!setData) {
+      quizBox.innerHTML = '<p style="text-align:center; padding: 20px; font-weight: bold; color: #dc2626;">Soalan untuk MODULE ' + setNo + ' belum wujud dalam questions.json.</p>';
+      return;
+    }
+
+    setData.questions.forEach((q, qIndex) => {
+      const qCard = document.createElement('div');
+      qCard.className = 'question-card';
+
+      let optionsHTML = '';
+      q.options.forEach(opt => {
+        optionsHTML += `
+          <div class="option-card" id="opt-${qIndex}-${opt.label}" onclick="pilihJawapan(${qIndex}, '${opt.label}')">
+            <span class="option-label">(${opt.label})</span>
+            <img src="${opt.image}" class="option-img" alt="Pilihan ${opt.label}">
+          </div>
         `;
-        quizBox.appendChild(qCard);
-      });
-    }
-
-    function pilihJawapan(qIndex, label) {
-      selectedAnswers[qIndex] = label;
-
-      const optionCards = document.querySelectorAll(`[id^="opt-${qIndex}-"]`);
-      optionCards.forEach(card => card.classList.remove('selected'));
-
-      const selectedCard = document.getElementById(`opt-${qIndex}-${label}`);
-      if (selectedCard) {
-        selectedCard.classList.add('selected');
-      }
-    }
-
-    function semakJawapan() {
-      const setData = allQuestions.find(s => String(s.set) === String(currentSet));
-      if (!setData) return;
-
-      let score = 0;
-      const total = setData.questions.length;
-
-      if (Object.keys(selectedAnswers).length < total) {
-        alert('Sila jawab semua soalan sebelum menghantar!');
-        return;
-      }
-
-      setData.questions.forEach((q, qIndex) => {
-        const userAns = selectedAnswers[qIndex];
-        const correctOpt = q.options.find(o => o.is_correct);
-        if (correctOpt && userAns === correctOpt.label) {
-          score++;
-        }
       });
 
-      const nama = document.getElementById('nama-murid').value.trim();
-      const kelas = document.getElementById('kelas-murid').value.trim();
+      qCard.innerHTML = `
+        <div class="question-title">${q.no}. ${q.sentence}</div>
+        <div class="options-grid">${optionsHTML}</div>
+      `;
+      quizBox.appendChild(qCard);
+    });
+  }
 
-      const resultBox = document.getElementById('result-box');
-      const resultScore = document.getElementById('result-score');
-      const resultMessage = document.getElementById('result-message');
-      const sendingStatus = document.getElementById('sending-status');
+  function pilihJawapan(qIndex, label) {
+    selectedAnswers[qIndex] = label;
 
-      resultScore.innerText = `Markah Anda: ${score} / ${total}`;
-      if (score === total) {
-        resultMessage.innerText = 'Tahniah! Semua jawapan anda betul! 🎉';
-      } else {
-        resultMessage.innerText = 'Syabas! Cuba lagi untuk dapatkan markah penuh!';
+    const optionCards = document.querySelectorAll(`[id^="opt-${qIndex}-"]`);
+    optionCards.forEach(card => card.classList.remove('selected'));
+
+    const selectedCard = document.getElementById(`opt-${qIndex}-${label}`);
+    if (selectedCard) {
+      selectedCard.classList.add('selected');
+    }
+  }
+
+  function semakJawapan() {
+    const setData = allQuestions.find(s => String(s.set) === String(currentSet));
+    if (!setData) return;
+
+    let score = 0;
+    const total = setData.questions.length;
+
+    if (Object.keys(selectedAnswers).length < total) {
+      alert('Sila jawab semua soalan sebelum menghantar!');
+      return;
+    }
+
+    setData.questions.forEach((q, qIndex) => {
+      const userAns = selectedAnswers[qIndex];
+      const correctOpt = q.options.find(o => o.is_correct);
+      if (correctOpt && userAns === correctOpt.label) {
+        score++;
       }
-      
-      resultBox.style.display = 'block';
-      sendingStatus.innerText = "Hantar keputusan ke rekod guru...";
+    });
 
-      hantarDataKeGoogleSheet(nama, kelas, currentSet, score, total);
+    const nama = document.getElementById('nama-murid').value.trim();
+    const kelas = document.getElementById('kelas-murid').value.trim();
+
+    const resultBox = document.getElementById('result-box');
+    const resultScore = document.getElementById('result-score');
+    const resultMessage = document.getElementById('result-message');
+    const sendingStatus = document.getElementById('sending-status');
+
+    resultScore.innerText = `Markah Anda: ${score} / ${total}`;
+    if (score === total) {
+      resultMessage.innerText = 'Tahniah! Semua jawapan anda betul! 🎉';
+    } else {
+      resultMessage.innerText = 'Syabas! Cuba lagi untuk dapatkan markah penuh!';
     }
 
-    function hantarDataKeGoogleSheet(nama, kelas, set, score, total) {
-      const payload = {
-        nama: nama,
-        kelas: kelas,
-        set: set,
-        markah: score,
-        jumlah: total,
-        peratus: Math.round((score / total) * 100)
-      };
+    resultBox.style.display = 'block';
+    sendingStatus.innerText = "Hantar keputusan ke rekod guru...";
 
-      fetch(PAUTAN_APPS_SCRIPT, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      .then(() => {
-        document.getElementById('sending-status').innerText = "✅ Keputusan berjaya disimpan dalam rekod guru!";
-      })
-      .catch(err => {
-        console.error('Ralat hantar data:', err);
-        document.getElementById('sending-status').innerText = "⚠️ Keputusan dipaparkan (Ralat sambungan rekod).";
-      });
-    }
+    hantarDataKeGoogleSheet(nama, kelas, currentSet, score, total);
+  }
 
-    function bukaModalPassword() {
-      document.getElementById('input-password').value = '';
-      document.getElementById('password-error').style.display = 'none';
-      document.getElementById('modal-password').style.display = 'flex';
-      document.getElementById('input-password').focus();
-    }
+  function hantarDataKeGoogleSheet(nama, kelas, set, score, total) {
+    const payload = {
+      nama: nama,
+      kelas: kelas,
+      set: set,
+      markah: score,
+      jumlah: total,
+      peratus: Math.round((score / total) * 100)
+    };
 
-    function tutupModalPassword() {
-      document.getElementById('modal-password').style.display = 'none';
-    }
+    fetch(PAUTAN_APPS_SCRIPT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(() => {
+      document.getElementById('sending-status').innerText = "✅ Keputusan berjaya disimpan dalam rekod guru!";
+    })
+    .catch(err => {
+      console.error('Ralat hantar data:', err);
+      document.getElementById('sending-status').innerText = "⚠️ Keputusan dipaparkan (Ralat sambungan rekod).";
+    });
+  }
 
-    function sahkanPassword() {
-      const input = document.getElementById('input-password').value;
-      if (input === KATA_LALUAN_GURU) {
-        tutupModalPassword();
-        window.open(PAUTAN_GOOGLE_SHEET, '_blank');
-      } else {
-        document.getElementById('password-error').style.display = 'block';
-      }
-    }
+  function bukaModalPassword() {
+    document.getElementById('input-password').value = '';
+    document.getElementById('password-error').style.display = 'none';
+    document.getElementById('modal-password').style.display = 'flex';
+    document.getElementById('input-password').focus();
+  }
 
-    function semakEnter(event) {
-      if (event.key === 'Enter') {
-        sahkanPassword();
-      }
+  function tutupModalPassword() {
+    document.getElementById('modal-password').style.display = 'none';
+  }
+
+  function sahkanPassword() {
+    const input = document.getElementById('input-password').value;
+    if (input === KATA_LALUAN_GURU) {
+      tutupModalPassword();
+      window.open(PAUTAN_GOOGLE_SHEET, '_blank');
+    } else {
+      document.getElementById('password-error').style.display = 'block';
     }
-  </script>
-</body>
-</html>
+  }
+
+  function semakEnter(event) {
+    if (event.key === 'Enter') {
+      sahkanPassword();
+    }
+  }
+</script>
