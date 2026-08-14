@@ -200,7 +200,7 @@
       margin-top: 20px; 
     }
 
-    /* KOTAK INPUT PASSWORD TEBAL & JELAS */
+    /* KOTAK INPUT PASSWORD */
     .modal-overlay { 
       position: fixed; 
       top: 0; left: 0; 
@@ -788,18 +788,33 @@
       });
   }
 
-  /* FUNGSI PEMBERSIHAN / AUTO-PEMBETULAN PERATUS */
+  /* FUNGSI AUTO-PEMBETULAN PERATUS (DIKEMASKINI) */
   function dapatkanPeratusPasti(row) {
-    let markahRaw = (row[4] || '0').toString();
-    let peratusRaw = (row[5] || '0').toString().replace('%', '');
+    let markahRaw = (row[4] || '0').toString(); // Lajur E
+    let peratusRaw = (row[5] || '0').toString(); // Lajur F
 
-    // Jika data tersimpan format lama di mana markah cuma '7' dan peratus '10'
-    if (!markahRaw.includes('/') && peratusRaw === '10') {
-      let scoreNum = parseInt(markahRaw) || 0;
-      return Math.round((scoreNum / 10) * 100);
+    // 1. Jika Lajur F ada peratus yang sah (contoh: "80%"), ambil nilainya terus
+    if (peratusRaw && !peratusRaw.includes('undefined')) {
+      let parsed = parseInt(peratusRaw.replace('%', ''));
+      if (!isNaN(parsed)) return parsed;
     }
-    
-    return parseInt(peratusRaw) || 0;
+
+    // 2. Jika Lajur F ialah "undefined%" atau rosak, kira secara automatik daripada Lajur E ("7 / 10")
+    if (markahRaw.includes('/')) {
+      let parts = markahRaw.split('/');
+      let scoreNum = parseInt(parts[0].trim()) || 0;
+      let totalNum = parseInt(parts[1].trim()) || 10;
+      return Math.round((scoreNum / totalNum) * 100);
+    }
+
+    // 3. Jika format lama di mana markah cuma '8' dan jumlah '10' pada lajur asing
+    let scoreNum = parseInt(markahRaw) || 0;
+    let totalNum = parseInt(peratusRaw) || 10;
+    if (!isNaN(scoreNum) && totalNum > 0) {
+      return Math.round((scoreNum / totalNum) * 100);
+    }
+
+    return 0;
   }
 
   /* FUNGSI ANALISA MATEMATIK & DATA */
@@ -893,10 +908,11 @@
       let markahRaw = (row[4] || '-').toString();
       let peratusVal = dapatkanPeratusPasti(row);
 
-      // Auto-format markah jika tersimpan '7' kepada '7 / 10'
+      // Auto-format markah jika tersimpan '8' kepada '8 / 10'
       let markahPapar = markahRaw;
-      if (!markahRaw.includes('/')) {
-        markahPapar = markahRaw + " / 10";
+      if (!markahRaw.includes('/') && !isNaN(parseInt(markahRaw))) {
+        let totalVal = row[5] || '10';
+        markahPapar = markahRaw + " / " + totalVal;
       }
 
       let badgeClass = 'badge-yellow';
