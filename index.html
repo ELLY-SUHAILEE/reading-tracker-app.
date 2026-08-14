@@ -16,7 +16,7 @@
       color: #1e293b; 
     }
     .container { 
-      max-width: 1000px; 
+      max-width: 1050px; 
       margin: 0 auto; 
       background: #ffffff; 
       padding: 25px; 
@@ -273,7 +273,7 @@
       font-weight: bold;
     }
 
-    /* SKRIN 3: DASHBOARD GURU */
+    /* SKRIN 3: DASHBOARD ANALISA & REKOD GURU */
     .dashboard-header {
       display: flex;
       justify-content: space-between;
@@ -282,6 +282,45 @@
       flex-wrap: wrap;
       gap: 10px;
     }
+
+    /* KAD ANALISA PINTAR */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .analytic-card {
+      padding: 18px;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      background: #f8fafc;
+    }
+    .card-intervensi { border-color: #fca5a5; background: #fef2f2; }
+    .card-cemerlang { border-color: #86efac; background: #f0fdf4; }
+    .card-topik { border-color: #fde047; background: #fefce8; }
+
+    .analytic-card h3 {
+      margin-top: 0;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-intervensi h3 { color: #991b1b; }
+    .card-cemerlang h3 { color: #166534; }
+    .card-topik h3 { color: #854d0e; }
+
+    .analytic-list {
+      max-height: 120px;
+      overflow-y: auto;
+      font-size: 13px;
+      padding-left: 18px;
+      margin-bottom: 0;
+    }
+    .analytic-list li { margin-bottom: 4px; }
+
+    /* TOOLBAR FILTER */
     .toolbar-dash {
       display: flex;
       gap: 10px;
@@ -295,8 +334,8 @@
       font-size: 14px;
       outline: none;
     }
-    .toolbar-dash input { flex: 2; min-width: 200px; }
-    .toolbar-dash select { flex: 1; min-width: 150px; }
+    .toolbar-dash input { flex: 2; min-width: 180px; }
+    .toolbar-dash select { flex: 1; min-width: 140px; }
     .btn-refresh {
       background-color: #0284c7;
       color: white;
@@ -337,13 +376,15 @@
       background-color: #f1f5f9;
     }
     .badge-score {
-      background-color: #dcfce7;
-      color: #15803d;
       padding: 4px 8px;
       border-radius: 6px;
       font-weight: bold;
       display: inline-block;
     }
+    .badge-green { background-color: #dcfce7; color: #15803d; }
+    .badge-red { background-color: #fee2e2; color: #b91c1c; }
+    .badge-yellow { background-color: #fef9c3; color: #a16207; }
+
     .loading-text {
       text-align: center;
       padding: 30px;
@@ -432,16 +473,44 @@
       </div>
     </div>
 
-    <!-- SKRIN 3: DASHBOARD REKOD GURU -->
+    <!-- SKRIN 3: DASHBOARD ANALISA & REKOD GURU -->
     <div id="skrin-dashboard" style="display: none;">
       <div class="dashboard-header">
-        <h2 style="margin: 0; color: #0284c7;">📊 Rekod & Senarai Murid Menjawab</h2>
+        <h2 style="margin: 0; color: #0284c7;">📊 Analisa & Rekod Murid</h2>
         <button class="btn-logout" onclick="keluarDashboard()">Keluar Rekod</button>
+      </div>
+
+      <!-- KOTAK KAD ANALISA PINTAR -->
+      <div class="analytics-grid">
+        <!-- CARD 1: INTERVENSI -->
+        <div class="analytic-card card-intervensi">
+          <h3>⚠️ Perlu Intervensi (< 60%)</h3>
+          <ul id="list-intervensi" class="analytic-list">
+            <li>Tiada data.</li>
+          </ul>
+        </div>
+
+        <!-- CARD 2: CEMERLANG -->
+        <div class="analytic-card card-cemerlang">
+          <h3>🌟 Murid Cemerlang (≥ 90%)</h3>
+          <ul id="list-cemerlang" class="analytic-list">
+            <li>Tiada data.</li>
+          </ul>
+        </div>
+
+        <!-- CARD 3: ANALISA TOPIK -->
+        <div class="analytic-card card-topik">
+          <h3>📉 Analisa Modul Sukar</h3>
+          <ul id="list-topik-sukar" class="analytic-list">
+            <li>Tiada data.</li>
+          </ul>
+        </div>
       </div>
 
       <!-- KAWASAN CARIAN & PENAPIS (FILTER) -->
       <div class="toolbar-dash">
         <input type="text" id="search-input" placeholder="🔍 Cari nama murid..." onkeyup="tapisData()">
+        
         <select id="filter-kelas" onchange="tapisData()">
           <option value="">-- Semua Kelas --</option>
           <option value="3 ARIF">3 ARIF</option>
@@ -456,6 +525,21 @@
           <option value="3 JUARA">3 JUARA</option>
           <option value="3 KREATIF">3 KREATIF</option>
         </select>
+
+        <select id="filter-modul" onchange="tapisData()">
+          <option value="">-- Semua Modul --</option>
+          <option value="Module 1">Module 1</option>
+          <option value="Module 2">Module 2</option>
+          <option value="Module 3">Module 3</option>
+          <option value="Module 4">Module 4</option>
+          <option value="Module 5">Module 5</option>
+          <option value="Module 6">Module 6</option>
+          <option value="Module 7">Module 7</option>
+          <option value="Module 8">Module 8</option>
+          <option value="Module 9">Module 9</option>
+          <option value="Module 10">Module 10</option>
+        </select>
+
         <button class="btn-refresh" onclick="muatDataRekod()">🔄 Muat Semula</button>
       </div>
 
@@ -666,14 +750,13 @@
     }
   }
 
-  // Boleh tekan 'Enter' di papan kekunci untuk hantar kata laluan
   document.getElementById('input-password').addEventListener('keyup', function(e) {
     if (e.key === 'Enter') {
       semakKataLaluan();
     }
   });
 
-  /* FUNGSI DASHBOARD REKOD GURU */
+  /* FUNGSI DASHBOARD & ANALISA REKOD GURU */
   function bukaDashboardGuru() {
     document.getElementById('skrin-utama').style.display = 'none';
     document.getElementById('skrin-kuiz').style.display = 'none';
@@ -697,12 +780,95 @@
       .then(res => res.json())
       .then(data => {
         senaraiRekod = data;
+        janaAnalisaPintar(senaraiRekod);
         paparJadual(senaraiRekod);
       })
       .catch(err => {
         console.error(err);
-        tbody.innerHTML = '<tr><td colspan="7" class="loading-text" style="color:red;">❌ Belum ada rekod atau ralat komunikasi. Pastikan Google Apps Script diluluskan (Deploy) untuk akses awam.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" class="loading-text" style="color:red;">❌ Ralat mengambil data dari Google Sheet. Pastikan Google Apps Script diluluskan (Deploy) secara awam.</td></tr>';
       });
+  }
+
+  /* FUNGSI ANALISA MATEMATIK & DATA */
+  function janaAnalisaPintar(data) {
+    const listIntervensi = document.getElementById('list-intervensi');
+    const listCemerlang = document.getElementById('list-cemerlang');
+    const listTopikSukar = document.getElementById('list-topik-sukar');
+
+    listIntervensi.innerHTML = '';
+    listCemerlang.innerHTML = '';
+    listTopikSukar.innerHTML = '';
+
+    if (!data || data.length === 0) {
+      listIntervensi.innerHTML = '<li>Tiada data.</li>';
+      listCemerlang.innerHTML = '<li>Tiada data.</li>';
+      listTopikSukar.innerHTML = '<li>Tiada data.</li>';
+      return;
+    }
+
+    let intervensiArr = [];
+    let cemerlangArr = [];
+    let modulStats = {}; // { 'Module 1': { totalPeratus: 100, count: 2 } }
+
+    data.forEach(row => {
+      const nama = row[1] || 'Murid';
+      const kelas = row[2] || '';
+      const modul = row[3] || 'Module';
+      
+      // Ambil nilai peratus integer (contoh: "50%" -> 50)
+      let peratusStr = (row[5] || '0').toString().replace('%', '');
+      let peratusVal = parseInt(peratusStr) || 0;
+
+      // 1. Kategori Intervensi (< 60%)
+      if (peratusVal < 60) {
+        intervensiArr.push(`<b>${nama}</b> (${kelas}) - ${modul}: <span style="color:#dc2626;">${peratusVal}%</span>`);
+      }
+
+      // 2. Kategori Cemerlang (>= 90%)
+      if (peratusVal >= 90) {
+        cemerlangArr.push(`<b>${nama}</b> (${kelas}) - ${modul}: <span style="color:#16a34a;">${peratusVal}%</span>`);
+      }
+
+      // 3. Pengumpulan Data Purata Modul
+      if (!modulStats[modul]) {
+        modulStats[modul] = { totalPeratus: 0, count: 0 };
+      }
+      modulStats[modul].totalPeratus += peratusVal;
+      modulStats[modul].count += 1;
+    });
+
+    // Papar Intervensi
+    if (intervensiArr.length > 0) {
+      intervensiArr.forEach(item => listIntervensi.innerHTML += `<li>${item}</li>`);
+    } else {
+      listIntervensi.innerHTML = '<li>🎉 Tiada murid mendapat < 60%!</li>';
+    }
+
+    // Papar Cemerlang
+    if (cemerlangArr.length > 0) {
+      cemerlangArr.forEach(item => listCemerlang.innerHTML += `<li>${item}</li>`);
+    } else {
+      listCemerlang.innerHTML = '<li>Belum ada murid mencapai ≥ 90%.</li>';
+    }
+
+    // Papar Purata Topik Sukar
+    let topikArr = [];
+    for (let m in modulStats) {
+      let purata = Math.round(modulStats[m].totalPeratus / modulStats[m].count);
+      topikArr.push({ modul: m, purata: purata, responden: modulStats[m].count });
+    }
+    
+    // Susun dari purata terendah (paling sukar) ke tertinggi
+    topikArr.sort((a, b) => a.purata - b.purata);
+
+    if (topikArr.length > 0) {
+      topikArr.forEach(t => {
+        let warna = t.purata < 60 ? '#dc2626' : (t.purata >= 80 ? '#16a34a' : '#d97706');
+        listTopikSukar.innerHTML += `<li><b>${t.modul}</b>: Purata <b style="color:${warna};">${t.purata}%</b> (${t.responden} percubaan)</li>`;
+      });
+    } else {
+      listTopikSukar.innerHTML = '<li>Tiada data modul.</li>';
+    }
   }
 
   function paparJadual(data) {
@@ -715,6 +881,13 @@
     }
 
     data.forEach((row, index) => {
+      let peratusStr = (row[5] || '0').toString().replace('%', '');
+      let peratusVal = parseInt(peratusStr) || 0;
+
+      let badgeClass = 'badge-yellow';
+      if (peratusVal >= 80) badgeClass = 'badge-green';
+      else if (peratusVal < 60) badgeClass = 'badge-red';
+
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${index + 1}</td>
@@ -722,7 +895,7 @@
         <td><b>${row[1] || '-'}</b></td>
         <td>${row[2] || '-'}</td>
         <td>${row[3] || '-'}</td>
-        <td><span class="badge-score">${row[4] || '-'}</span></td>
+        <td><span class="badge-score ${badgeClass}">${row[4] || '-'}</span></td>
         <td><b>${row[5] || '-'}</b></td>
       `;
       tbody.appendChild(tr);
@@ -732,15 +905,18 @@
   function tapisData() {
     const carian = document.getElementById('search-input').value.toLowerCase();
     const kelasSelected = document.getElementById('filter-kelas').value;
+    const modulSelected = document.getElementById('filter-modul').value.toLowerCase();
 
     const dataDitapis = senaraiRekod.filter(row => {
       const nama = (row[1] || '').toString().toLowerCase();
       const kelas = (row[2] || '').toString();
+      const modul = (row[3] || '').toString().toLowerCase();
 
       const padanNama = nama.includes(carian);
       const padanKelas = kelasSelected === "" || kelas === kelasSelected;
+      const padanModul = modulSelected === "" || modul.includes(modulSelected);
 
-      return padanNama && padanKelas;
+      return padanNama && padanKelas && padanModul;
     });
 
     paparJadual(dataDitapis);
