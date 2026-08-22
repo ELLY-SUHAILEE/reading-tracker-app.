@@ -757,6 +757,37 @@
       }
     }
 
+  
+    /* REKOD GURU: solid table cells for clear student names */
+    .table-container table {
+      background: #ffffff;
+    }
+
+    .table-container th {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: bold;
+    }
+
+    .table-container td {
+      background: rgba(255,255,255,0.96);
+      color: #1e293b;
+      font-weight: 500;
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    .table-container tbody tr:hover td {
+      background: #f1f5f9;
+    }
+
+    /* Make the student-name column especially clear and readable */
+    .table-container th:nth-child(3),
+    .table-container td:nth-child(3) {
+      background: #ffffff;
+      color: #0f2f55;
+      font-weight: 700;
+    }
+
   </style>
 </head>
 <body>
