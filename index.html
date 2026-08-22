@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +13,25 @@
       box-sizing: border-box; 
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     }
-    body { 
-      background-color: #f0f9ff; 
-      margin: 0; 
-      padding: 20px; 
-      color: #1e293b; 
+    body {
+      background-image: url('reading-tracker-bg.png');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px;
+      color: #1e293b;
     }
-    .container { 
-      max-width: 1050px; 
-      margin: 0 auto; 
-      background: #ffffff; 
-      padding: 25px; 
-      border-radius: 16px; 
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.94);
+      padding: 25px;
+      border-radius: 22px;
+      box-shadow: 0 14px 35px rgba(15,23,42,0.16);
+      backdrop-filter: blur(3px);
     }
     
     header { 
@@ -59,17 +65,24 @@
 
     /* SKRIN 1: HALAMAN UTAMA */
     .welcome-card {
-      background: #f8fafc;
-      border: 2px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 25px;
+      background: rgba(255,255,255,0.94);
+      border: 2px solid rgba(14,116,144,0.16);
+      border-radius: 20px;
+      padding: 28px;
       text-align: center;
       max-width: 850px;
       margin: 0 auto;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.10);
     }
     .welcome-card h2 {
-      color: #0369a1;
+      color: #075985;
       margin-top: 0;
+      font-size: 30px;
+    }
+    .welcome-card p {
+      color: #475569;
+      font-size: 16px;
+      margin-bottom: 24px;
     }
     .form-group {
       margin-bottom: 18px;
@@ -422,6 +435,20 @@
       font-weight: bold;
       color: #64748b;
     }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 10px;
+        background-attachment: scroll;
+        background-position: center top;
+      }
+      .container { padding: 14px; border-radius: 16px; }
+      header { gap: 10px; align-items: flex-start; }
+      h1 { font-size: 19px; }
+      .btn-guru { padding: 8px 12px; font-size: 12px; }
+      .welcome-card { padding: 20px 16px; }
+      .welcome-card h2 { font-size: 25px; }
+    }
   </style>
 </head>
 <body>
@@ -435,18 +462,18 @@
     <!-- SKRIN 1: HALAMAN UTAMA -->
     <div id="skrin-utama">
       <div class="welcome-card">
-        <h2>Selamat Datang! 👋</h2>
-        <p>Sila masukkan nama, pilih kelas, dan modul daripada senarai di bawah:</p>
+        <h2>Welcome, Reader! 👋</h2>
+        <p>Enter your name, choose your class and select a reading module below.</p>
         
         <div class="form-group">
-          <label for="nama-murid">Nama Murid:</label>
-          <input type="text" id="nama-murid" placeholder="Masukkan nama penuh" required>
+          <label for="nama-murid">Student Name:</label>
+          <input type="text" id="nama-murid" placeholder="Enter your full name" required>
         </div>
         
         <div class="form-group">
-          <label for="kelas-murid">Pilih Kelas:</label>
+          <label for="kelas-murid">Choose Class:</label>
           <select id="kelas-murid" required>
-            <option value="" disabled selected>-- Pilih Kelas --</option>
+            <option value="" disabled selected>-- Choose Class --</option>
             <option value="3 ARIF">3 ARIF</option>
             <option value="3 BESTARI">3 BESTARI</option>
             <option value="3 CERDIK">3 CERDIK</option>
@@ -462,9 +489,9 @@
         </div>
 
         <div class="form-group">
-          <label for="select-modul">Pilih Modul Soalan:</label>
+          <label for="select-modul">Choose Reading Module:</label>
           <select id="select-modul">
-            <option value="" disabled selected>-- Pilih Modul (1 - 10) --</option>
+            <option value="" disabled selected>-- Choose Module (1 - 10) --</option>
             <option value="1">MODULE 1</option>
             <option value="2">MODULE 2</option>
             <option value="3">MODULE 3</option>
@@ -478,7 +505,7 @@
           </select>
         </div>
 
-        <button class="btn-start" onclick="mulaKuizDropdown()">Mula Kuiz 🚀</button>
+        <button class="btn-start" onclick="mulaKuizDropdown()">Start Reading Adventure 🚀</button>
       </div>
     </div>
 
