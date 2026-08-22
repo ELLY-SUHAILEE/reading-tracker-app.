@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,85 +14,171 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     }
     body {
-      background-image: url('reading-tracker-bg.png');
+      margin: 0;
+      min-height: 100vh;
+      padding: 0;
+      color: #172554;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)),
+        url('reading-tracker-bg.png');
       background-size: cover;
       background-position: center center;
-      background-attachment: fixed;
       background-repeat: no-repeat;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: none;
       min-height: 100vh;
       margin: 0;
-      padding: 24px;
-      color: #1e293b;
+      padding: 0 28px 28px;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
     }
-    .container {
-      max-width: 1050px;
+
+    header {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      min-height: 115px;
+      padding: 24px 0 0;
       margin: 0 auto;
-      background: rgba(255,255,255,0.94);
-      padding: 25px;
-      border-radius: 22px;
-      box-shadow: 0 14px 35px rgba(15,23,42,0.16);
-      backdrop-filter: blur(3px);
+      border: none;
+      max-width: 1200px;
     }
-    
-    header { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      border-bottom: 3px solid #e2e8f0; 
-      padding-bottom: 15px; 
-      margin-bottom: 20px; 
+
+    .brand-area {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      pointer-events: none;
     }
-    h1 { 
-      margin: 0; 
-      font-size: 22px; 
-      color: #0284c7; 
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 5vw, 70px);
+      line-height: .92;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #172554;
+      -webkit-text-stroke: 2px #ffffff;
+      text-shadow:
+        0 5px 0 #ffffff,
+        0 8px 18px rgba(15,23,42,.20);
     }
-    .btn-guru { 
-      background-color: #4f46e5 !important; 
-      color: white !important; 
-      padding: 10px 18px; 
-      border: none; 
-      border-radius: 8px; 
-      font-weight: bold; 
-      cursor: pointer; 
+
+    .brand-subtitle {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 9px 25px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #7c3aed, #6d28d9);
+      color: white;
+      font-size: clamp(13px, 1.5vw, 19px);
+      font-weight: 900;
+      letter-spacing: .8px;
+      box-shadow: 0 5px 12px rgba(76,29,149,.25);
+      white-space: nowrap;
+    }
+
+    .btn-guru {
+      position: relative;
+      z-index: 5;
+      background-color: #4f46e5 !important;
+      color: white !important;
+      padding: 12px 20px;
+      border: 2px solid rgba(255,255,255,.9);
+      border-radius: 14px;
+      font-weight: 800;
+      cursor: pointer;
       display: inline-block !important;
       font-size: 14px;
-      box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+      box-shadow: 0 5px 12px rgba(79,70,229,.28);
     }
-    .btn-guru:hover { 
-      background-color: #4338ca !important; 
+
+    .btn-guru:hover {
+      background-color: #4338ca !important;
+      transform: translateY(-1px);
     }
 
     /* SKRIN 1: HALAMAN UTAMA */
+
+    /* FORM ROWS: ONE BOX PER FIELD */
+    .form-group {
+      margin: 22px auto;
+      text-align: left;
+      width: min(690px, 92vw);
+      background: rgba(255,255,255,0.96);
+      border: 2px solid rgba(37,99,235,0.30);
+      border-radius: 18px;
+      padding: 11px 16px;
+      box-shadow: 0 6px 16px rgba(15,23,42,0.12);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 900;
+      margin: 0;
+      color: #075985;
+      min-width: 145px;
+      font-size: 17px;
+    }
+
+    .form-group input, .form-group select {
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      padding: 11px 14px;
+      border: 2px solid #bfdbfe;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      background: #ffffff;
+      color: #1e293b;
+    }
+
     .welcome-card {
-      background: rgba(255,255,255,0.94);
-      border: 2px solid rgba(14,116,144,0.16);
-      border-radius: 20px;
-      padding: 28px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
       text-align: center;
       max-width: 850px;
       margin: 0 auto;
-      box-shadow: 0 8px 24px rgba(15,23,42,0.10);
+      box-shadow: none;
     }
+
     .welcome-card h2 {
       color: #075985;
-      margin-top: 0;
-      font-size: 30px;
+      margin: 0 0 8px;
+      font-size: 25px;
     }
-    .welcome-card p {
+
+    .welcome-card > p {
       color: #475569;
-      font-size: 16px;
-      margin-bottom: 24px;
+      margin: 0 0 20px;
+      font-size: 15px;
     }
+
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 13px;
       text-align: left;
     }
     .form-group label {
       display: block;
-      font-weight: bold;
+      font-weight: 900;
       margin-bottom: 6px;
-      color: #334155;
+      color: #075985;
+      font-size: 15px;
     }
     .form-group input, .form-group select {
       width: 100%;
@@ -109,15 +195,21 @@
 
     .btn-start {
       width: 100%;
-      padding: 14px;
-      background: #0284c7;
+      padding: 15px;
+      background: linear-gradient(90deg, #087ff5, #1261d6);
       color: white;
-      border: none;
-      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,.8);
+      border-radius: 14px;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 900;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 8px;
+      box-shadow: 0 6px 14px rgba(37,99,235,.25);
+    }
+
+    .btn-start:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
     }
 
     /* SKRIN 2: PAPARAN KUIZ */
@@ -436,42 +528,202 @@
       color: #64748b;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 800px) {
       body {
-        padding: 10px;
         background-attachment: scroll;
         background-position: center top;
       }
-      .container { padding: 14px; border-radius: 16px; }
-      header { gap: 10px; align-items: flex-start; }
-      h1 { font-size: 19px; }
-      .btn-guru { padding: 8px 12px; font-size: 12px; }
-      .welcome-card { padding: 20px 16px; }
-      .welcome-card h2 { font-size: 25px; }
+
+      .container {
+        padding: 0 12px 20px;
+      }
+
+      header {
+        min-height: 135px;
+        padding-top: 12px;
+      }
+
+      .brand-area {
+        top: 14px;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 39px;
+      }
+
+      .brand-subtitle {
+        font-size: 11px;
+        padding: 7px 13px;
+      }
+
+      .btn-guru {
+        padding: 8px 12px;
+        font-size: 11px;
+      }
+
+  
+    /* READING TRACKER BRANDING - HTML OVERLAY */
+    .reading-brand {
+      text-align: center;
+      margin: 0 auto 18px;
+      position: relative;
+      z-index: 5;
+      pointer-events: none;
     }
+
+    .reading-brand h2 {
+      margin: 0;
+      font-size: clamp(42px, 5vw, 70px);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #172554;
+      -webkit-text-stroke: 2px white;
+      text-shadow:
+        0 4px 0 white,
+        0 7px 12px rgba(15,23,42,0.20);
+    }
+
+    .reading-brand .subtitle {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 24px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #6d28d9, #7c3aed);
+      border: 3px solid rgba(255,255,255,0.9);
+      color: white;
+      font-size: clamp(15px, 1.8vw, 22px);
+      font-weight: 900;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 12px rgba(76,29,149,0.25);
+    }
+
+    .reading-brand .subtitle span {
+      margin: 0 5px;
+    }
+
+    /* FORM ROWS: ONE BOX PER FIELD */
+    .form-group {
+      margin: 13px auto;
+      text-align: left;
+      max-width: 690px;
+      background: rgba(255,255,255,0.96);
+      border: 2px solid rgba(37,99,235,0.30);
+      border-radius: 18px;
+      padding: 11px 16px;
+      box-shadow: 0 6px 16px rgba(15,23,42,0.12);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 900;
+      margin: 0;
+      color: #075985;
+      min-width: 145px;
+      font-size: 17px;
+    }
+
+    .form-group input, .form-group select {
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      padding: 11px 14px;
+      border: 2px solid #bfdbfe;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      background: #ffffff;
+      color: #1e293b;
+    }
+
+    .welcome-card {
+        margin-top: 30px;
+        padding: 18px 15px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        min-height: 145px;
+      }
+
+      .brand-area {
+        top: 50px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .brand-subtitle {
+        font-size: 9px;
+        letter-spacing: .3px;
+      }
+
+      .btn-guru {
+        font-size: 10px;
+      }
+    }
+  
+    /* Student landing controls: move form clearly below the background title */
+    #skrin-utama {
+      padding-top: 245px;
+      padding-bottom: 55px;
+    }
+
+    #skrin-utama .welcome-card {
+      margin-top: 0;
+    }
+
+    /* Keep NAME, CLASS and MODULE together, then place START button last */
+    #skrin-utama .form-group {
+      margin: 16px auto;
+    }
+
+    #skrin-utama .btn-start {
+      display: block;
+      margin: 28px auto 0;
+      width: min(690px, 92vw);
+    }
+
+    @media (max-width: 700px) {
+      #skrin-utama {
+        padding-top: 155px;
+        padding-bottom: 35px;
+      }
+
+      #skrin-utama .form-group {
+        margin: 13px auto;
+      }
+
+      #skrin-utama .btn-start {
+        margin-top: 22px;
+      }
+    }
+
   </style>
 </head>
 <body>
 
   <div class="container">
-    <header>
-      <h1>📖 Reading Tracker App</h1>
-      <button type="button" id="btn-guru-top" class="btn-guru" onclick="paparkanBorangPassword()">🔒 Rekod Guru</button>
-    </header>
-
-    <!-- SKRIN 1: HALAMAN UTAMA -->
+<!-- SKRIN 1: HALAMAN UTAMA -->
     <div id="skrin-utama">
-      <div class="welcome-card">
-        <h2>Welcome, Reader! 👋</h2>
-        <p>Enter your name, choose your class and select a reading module below.</p>
+</div>
+      
+        
+        
         
         <div class="form-group">
-          <label for="nama-murid">Student Name:</label>
-          <input type="text" id="nama-murid" placeholder="Enter your full name" required>
+          <label for="nama-murid">NAME:</label>
+          <input type="text" id="nama-murid" placeholder="Enter your name" required>
         </div>
         
         <div class="form-group">
-          <label for="kelas-murid">Choose Class:</label>
+          <label for="kelas-murid">CLASS:</label>
           <select id="kelas-murid" required>
             <option value="" disabled selected>-- Choose Class --</option>
             <option value="3 ARIF">3 ARIF</option>
@@ -489,7 +741,7 @@
         </div>
 
         <div class="form-group">
-          <label for="select-modul">Choose Reading Module:</label>
+          <label for="select-modul">MODULE:</label>
           <select id="select-modul">
             <option value="" disabled selected>-- Choose Module (1 - 10) --</option>
             <option value="1">MODULE 1</option>
@@ -505,7 +757,7 @@
           </select>
         </div>
 
-        <button class="btn-start" onclick="mulaKuizDropdown()">Start Reading Adventure 🚀</button>
+        <button class="btn-start" onclick="mulaKuizDropdown()">LET’S START READING! 🚀</button>
       </div>
     </div>
 
