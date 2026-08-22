@@ -731,11 +731,44 @@
       display: none;
     }
 
+  
+    .top-header {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 95px;
+      padding: 22px 0 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      position: relative;
+      z-index: 20;
+    }
+
+    @media (max-width: 700px) {
+      .top-header {
+        min-height: 78px;
+        padding: 14px 4px 0;
+      }
+
+      .btn-guru {
+        padding: 9px 13px;
+        font-size: 12px;
+      }
+    }
+
   </style>
 </head>
 <body>
 
   <div class="container">
+
+    <header class="top-header">
+      <button id="btn-guru-top" class="btn-guru" type="button" onclick="paparkanBorangPassword()">
+        🔒 Rekod Guru
+      </button>
+    </header>
+
 <!-- SKRIN 1: HALAMAN UTAMA -->
     <div id="skrin-utama">
       <div class="welcome-card">
