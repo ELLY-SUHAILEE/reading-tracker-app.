@@ -2028,5 +2028,325 @@
         ]
       }
     ]
+  },
+  {
+    "set": 8,
+    "questions": [
+      {
+        "no": 1,
+        "sentence": "Yesterday, Adam _______ to the zoo with his family.",
+        "options": [
+          {
+            "label": "A",
+            "text": "go",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "went",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "text": "going",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 2,
+        "sentence": "She _______ at the shopping centre yesterday morning.",
+        "options": [
+          {
+            "label": "A",
+            "text": "was",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "text": "were",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "text": "is",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 3,
+        "sentence": "We _______ at the cinema last night.",
+        "options": [
+          {
+            "label": "A",
+            "text": "was",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "are",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "text": "were",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "sentence": "Encik Lee _______ a big elephant at the zoo last weekend.",
+        "options": [
+          {
+            "label": "A",
+            "text": "see",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "saw",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "text": "seeing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 5,
+        "sentence": "My mother _______ a new dress yesterday.",
+        "options": [
+          {
+            "label": "A",
+            "text": "bought",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "text": "buy",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "text": "buys",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 6,
+        "sentence": "They _______ some delicious sandwiches for the picnic.",
+        "options": [
+          {
+            "label": "A",
+            "text": "bring",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "brings",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "text": "brought",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 7,
+        "sentence": "The fisherman _______ a huge fish in the river yesterday.",
+        "options": [
+          {
+            "label": "A",
+            "text": "caught",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "text": "catch",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "text": "catching",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 8,
+        "sentence": "Siti _______ her homework before going to bed last night.",
+        "options": [
+          {
+            "label": "A",
+            "text": "do",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "did",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "text": "does",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 9,
+        "sentence": "I _______ a shiny shell on the beach yesterday afternoon.",
+        "options": [
+          {
+            "label": "A",
+            "text": "find",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "finding",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "text": "found",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 10,
+        "sentence": "The cat _______ on the soft mat all afternoon.",
+        "options": [
+          {
+            "label": "A",
+            "text": "sat",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "text": "sit",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "text": "sitting",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 11,
+        "sentence": "Mei Ling _______ a postcard to her grandmother last week.",
+        "options": [
+          {
+            "label": "A",
+            "text": "write",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "wrote",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "text": "writing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 12,
+        "sentence": "The baby _______ soundly for eight hours last night.",
+        "options": [
+          {
+            "label": "A",
+            "text": "sleep",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "sleeps",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "text": "slept",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 13,
+        "sentence": "Raju _______ a cool present for his birthday last month.",
+        "options": [
+          {
+            "label": "A",
+            "text": "got",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "text": "get",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "text": "getting",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 14,
+        "sentence": "We _______ many beautiful photos during our holiday.",
+        "options": [
+          {
+            "label": "A",
+            "text": "take",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "took",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "text": "taking",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 15,
+        "sentence": "The teacher _______ us an exciting story yesterday morning.",
+        "options": [
+          {
+            "label": "A",
+            "text": "tell",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "text": "told",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "text": "telling",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
   }
 ]
