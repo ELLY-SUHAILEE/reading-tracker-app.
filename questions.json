@@ -1710,3 +1710,325 @@
     ]
   }
 ]
+[
+  {
+    "set": 7,
+    "questions": [
+      {
+        "no": 1,
+        "sentence": "The boy is jumping high.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q1_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q1_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q1_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 2,
+        "sentence": "She is dancing on the stage.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q2_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q2_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q2_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 3,
+        "sentence": "They are singing a happy song.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q3_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q3_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q3_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "sentence": "He is watching TV in the living room.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q4_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q4_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q4_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 5,
+        "sentence": "Ali is doing his homework.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q5_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q5_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q5_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 6,
+        "sentence": "The children are playing football in the field.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q6_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q6_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q6_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 7,
+        "sentence": "My sister is cleaning her bedroom.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q7_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q7_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q7_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 8,
+        "sentence": "He is watering the plants in the garden.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q8_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q8_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q8_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 9,
+        "sentence": "Mum is making a delicious cake.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q9_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q9_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q9_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 10,
+        "sentence": "They are exercising at the park.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q10_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q10_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q10_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 11,
+        "sentence": "The cat is sleeping under the table.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q11_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q11_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q11_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 12,
+        "sentence": "The girl is running fast.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q12_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q12_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q12_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 13,
+        "sentence": "Aina is reading a storybook.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q13_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q13_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q13_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 14,
+        "sentence": "We are eating delicious ice cream.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q14_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q14_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q14_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 15,
+        "sentence": "He is drinking a glass of water.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set7_q15_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set7_q15_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set7_q15_c.png",
+            "is_correct": true
+          }
+        ]
+      }
+    ]
+  }
+]
