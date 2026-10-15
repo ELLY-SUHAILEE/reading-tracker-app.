@@ -2348,5 +2348,327 @@
         ]
       }
     ]
+  },
+]
+[
+  {
+    "set": 8,
+    "questions": [
+      {
+        "no": 1,
+        "sentence": "Yesterday, Adam went to the zoo with his family.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q1_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q1_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q1_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 2,
+        "sentence": "She was at the shopping complex yesterday morning.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q2_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q2_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q2_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 3,
+        "sentence": "We were at the cinema last night.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q3_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q3_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q3_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "sentence": "They saw a funny show at the theatre.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q4_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q4_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q4_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 5,
+        "sentence": "My mother bought fresh fruits at the supermarket.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q5_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q5_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q5_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 6,
+        "sentence": "They brought a big tent when they went camping.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q6_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q6_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q6_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 7,
+        "sentence": "The fisherman caught a small crab at the beach.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q7_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q7_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q7_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 8,
+        "sentence": "I found a shiny coin at the playground.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q8_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q8_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q8_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 9,
+        "sentence": "The baby slept soundly in the bedroom.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q9_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q9_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q9_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 10,
+        "sentence": "Raju got a ticket at the bus station.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q10_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q10_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q10_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 11,
+        "sentence": "We took many photos at the amusement park.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q11_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q11_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q11_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 12,
+        "sentence": "The firefighter told us about safety at the fire station.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q12_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q12_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q12_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 13,
+        "sentence": "Siti played with her toys in the living room.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q13_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q13_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q13_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 14,
+        "sentence": "We sat near the window at the restaurant.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q14_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q14_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q14_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 15,
+        "sentence": "Mei Ling wrote a letter at the post office.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set8_q15_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set8_q15_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set8_q15_c.png",
+            "is_correct": true
+          }
+        ]
+      }
+    ]
   }
 ]
