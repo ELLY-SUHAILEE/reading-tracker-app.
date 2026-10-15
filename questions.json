@@ -2354,7 +2354,7 @@
     "questions": [
       {
         "no": 1,
-        "sentence": "Yesterday, Adam found an old key in the garden. He opened a small wooden chest under a tree. Inside the chest, he discovered a secret map. Choose the picture that best matches the whole story.",
+        "sentence": "Yesterday, Adam found an old key in the garden. He opened a small wooden chest under a tree. Inside the chest, he discovered a secret map.",
         "options": [
           {
             "label": "A",
@@ -2375,7 +2375,7 @@
       },
       {
         "no": 2,
-        "sentence": "Sara walked into the library after school. She saw an old book on a wooden desk. When she opened it, a secret note fell out onto the floor. Choose the picture that best matches the whole story.",
+        "sentence": "Sara walked into the library after school. She saw an old book on a wooden desk. When she opened it, a secret note fell out onto the floor.",
         "options": [
           {
             "label": "A",
@@ -2396,7 +2396,7 @@
       },
       {
         "no": 3,
-        "sentence": "Ali saw a mysterious bottle on the sandy beach. He opened the glass bottle near the sea. He read the secret message written on a rolled paper inside. Choose the picture that best matches the whole story.",
+        "sentence": "Ali saw a mysterious bottle on the sandy beach. He opened the glass bottle near the sea. He read the secret message written on a rolled paper inside.",
         "options": [
           {
             "label": "A",
@@ -2417,7 +2417,7 @@
       },
       {
         "no": 4,
-        "sentence": "Last night, Mei Ling wrote a secret message using lemon juice. She held the white paper over a soft lamp light. The hidden words appeared clearly on the paper. Choose the picture that best matches the whole story.",
+        "sentence": "Last night, Mei Ling wrote a secret message using lemon juice. She held the white paper over a soft lamp light. The hidden words appeared clearly on the paper.",
         "options": [
           {
             "label": "A",
@@ -2438,7 +2438,7 @@
       },
       {
         "no": 5,
-        "sentence": "The detective arrived at the old museum in the afternoon. He spotted a hidden code written on a framed painting. He wrote down the secret code in his small notebook. Choose the picture that best matches the whole story.",
+        "sentence": "The detective arrived at the old museum in the afternoon. He spotted a hidden code written on a framed painting. He wrote down the secret code in his small notebook.",
         "options": [
           {
             "label": "A",
@@ -2459,7 +2459,7 @@
       },
       {
         "no": 6,
-        "sentence": "Raju heard an unusual sound behind the bookshelf in his bedroom. He moved two heavy storybooks to the side. He found a secret door hidden behind the shelf. Choose the picture that best matches the whole story.",
+        "sentence": "Raju heard an unusual sound behind the bookshelf in his bedroom. He moved two heavy storybooks to the side. He found a secret door hidden behind the shelf.",
         "options": [
           {
             "label": "A",
@@ -2480,7 +2480,7 @@
       },
       {
         "no": 7,
-        "sentence": "Siti bought a strange vintage box from the market. She solved a small number puzzle on top of the lid. A secret drawer popped open with a shiny key inside. Choose the picture that best matches the whole story.",
+        "sentence": "Siti bought a strange vintage box from the market. She solved a small number puzzle on top of the lid. A secret drawer popped open with a shiny key inside.",
         "options": [
           {
             "label": "A",
@@ -2501,7 +2501,7 @@
       },
       {
         "no": 8,
-        "sentence": "The pirate climbed up to the top of the dark cave. He decoded the ancient symbols drawn on the stone wall. He unlocked a golden treasure chest on the ground. Choose the picture that best matches the whole story.",
+        "sentence": "The pirate climbed up to the top of the dark cave. He decoded the ancient symbols drawn on the stone wall. He unlocked a golden treasure chest on the ground.",
         "options": [
           {
             "label": "A",
@@ -2522,7 +2522,7 @@
       },
       {
         "no": 9,
-        "sentence": "Encik Razak received a mysterious sealed envelope in his mailbox. He carefully cut the red wax seal with small scissors. He smiled when he read the happy secret letter inside. Choose the picture that best matches the whole story.",
+        "sentence": "Encik Razak received a mysterious sealed envelope in his mailbox. He carefully cut the red wax seal with small scissors. He smiled when he read the happy secret letter inside.",
         "options": [
           {
             "label": "A",
@@ -2543,7 +2543,7 @@
       },
       {
         "no": 10,
-        "sentence": "The children gathered near a large oak tree in the park. They dug a small hole near the roots. They buried a tin time capsule containing their secret letters. Choose the picture that best matches the whole story.",
+        "sentence": "The children gathered near a large oak tree in the park. They dug a small hole near the roots. They buried a tin time capsule containing their secret letters.",
         "options": [
           {
             "label": "A",
