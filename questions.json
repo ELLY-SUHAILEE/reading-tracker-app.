@@ -2027,327 +2027,7 @@
           }
         ]
       }
-    ]
-  },
-  {
-    "set": 8,
-    "questions": [
-      {
-        "no": 1,
-        "sentence": "Yesterday, Adam _______ to the zoo with his family.",
-        "options": [
-          {
-            "label": "A",
-            "text": "go",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "went",
-            "is_correct": true
-          },
-          {
-            "label": "C",
-            "text": "going",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 2,
-        "sentence": "She _______ at the shopping centre yesterday morning.",
-        "options": [
-          {
-            "label": "A",
-            "text": "was",
-            "is_correct": true
-          },
-          {
-            "label": "B",
-            "text": "were",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "text": "is",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 3,
-        "sentence": "We _______ at the cinema last night.",
-        "options": [
-          {
-            "label": "A",
-            "text": "was",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "are",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "text": "were",
-            "is_correct": true
-          }
-        ]
-      },
-      {
-        "no": 4,
-        "sentence": "Encik Lee _______ a big elephant at the zoo last weekend.",
-        "options": [
-          {
-            "label": "A",
-            "text": "see",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "saw",
-            "is_correct": true
-          },
-          {
-            "label": "C",
-            "text": "seeing",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 5,
-        "sentence": "My mother _______ a new dress yesterday.",
-        "options": [
-          {
-            "label": "A",
-            "text": "bought",
-            "is_correct": true
-          },
-          {
-            "label": "B",
-            "text": "buy",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "text": "buys",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 6,
-        "sentence": "They _______ some delicious sandwiches for the picnic.",
-        "options": [
-          {
-            "label": "A",
-            "text": "bring",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "brings",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "text": "brought",
-            "is_correct": true
-          }
-        ]
-      },
-      {
-        "no": 7,
-        "sentence": "The fisherman _______ a huge fish in the river yesterday.",
-        "options": [
-          {
-            "label": "A",
-            "text": "caught",
-            "is_correct": true
-          },
-          {
-            "label": "B",
-            "text": "catch",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "text": "catching",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 8,
-        "sentence": "Siti _______ her homework before going to bed last night.",
-        "options": [
-          {
-            "label": "A",
-            "text": "do",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "did",
-            "is_correct": true
-          },
-          {
-            "label": "C",
-            "text": "does",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 9,
-        "sentence": "I _______ a shiny shell on the beach yesterday afternoon.",
-        "options": [
-          {
-            "label": "A",
-            "text": "find",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "finding",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "text": "found",
-            "is_correct": true
-          }
-        ]
-      },
-      {
-        "no": 10,
-        "sentence": "The cat _______ on the soft mat all afternoon.",
-        "options": [
-          {
-            "label": "A",
-            "text": "sat",
-            "is_correct": true
-          },
-          {
-            "label": "B",
-            "text": "sit",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "text": "sitting",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 11,
-        "sentence": "Mei Ling _______ a postcard to her grandmother last week.",
-        "options": [
-          {
-            "label": "A",
-            "text": "write",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "wrote",
-            "is_correct": true
-          },
-          {
-            "label": "C",
-            "text": "writing",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 12,
-        "sentence": "The baby _______ soundly for eight hours last night.",
-        "options": [
-          {
-            "label": "A",
-            "text": "sleep",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "sleeps",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "text": "slept",
-            "is_correct": true
-          }
-        ]
-      },
-      {
-        "no": 13,
-        "sentence": "Raju _______ a cool present for his birthday last month.",
-        "options": [
-          {
-            "label": "A",
-            "text": "got",
-            "is_correct": true
-          },
-          {
-            "label": "B",
-            "text": "get",
-            "is_correct": false
-          },
-          {
-            "label": "C",
-            "text": "getting",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 14,
-        "sentence": "We _______ many beautiful photos during our holiday.",
-        "options": [
-          {
-            "label": "A",
-            "text": "take",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "took",
-            "is_correct": true
-          },
-          {
-            "label": "C",
-            "text": "taking",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "no": 15,
-        "sentence": "The teacher _______ us an exciting story yesterday morning.",
-        "options": [
-          {
-            "label": "A",
-            "text": "tell",
-            "is_correct": false
-          },
-          {
-            "label": "B",
-            "text": "told",
-            "is_correct": true
-          },
-          {
-            "label": "C",
-            "text": "telling",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
+    ] 
   },
   {
     "set": 8,
@@ -2664,6 +2344,221 @@
             "label": "C",
             "image": "images/set8_q15_c.png",
             "is_correct": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "set": 9,
+    "questions": [
+      {
+        "no": 1,
+        "sentence": "Yesterday, Adam found an old key in the garden. He opened a small wooden chest under a tree. Inside the chest, he discovered a secret map. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q1_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q1_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q1_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 2,
+        "sentence": "Sara walked into the library after school. She saw an old book on a wooden desk. When she opened it, a secret note fell out onto the floor. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q2_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q2_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q2_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 3,
+        "sentence": "Ali saw a mysterious bottle on the sandy beach. He opened the glass bottle near the sea. He read the secret message written on a rolled paper inside. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q3_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q3_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q3_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "sentence": "Last night, Mei Ling wrote a secret message using lemon juice. She held the white paper over a soft lamp light. The hidden words appeared clearly on the paper. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q4_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q4_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q4_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 5,
+        "sentence": "The detective arrived at the old museum in the afternoon. He spotted a hidden code written on a framed painting. He wrote down the secret code in his small notebook. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q5_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q5_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q5_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 6,
+        "sentence": "Raju heard an unusual sound behind the bookshelf in his bedroom. He moved two heavy storybooks to the side. He found a secret door hidden behind the shelf. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q6_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q6_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q6_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 7,
+        "sentence": "Siti bought a strange vintage box from the market. She solved a small number puzzle on top of the lid. A secret drawer popped open with a shiny key inside. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q7_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q7_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q7_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 8,
+        "sentence": "The pirate climbed up to the top of the dark cave. He decoded the ancient symbols drawn on the stone wall. He unlocked a golden treasure chest on the ground. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q8_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q8_b.png",
+            "is_correct": true
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q8_c.png",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "no": 9,
+        "sentence": "Encik Razak received a mysterious sealed envelope in his mailbox. He carefully cut the red wax seal with small scissors. He smiled when he read the happy secret letter inside. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q9_a.png",
+            "is_correct": false
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q9_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q9_c.png",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "no": 10,
+        "sentence": "The children gathered near a large oak tree in the park. They dug a small hole near the roots. They buried a tin time capsule containing their secret letters. Choose the picture that best matches the whole story.",
+        "options": [
+          {
+            "label": "A",
+            "image": "images/set9_q10_a.png",
+            "is_correct": true
+          },
+          {
+            "label": "B",
+            "image": "images/set9_q10_b.png",
+            "is_correct": false
+          },
+          {
+            "label": "C",
+            "image": "images/set9_q10_c.png",
+            "is_correct": false
           }
         ]
       }
